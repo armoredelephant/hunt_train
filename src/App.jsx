@@ -1,6 +1,8 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 
-import App from './App';
+const App = () => {
+  return <h2>Hi</h2>;
+};
 
-ReactDOM.render(<App />, document.getElementById('root'));
+export default App;

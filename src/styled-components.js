@@ -7,11 +7,11 @@ import 'jest-styled-components';
 import defaultTheme from './theme';
 
 export const shallowWithTheme = (children, customTheme) => {
-    const theme = customTheme || defaultTheme;
-    return shallow(children, { context: theme });
+  const theme = customTheme || defaultTheme;
+  return shallow(children, { context: theme });
 };
 
 export const mountWithTheme = (Component, customTheme) => {
-    const theme = customTheme || defaultTheme;
-    return mount(<ThemeProvider theme={theme}>{Component}</ThemeProvider>);
+  const theme = customTheme || defaultTheme;
+  return mount(<ThemeProvider theme={theme}>{Component}</ThemeProvider>);
 };
