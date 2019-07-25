@@ -2,6 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Card = styled.div`
+    width: 500px;
+    height: 200px;
+    border: 1px solid red;
 
 `;
 

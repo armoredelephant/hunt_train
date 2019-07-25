@@ -3,6 +3,7 @@ import Axios from 'axios';
 
 // axios call to gather data 
 
+import MainContainerA from '@A/00-containers/MainContainerA';
 import ZoneCardM from '@M/00-forms/ZoneCardM';
 
 const ScouterPageO = () => {
@@ -19,16 +20,22 @@ const ScouterPageO = () => {
         fetchData('/resources/stubs/hunt_data.json');
     }, []);
 
-    if (zoneKeys === null) return <></>;
-    return (
-        <React.Fragment>
-            {  /** need a test component to map here */}
-            {zoneKeys.map(item => {
-                <ZoneCardM
-                    zone={zoneData[item].zone} />
-            })}
-        </React.Fragment>
-    );
+
+    if (!zoneData || !zoneKeys) {
+        return null;
+    } else {
+        console.log(zoneKeys, zoneData);
+        return (
+            <MainContainerA>
+                {zoneKeys.map(item => {
+                    return (
+                        <ZoneCardM
+                            zone={zoneData[item].zone} />
+                    )
+                })}
+            </MainContainerA>
+        );
+    }
 };
 
 export default ScouterPageO;

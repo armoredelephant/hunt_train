@@ -1,6 +1,6 @@
 import React from 'react';
 
-import MainContainerA from '@A/00-containers/MainContainerA';
+import SplashContainerA from '@A/00-containers/SplashContainerA';
 import ContentContainerA from '@A/00-containers/ContentContainerA';
 
 import SplashHeaderA from '@A/01-headers/SplashHeaderA';
@@ -11,7 +11,7 @@ const paragraph = 'This app was designed to make the scouting and conducting of 
 
 const SplashPageO = () => {
   return (
-    <MainContainerA className='darken'>
+    <SplashContainerA className='darken'>
       <ContentContainerA>
         <SplashHeaderA>Welcome to Hunt Conductor</SplashHeaderA>
         <TextContainerA text={paragraph} />
@@ -19,7 +19,7 @@ const SplashPageO = () => {
           destination={'/scouter'}
           text={'Start Scouting'} />
       </ContentContainerA>
-    </MainContainerA>
+    </SplashContainerA>
   );
 };
 
