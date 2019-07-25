@@ -6,7 +6,7 @@ const Container = styled.div`
     flex-flow: column;
     justify-content: space-evenly;
     height: 300px;
-    margin: 30px;
+    margin: 15px;
 `;
 
 const ContentContainerA = props => {

@@ -9,11 +9,11 @@ import ThemedButtonA from '@A/02-buttons/ThemedButtonA';
 
 const paragraph = 'This app was designed to make the scouting and conducting of a hunt train easier.'
 
-const SplashPageO = props => {
+const SplashPageO = () => {
   return (
     <MainContainerA className='darken'>
       <ContentContainerA>
-        <SplashHeaderA>Welcome to Hunt Train</SplashHeaderA>
+        <SplashHeaderA>Welcome to Hunt Conductor</SplashHeaderA>
         <TextContainerA text={paragraph} />
         <ThemedButtonA  // prettier-ignore 
           destination={'/scouter'}

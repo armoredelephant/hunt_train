@@ -3,7 +3,9 @@ import styled from 'styled-components';
 
 const Paragraph = styled.p`
     font-size: ${props => props.theme.fntSz};
+    font-family: ${props => props.theme.ff};
     color: ${props => props.theme.fntClr};
+    text-align: justify;
     padding: 0;
     margin: 0;
 `;

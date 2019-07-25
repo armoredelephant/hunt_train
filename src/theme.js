@@ -1,6 +1,7 @@
 const theme = {
     fntSz: '18px',
     fntClr: 'white',
+    ff: 'Oswald',
     btnColor: 'white',
     btnDisplay: 'inline-block',
     btnW: 'auto',

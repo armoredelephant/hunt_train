@@ -20,6 +20,7 @@ const Button = styled(Link)`
     outline: ${props => props.theme.btnOutline};
     line-height: ${props => props.theme.btnLH};
     position: ${props => props.theme.btnPos};
+    font-family: ${props => props.theme.ff};
     align-self: center;
     order: 1;
 `;
