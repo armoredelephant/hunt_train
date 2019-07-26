@@ -28,8 +28,12 @@ const ScouterPageO = () => {
         return (
             <MainContainerA>
                 {zoneKeys.map(item => {
+                    const rdmKey = Math.random()
+                        .toString(36)
+                        .substring(7);
                     return (
                         <ZoneCardM
+                            key={rdmKey}
                             zone={zoneData[item].zone} />
                     )
                 })}
