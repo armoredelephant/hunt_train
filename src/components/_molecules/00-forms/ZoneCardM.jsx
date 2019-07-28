@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import CardHeaderA from '@A/03-card_items/CardHeaderA';
+import CardHeaderM from '@M/01-card_items/CardHeaderM';
+import CardRowM from '@M/01-card_items/CardRowM';
 
 const CardContainer = styled.div`
-    min-width: 500px;
-    min-height: 500px;
+    min-width: 400px;
     border: 1px solid red;
     margin: 5px;
     display: flex;
@@ -26,7 +26,17 @@ const ZoneCardM = props => {
     return (
         <CardContainer>
             <Card>
-                <CardHeaderA zone={zone} />
+                <CardHeaderM zone={zone} />
+                {marks.map(mark => {
+                    const rdmKey = Math.random()
+                        .toString(36)
+                        .substring(7);
+                    return (
+                        <CardRowM
+                            key={rdmKey}
+                            mark={mark} />
+                    );
+                })}
             </Card>
         </CardContainer>
     );

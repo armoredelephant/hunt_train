@@ -34,6 +34,7 @@ const ScouterPageO = () => {
                     return (
                         <ZoneCardM
                             key={rdmKey}
+                            marks={zoneData[item].marks}
                             zone={zoneData[item].zone} />
                     )
                 })}

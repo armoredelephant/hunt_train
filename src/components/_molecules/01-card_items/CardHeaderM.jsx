@@ -1,18 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Container = styled.div`
-    display: flex;
-    flex-flow; row;
-    justify-content: space-between;
-    border: 1px solid green; 
-`;
-
-const ZoneContainer = styled.div`
-    display: flex;
-    flex-flow: row;
-    flex: 1 1 auto;
-`;
+import RowContainerA from '@A/00-containers/RowContainerA';
+import InstanceContainerA from '@A/00-containers/InstanceContainerA';
+import ZoneMarkContainerA from '@A/00-containers/ZoneMarkContainerA';
 
 const Zone = styled.h3`
     padding: 0;
@@ -21,13 +12,6 @@ const Zone = styled.h3`
     font-family: ${props => props.theme.ff};
 `
 
-const InstanceContainer = styled.div`
-    display: flex;
-    flex-flow: row;
-    flex: 2 1 auto;
-    justify-content: space-between;
-`;
-
 const Instance = styled.h3`
     padding: 0;
     margin: 0;
@@ -35,24 +19,24 @@ const Instance = styled.h3`
     font-family: ${props => props.theme.ff};
 `
 
-const CardHeaderA = props => {
+const CardHeaderM = props => {
     const { zone } = props;
     const instances = [1, 2, 3];
     return (
-        <Container>
-            <ZoneContainer>
+        <RowContainerA>
+            <ZoneMarkContainerA>
                 <Zone>{zone}</Zone>
-            </ZoneContainer>
-            <InstanceContainer>
+            </ZoneMarkContainerA>
+            <InstanceContainerA>
                 {instances.map(instance => {
                     const rdmKey = Math.random()
                         .toString(36)
                         .substring(7);
                     return <Instance key={rdmKey}>{instance}</Instance>
                 })}
-            </InstanceContainer>
-        </Container>
+            </InstanceContainerA>
+        </RowContainerA>
     );
 };
 
-export default CardHeaderA;
+export default CardHeaderM;
