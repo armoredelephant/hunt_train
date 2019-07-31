@@ -24,7 +24,6 @@ const ScouterPageO = () => {
     if (!zoneData || !zoneKeys) {
         return null;
     } else {
-        console.log(zoneKeys, zoneData);
         return (
             <MainContainerA>
                 {zoneKeys.map(item => {
@@ -34,6 +33,7 @@ const ScouterPageO = () => {
                     return (
                         <ZoneCardM
                             key={rdmKey}
+                            crystals={zoneData[item].crystals}
                             marks={zoneData[item].marks}
                             zone={zoneData[item].zone} />
                     )

@@ -11,13 +11,25 @@ const Mark = styled.h4`
 `;
 
 const CardRowM = props => {
-    const { mark } = props
+    const { mark, zone } = props
+    const instances = [1, 2, 3];
+
     return (
         <RowContainerA>
             <ZoneMarkContainerA>
                 <Mark>{mark}</Mark>
             </ZoneMarkContainerA>
             <InstanceContainerA>
+                {instances.map(instance => {
+                    const rdmKey = Math.random()
+                        .toString(36)
+                        .substring(7);
+                    return <MapperM
+                        instance={instance}
+                        key={rdmKey}
+                        mark={mark}
+                        zone={zone} />
+                })}
                 {/** Selected coordinates top */}
                 {/** Map button to select coordinates bottom */}
             </InstanceContainerA>
