@@ -14,6 +14,15 @@ const CardRowM = props => {
     const { mark, zone } = props
     const instances = [1, 2, 3];
 
+    // will receive coordinate state for specific mark from Reducer
+
+    /** needs state for selected coordinates
+     * selected cordinates from MapperM will need to update the state
+     * or receive new state from reducer? 
+     */
+
+     
+
     return (
         <RowContainerA>
             <ZoneMarkContainerA>

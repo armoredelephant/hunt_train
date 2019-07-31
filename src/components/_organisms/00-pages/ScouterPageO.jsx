@@ -9,6 +9,7 @@ import ZoneCardM from '@M/00-forms/ZoneCardM';
 const ScouterPageO = () => {
     const [zoneKeys, setZoneKeys] = useState(null);
     const [zoneData, setZoneData] = useState(null);
+    const [scoutData, setScoutData] = useState({});
 
     const fetchData = async url => {
         const result = await Axios.get(url);
@@ -20,6 +21,13 @@ const ScouterPageO = () => {
         fetchData('/resources/stubs/hunt_data.json');
     }, []);
 
+    const coordinateSelect = (coordinate, zone, mark, instance) => {
+        let data = scoutData;
+        let smallZone = zone.toLowerCase();
+
+        // determine distance of mark
+        const distance = data[zone][instance][mark].distance
+    }
 
     if (!zoneData || !zoneKeys) {
         return null;
