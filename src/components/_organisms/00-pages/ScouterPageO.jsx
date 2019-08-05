@@ -1,52 +1,77 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, createContext } from 'react';
+import { useImmerReducer } from 'use-immer';
 import Axios from 'axios';
-
-// axios call to gather data 
 
 import MainContainerA from '@A/00-containers/MainContainerA';
 import ZoneCardM from '@M/00-forms/ZoneCardM';
 
+const initialState = {
+    scoutData: {},
+    zoneKeys: null,
+    zoneData: null,
+};
+
+const scoutDataReducer = (draft, action) => {
+    switch (action.type) {
+        case 'keys': {
+            draft.zoneKeys = action.keys;
+            return;
+        };
+        case 'fetch': {
+            draft.zoneData = action.zoneData;
+            return;
+        };
+        case 'scout': {
+            draft.scoutData[action.zone][action.mark].coords = action.coords;
+            draft.scoutData[action.zone][action.mark].distance = action.distance;
+            return;
+        };
+        default:
+            return state;
+    };
+};
+
+const DispatchContext = createContext();
+const StateContext = createContext();
+
 const ScouterPageO = () => {
-    const [zoneKeys, setZoneKeys] = useState(null);
-    const [zoneData, setZoneData] = useState(null);
-    const [scoutData, setScoutData] = useState({});
+    const [state, dispatch] = useImmerReducer(scoutDataReducer, initialState);
+    const { zoneData, zoneKeys, scoutData } = state;
 
     const fetchData = async url => {
         const result = await Axios.get(url);
-        setZoneKeys(Object.keys(result.data));
-        setZoneData(result.data)
+        const zoneKeys = Object.keys(result.data);
+        const zoneData = result.data;
+
+        dispatch({ type: 'keys', keys: zoneKeys })
+        dispatch({ type: 'fetch', zoneData: zoneData });
     }
 
     useEffect(() => {
         fetchData('/resources/stubs/hunt_data.json');
     }, []);
 
-    const coordinateSelect = (coordinate, zone, mark, instance) => {
-        let data = scoutData;
-        let smallZone = zone.toLowerCase();
-
-        // determine distance of mark
-        const distance = data[zone][instance][mark].distance
-    }
-
     if (!zoneData || !zoneKeys) {
         return null;
     } else {
         return (
-            <MainContainerA>
-                {zoneKeys.map(item => {
-                    const rdmKey = Math.random()
-                        .toString(36)
-                        .substring(7);
-                    return (
-                        <ZoneCardM
-                            key={rdmKey}
-                            crystals={zoneData[item].crystals}
-                            marks={zoneData[item].marks}
-                            zone={zoneData[item].zone} />
-                    )
-                })}
-            </MainContainerA>
+            <DispatchContext.Provider value={dispatch}>
+                <StateContext.Provider value={state}>
+                    <MainContainerA>
+                        {zoneKeys.map(item => {
+                            const rdmKey = Math.random()
+                                .toString(36)
+                                .substring(7);
+                            return (
+                                <ZoneCardM
+                                    key={rdmKey}
+                                    marks={zoneData[item].marks}
+                                    zone={zoneData[item].zone} />
+                            )
+                        })}
+                    </MainContainerA>
+                </StateContext.Provider>
+            </DispatchContext.Provider>
         );
     }
 };
