@@ -15,22 +15,13 @@ const CardRowM = props => {
     const { mark, zone } = props
     const instances = [1, 2, 3];
 
-    // will receive coordinate state for specific mark from Reducer
-
-    /** needs state for selected coordinates
-     * selected cordinates from MapperM will need to update the state
-     * or receive new state from reducer? 
-     */
-
-
-
     return (
         <RowContainerA>
             <ZoneMarkContainerA>
                 <Mark>{mark}</Mark>
             </ZoneMarkContainerA>
-            <InstanceContainerA>
-                {/* {instances.map(instance => {
+            <InstanceContainerA column={true}>
+                {instances.map(instance => {
                     const rdmKey = Math.random()
                         .toString(36)
                         .substring(7);
@@ -39,9 +30,7 @@ const CardRowM = props => {
                         key={rdmKey}
                         mark={mark}
                         zone={zone} />
-                })} */}
-                {/** Selected coordinates top */}
-                {/** Map button to select coordinates bottom */}
+                })}
             </InstanceContainerA>
         </RowContainerA>
     );

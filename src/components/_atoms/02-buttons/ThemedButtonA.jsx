@@ -26,9 +26,12 @@ const Button = styled(Link)`
 `;
 
 const ThemedButtonA = props => {
-    const { text, destination } = props;
+    const { text, destination, handleClick } = props;
     return (
-        <Button to={destination}>{text}</Button>
+        <Button
+            to={destination}>
+            {text}
+        </Button>
     );
 };
 

@@ -5,10 +5,14 @@ import Axios from 'axios';
 import MainContainerA from '@A/00-containers/MainContainerA';
 import ZoneCardM from '@M/00-forms/ZoneCardM';
 
+import ModalContainerA from '@A/00-containers/ModalContainerA';
+import ZoneMapM from '@M/02-maps/ZoneMapM';
+
 const initialState = {
     scoutData: {},
     zoneKeys: null,
     zoneData: null,
+    showModal: false,
 };
 
 const scoutDataReducer = (draft, action) => {
@@ -26,17 +30,28 @@ const scoutDataReducer = (draft, action) => {
             draft.scoutData[action.zone][action.mark].distance = action.distance;
             return;
         };
+        case 'map': {
+            draft.showModal = !draft.showModal;
+            draft.mapZone = action.zone;
+            draft.mapMark = action.mark;
+            return;
+        };
+        case 'modal': {
+            draft.showModal = false;
+            draft.mapZone = '';
+            draft.mapMark = '';
+        }
         default:
-            return state;
+            break;
     };
 };
 
-const DispatchContext = createContext();
-const StateContext = createContext();
+export const DispatchContext = createContext();
+export const StateContext = createContext();
 
 const ScouterPageO = () => {
     const [state, dispatch] = useImmerReducer(scoutDataReducer, initialState);
-    const { zoneData, zoneKeys, scoutData } = state;
+    const { zoneData, zoneKeys, scoutData, mapZone, mapMark, showModal } = state;
 
     const fetchData = async url => {
         const result = await Axios.get(url);
@@ -70,6 +85,11 @@ const ScouterPageO = () => {
                             )
                         })}
                     </MainContainerA>
+                    {(showModal && mapZone) &&
+                        <ModalContainerA>
+                            <ZoneMapM mapZone={mapZone} mapMark={mapMark} />
+                        </ModalContainerA>
+                    }
                 </StateContext.Provider>
             </DispatchContext.Provider>
         );

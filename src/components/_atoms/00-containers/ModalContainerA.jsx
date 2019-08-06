@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
+
+import { DispatchContext } from '@O/00-pages/ScouterPageO';
 
 const Backdrop = styled.div`
     display: flex;
@@ -13,13 +15,14 @@ const Backdrop = styled.div`
     left: 0;
 `;
 
-const hideOnClick = e => {
-    const { handleModal } = props;
-    (e.target === e.currentTarget) && handleModal();  
-}
-
 const ModalContainer = props => {
     const { children } = props;
+    const dispatch = useContext(DispatchContext);
+
+    const hideOnClick = e => {
+        if (e.target === e.currentTarget) dispatch({ type: 'modal' });
+    }
+
     return (
         <Backdrop onClick={hideOnClick}>
             {children}

@@ -90,8 +90,8 @@
             }
         ]
     },
-    "khoulusia": {
-        "zone": "Khoulusia",
+    "kholusia": {
+        "zone": "Kholusia",
         "marks": [
             "Huracan",
             "Li'l Murderer"
@@ -181,8 +181,8 @@
             }
         ]
     },
-    "ahmaraeng": {
-        "zone": "Ahm Araeng",
+    "amgaraeng": {
+        "zone": "Amh Araeng",
         "marks": [
             "Sugaar",
             "Maliktender"

@@ -1,37 +1,38 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
+import styled from 'styled-components';
 
-import ModalContainerA from '@A/00-containers/ModalContainerA';
+import { DispatchContext, StateContext } from '@O/00-pages/ScouterPageO';
+
+const Container = styled.div`
+    display: flex;
+    flex-flow: column;
+`;
+
+const MapButton = styled.button`
+    color: white;
+`;
+
+const Coords = styled.div`
+    
+`;
 
 const MapperM = props => {
-    const [showMap, setShowMap] = useState(false);
-    const { coordinates, instance, mark, zone } = props;
+    const { instance, mark, zone } = props;
 
+    const dispatch = useContext(DispatchContext);
+    const state = useContext(StateContext);
 
-    const handleModal = () => {
-        setShowMap(!showMap);
-    }
+    console.log(state.showModal);
 
-    const handleCoordinates = coord => {
-        setSelectedCoordinate(coord);
+    const handleClick = () => {
+        dispatch({ type: 'map', zone: zone, mark: mark, instance: instance });
     }
 
     return (
-        <>  {/** will display the coordinates, default '-' */}
-            {/* <CoordinateDisplayA
-                coordinates={coordinates ? coordinates : '-'} /> */}
-            {/** will display the map button below coordinates *
-            {/** will display the map button below coordinates */}
-            <MapButtonA />
-            {/** will display modal with map if mapp button was clicked */}
-            {modal &&
-                <ModalContainerA handleModal={handleModal}>
-                    <ZoneMapM // this will be the image/map/area component.
-                        coordinates={'placeholder'} // need to find coordinates of mouse over image
-                        handleCoordinates={handleCoordinates}
-                        zone={zone} />
-                </ModalContainerA>
-            }
-        </>
+        <Container>
+            <Coords>COORDS</Coords>
+            <MapButton onClick={handleClick}>Map</MapButton>
+        </Container>
     );
 }
 

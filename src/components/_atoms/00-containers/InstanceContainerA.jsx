@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const Container = styled.div`
     display: flex;
-    flex-flow: row;
+    flex-flow: ${props => props.column ? 'column' : 'row'};
     flex: 2 1 auto;
     justify-content: space-between;
 `;
