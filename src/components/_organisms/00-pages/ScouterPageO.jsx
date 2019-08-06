@@ -25,7 +25,7 @@ const scoutDataReducer = (draft, action) => {
             draft.zoneData = action.zoneData;
             return;
         };
-        case 'scout': {
+        case 'scout': { // refactor
             draft.scoutData[action.zone][action.mark].coords = action.coords;
             draft.scoutData[action.zone][action.mark].distance = action.distance;
             return;
