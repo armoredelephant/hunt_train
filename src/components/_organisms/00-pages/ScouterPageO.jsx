@@ -83,7 +83,7 @@ const ScouterPageO = () => {
                     </MainContainerA>
                     {(showModal && mapZone) &&
                         <ModalContainerA>
-                            {/* <ZoneMapM mapZone={mapZone} mapMark={mapMark} /> */}
+                            <ZoneMapM mapZone={mapZone} mapMark={mapMark} />
                         </ModalContainerA>
                     }
                 </StateContext.Provider>

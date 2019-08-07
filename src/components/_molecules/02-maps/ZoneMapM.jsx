@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 
 import { StateContext, DispatchContext } from '@O/00-pages/ScouterPageO';
@@ -23,7 +23,7 @@ const ZoneArea = styled.area`
 
 const ZoneMapM = props => {
     const state = useContext(StateContext);
-    const dispatch = useContext(dispatch);
+    const dispatch = useContext(DispatchContext);
 
     const { mapZone, mapMark, zoneData } = state;
 
@@ -33,8 +33,8 @@ const ZoneMapM = props => {
 
     return (
         <>
-            <Image src={`/resources/maps/${mapZone}.jpg`} usemap='#zone-map' />
-            <ZoneMap name="zone-map">
+            <Image src={`/resources/maps/${mapZone}_${mapMark}.svg`} usemap='#zone-map' />
+            {/* <ZoneMap name="zone-map">
                 {coords.map(coord => {
                     const rdmKey = Math.random()
                         .toString(36)
@@ -48,7 +48,7 @@ const ZoneMapM = props => {
                         />
                     );
                 })}
-            </ZoneMap>
+            </ZoneMap> */}
         </>
     )
 };
