@@ -25,6 +25,7 @@ const MapperM = props => {
     console.log(state.showModal);
 
     const handleClick = () => {
+        // dispatch should also set markCoords so just the current marks coords will be loader to map.
         dispatch({ type: 'map', zone: zone, mark: mark, instance: instance });
     }
 

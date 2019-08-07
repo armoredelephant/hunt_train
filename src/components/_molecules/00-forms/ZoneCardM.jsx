@@ -23,6 +23,7 @@ const Card = styled.div`
 
 const ZoneCardM = props => {
     const { zone, marks, crystals } = props;
+    const marksArray = Object.keys(marks);
     // we have our 3 instances
     // const [instaceData, setInstanceData] = useState(null);
 
@@ -70,7 +71,7 @@ const ZoneCardM = props => {
         <CardContainer>
             <Card>
                 <CardHeaderM zone={zone} />
-                {marks.map(mark => {
+                {marksArray.map(mark => {
                     const rdmKey = Math.random()
                         .toString(36)
                         .substring(7);

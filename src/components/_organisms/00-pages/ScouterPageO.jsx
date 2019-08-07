@@ -17,11 +17,8 @@ const initialState = {
 
 const scoutDataReducer = (draft, action) => {
     switch (action.type) {
-        case 'keys': {
-            draft.zoneKeys = action.keys;
-            return;
-        };
         case 'fetch': {
+            draft.zoneKeys = action.zoneKeys;
             draft.zoneData = action.zoneData;
             return;
         };
@@ -40,7 +37,7 @@ const scoutDataReducer = (draft, action) => {
             draft.showModal = false;
             draft.mapZone = '';
             draft.mapMark = '';
-        }
+        };
         default:
             break;
     };
@@ -58,8 +55,7 @@ const ScouterPageO = () => {
         const zoneKeys = Object.keys(result.data);
         const zoneData = result.data;
 
-        dispatch({ type: 'keys', keys: zoneKeys })
-        dispatch({ type: 'fetch', zoneData: zoneData });
+        dispatch({ type: 'fetch', zoneKeys: zoneKeys, zoneData: zoneData })
     }
 
     useEffect(() => {
@@ -87,7 +83,7 @@ const ScouterPageO = () => {
                     </MainContainerA>
                     {(showModal && mapZone) &&
                         <ModalContainerA>
-                            <ZoneMapM mapZone={mapZone} mapMark={mapMark} />
+                            {/* <ZoneMapM mapZone={mapZone} mapMark={mapMark} /> */}
                         </ModalContainerA>
                     }
                 </StateContext.Provider>
