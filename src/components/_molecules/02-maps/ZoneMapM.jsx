@@ -27,6 +27,8 @@ const ZoneMapM = props => {
 
     const { mapZone, mapMark, zoneData } = state;
 
+    // a dispatch that will set markCoords based on 
+
     const markCoords = zoneData[mapZone]
 
     return (
