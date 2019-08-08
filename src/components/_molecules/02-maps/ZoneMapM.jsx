@@ -13,42 +13,54 @@ const Image = styled.img`
     max-width: 100%;
 `;
 
-const ZoneMap = styled.map`
-
-`;
-
-const ZoneArea = styled.area`
-
-`;
-
-const ZoneMapM = props => {
+const ZoneMapM = () => {
     const state = useContext(StateContext);
     const dispatch = useContext(DispatchContext);
 
-    const { mapZone, mapMark, zoneData } = state;
+    const { mapZone, mapMark, markCoords, mapInstance } = state;
 
-    // a dispatch that will set markCoords based on 
+    // need a click handler that will contain a dispatch to pass down selected coords.
 
-    const markCoords = zoneData[mapZone]
+    const handleCoords = e => {
+        e.preventDefault();
+        const target = e.target;
+        const splitString = target.title.split('+ ')
+        const coords = splitString[0],
+            distance = parseFloat(splitString[1])
+        console.log(distance, coords);
+
+        const mark = {
+            [mapZone]: {
+                [mapInstance]: {
+                    [mapMark]: {
+                        coords: coords,
+                        distance: distance
+                    }
+                }
+            }
+        }
+        dispatch({}) // dispatch to update scoutData here.
+    }
 
     return (
         <>
-            <Image src={`/resources/maps/${mapZone}_${mapMark}.svg`} usemap='#zone-map' />
-            {/* <ZoneMap name="zone-map">
-                {coords.map(coord => {
+            <Image src={`/resources/maps/${mapZone}_${mapMark}.svg`} useMap='#zone-map' />
+            <map name="zone-map">
+                {markCoords.map(location => {
                     const rdmKey = Math.random()
                         .toString(36)
                         .substring(7);
                     return (
-                        <ZoneArea
-                            coords={coords}
+                        <area
+                            coords={location.coords}
                             key={rdmKey}
+                            onClick={handleCoords}
                             shape='circle'
-                            title={`( ${coord.x}, ${coord.y} )`}
+                            title={`( ${location.x}, ${location.y} )+ ${location.distance}`}
                         />
                     );
                 })}
-            </ZoneMap> */}
+            </map>
         </>
     )
 };

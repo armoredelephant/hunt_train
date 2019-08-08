@@ -12,6 +12,7 @@ const initialState = {
     scoutData: {},
     zoneKeys: null,
     zoneData: null,
+    markCoords: [],
     showModal: false,
 };
 
@@ -31,8 +32,14 @@ const scoutDataReducer = (draft, action) => {
             draft.showModal = !draft.showModal;
             draft.mapZone = action.zone;
             draft.mapMark = action.mark;
+            draft.markCoords = action.markCoords;
+            draft.mapInstance = action.instance;
             return;
         };
+        case 'coords': {
+            draft.markCoords = action.markCoords
+            return;
+        }
         case 'modal': {
             draft.showModal = false;
             draft.mapZone = '';
