@@ -24,22 +24,21 @@ const ZoneMapM = () => {
     const handleCoords = e => {
         e.preventDefault();
         const target = e.target;
-        const splitString = target.title.split('+ ')
+
+        const splitString = target.title.split(' | ')
+
         const coords = splitString[0],
             distance = parseFloat(splitString[1])
-        console.log(distance, coords);
+
+        // mark isn't important at this point
+        // can just pass the coords and distance I believe
 
         const mark = {
-            [mapZone]: {
-                [mapInstance]: {
-                    [mapMark]: {
-                        coords: coords,
-                        distance: distance
-                    }
-                }
-            }
-        }
-        dispatch({}) // dispatch to update scoutData here.
+            coords: coords,
+            distance: distance
+        };
+
+        dispatch({ type: 'coord', coords: mark }) // dispatch to update scoutData here.
     }
 
     return (
@@ -56,7 +55,7 @@ const ZoneMapM = () => {
                             key={rdmKey}
                             onClick={handleCoords}
                             shape='circle'
-                            title={`( ${location.x}, ${location.y} )+ ${location.distance}`}
+                            title={`( ${location.x}, ${location.y} ) | ${location.distance}`}
                         />
                     );
                 })}

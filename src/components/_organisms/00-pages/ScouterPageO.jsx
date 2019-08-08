@@ -4,58 +4,20 @@ import Axios from 'axios';
 
 import MainContainerA from '@A/00-containers/MainContainerA';
 import ZoneCardM from '@M/00-forms/ZoneCardM';
-
 import ModalContainerA from '@A/00-containers/ModalContainerA';
 import ZoneMapM from '@M/02-maps/ZoneMapM';
 
-const initialState = {
-    scoutData: {},
-    zoneKeys: null,
-    zoneData: null,
-    markCoords: [],
-    showModal: false,
-};
+// state management
+import initialState from '@A/04-state/initialState';
+import scoutDataReducer from '@A/04-state/scoutDataReducer';
 
-const scoutDataReducer = (draft, action) => {
-    switch (action.type) {
-        case 'fetch': {
-            draft.zoneKeys = action.zoneKeys;
-            draft.zoneData = action.zoneData;
-            return;
-        };
-        case 'scout': { // refactor
-            draft.scoutData[action.zone][action.mark].coords = action.coords;
-            draft.scoutData[action.zone][action.mark].distance = action.distance;
-            return;
-        };
-        case 'map': {
-            draft.showModal = !draft.showModal;
-            draft.mapZone = action.zone;
-            draft.mapMark = action.mark;
-            draft.markCoords = action.markCoords;
-            draft.mapInstance = action.instance;
-            return;
-        };
-        case 'coords': {
-            draft.markCoords = action.markCoords
-            return;
-        }
-        case 'modal': {
-            draft.showModal = false;
-            draft.mapZone = '';
-            draft.mapMark = '';
-        };
-        default:
-            break;
-    };
-};
-
+// context
 export const DispatchContext = createContext();
 export const StateContext = createContext();
 
 const ScouterPageO = () => {
     const [state, dispatch] = useImmerReducer(scoutDataReducer, initialState);
-    const { zoneData, zoneKeys, scoutData, mapZone, mapMark, showModal } = state;
+    const { zoneData, zoneKeys, mapZone, mapMark, showModal } = state;
 
     const fetchData = async url => {
         const result = await Axios.get(url);

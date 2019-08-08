@@ -13,7 +13,7 @@ const MapButton = styled.button`
 `;
 
 const Coords = styled.div`
-    
+    color: white;
 `;
 
 const MapperM = props => {
@@ -21,7 +21,9 @@ const MapperM = props => {
     const state = useContext(StateContext);
 
     const { instance, mark, zone } = props;
-    const { zoneData } = state;
+    const { zoneData, scoutData } = state;
+
+    let markCoords = ' - ';
 
     const handleClick = () => {
         const coordsArray = zoneData[zone].marks[mark].locations;
@@ -29,9 +31,11 @@ const MapperM = props => {
         dispatch({ type: 'map', zone: zone, mark: mark, instance: instance, markCoords: coordsArray });
     }
 
+    if (scoutData[zone][instance][mark] != null) { markCoords = scoutData[zone][instance][mark].coords }
+
     return (
         <Container>
-            <Coords>COORDS</Coords>
+            <Coords>{markCoords}</Coords>
             <MapButton onClick={handleClick}>Map</MapButton>
         </Container>
     );
