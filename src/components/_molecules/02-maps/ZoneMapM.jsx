@@ -17,9 +17,7 @@ const ZoneMapM = () => {
     const state = useContext(StateContext);
     const dispatch = useContext(DispatchContext);
 
-    const { mapZone, mapMark, markCoords, mapInstance } = state;
-
-    // need a click handler that will contain a dispatch to pass down selected coords.
+    const { mapZone, mapMark, markCoords, mapInstance, scoutData } = state;
 
     const handleCoords = e => {
         e.preventDefault();
@@ -30,15 +28,21 @@ const ZoneMapM = () => {
         const coords = splitString[0],
             distance = parseFloat(splitString[1])
 
-        // mark isn't important at this point
-        // can just pass the coords and distance I believe
-
-        const mark = {
+        const markData = {
             coords: coords,
-            distance: distance
+            distance: distance,
+            instance: mapInstance,
+            mark: mapMark,
+            zone: mapZone
         };
 
-        dispatch({ type: 'coord', coords: mark }) // dispatch to update scoutData here.
+        const instanceMarks = scoutData[mapZone][mapInstance];
+
+        if ((instanceMarks.length !== 0) && (distance < instanceMarks[0].distance)) {
+            dispatch({ type: 'markUnshift', mark: markData });
+        } else {
+            dispatch({ type: 'markPush', mark: markData });
+        }
     }
 
     return (

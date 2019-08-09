@@ -21,17 +21,24 @@ const MapperM = props => {
     const state = useContext(StateContext);
 
     const { instance, mark, zone } = props;
-    const { zoneData, scoutData } = state;
+    const { zoneData, scoutData, mapMark } = state;
 
     let markCoords = ' - ';
 
     const handleClick = () => {
         const coordsArray = zoneData[zone].marks[mark].locations;
-        // dispatch should also set markCoords so just the current marks coords will be loader to map.
+
         dispatch({ type: 'map', zone: zone, mark: mark, instance: instance, markCoords: coordsArray });
     }
 
-    if (scoutData[zone][instance][mark] != null) { markCoords = scoutData[zone][instance][mark].coords }
+    if (scoutData[zone][instance].length != 0) {
+        const getMarkData = scoutData[zone][instance].filter(markData => {
+            return markData.mark === mark
+        })
+        if (getMarkData != 0) {
+            markCoords = getMarkData[0].coords
+        }
+    }
 
     return (
         <Container>

@@ -1,4 +1,5 @@
 import React from 'react';
+import initialState from './initialState';
 
 const scoutDataReducer = (draft, action) => {
     switch (action.type) {
@@ -24,10 +25,33 @@ const scoutDataReducer = (draft, action) => {
             draft.showModal = false;
             draft.mapZone = '';
             draft.mapMark = '';
+            return;
         };
-        case 'coord': {
+        case 'markUnshift': {
             draft.showModal = false;
-            draft.scoutData[draft.mapZone][draft.mapInstance][draft.mapMark] = action.coords;
+            draft.scoutData[draft.mapZone][draft.mapInstance].unshift(action.mark);
+            return;
+        };
+        case 'markPush': {
+            draft.showModal = false;
+            draft.scoutData[draft.mapZone][draft.mapInstance].push(action.mark);
+            return;
+        };
+        case 'route': {
+            draft.routeData = action.route;
+            draft.currentMark = action.mark;
+            draft.totalStops = action.count;
+            return;
+        }
+        case 'nextMark': {
+            draft.currentStop = draft.currentStop + 1;
+            draft.currentMark = draft.routeData[draft.currentStop];
+            return;
+        }
+        case 'end': {
+            draft.scoutData = initialState.scoutData;
+            draft.routeData = initialState.routeData;
+            return
         }
         default:
             break;

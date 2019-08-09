@@ -6,10 +6,11 @@ import MainContainerA from '@A/00-containers/MainContainerA';
 import ZoneCardM from '@M/00-forms/ZoneCardM';
 import ModalContainerA from '@A/00-containers/ModalContainerA';
 import ZoneMapM from '@M/02-maps/ZoneMapM';
+import TrainCardM from '@M/01-card_items/TrainCardM';
 
 // state management
-import initialState from '@A/04-state/initialState';
-import scoutDataReducer from '@A/04-state/scoutDataReducer';
+import initialState from 'Utils/initialState';
+import scoutDataReducer from 'Utils/scoutDataReducer';
 
 // context
 export const DispatchContext = createContext();
@@ -37,6 +38,10 @@ const ScouterPageO = () => {
         return (
             <DispatchContext.Provider value={dispatch}>
                 <StateContext.Provider value={state}>
+                    {/** top component with a "Optimize Route & Conduct Train" button */}
+                    <MainContainerA>
+                        <TrainCardM />
+                    </MainContainerA>
                     <MainContainerA>
                         {zoneKeys.map(item => {
                             const rdmKey = Math.random()
