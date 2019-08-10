@@ -13,11 +13,20 @@ const Zone = styled.h3`
 `
 
 const Instance = styled.h3`
+    align-self: center;
     padding: 0;
     margin: 0;
     color: ${props => props.theme.fntClr};
     font-family: ${props => props.theme.ff};
+    text-align: ${props => props.theme.ta};
 `
+
+const Container = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80px;
+`;
 
 const CardHeaderM = props => {
     const { zone } = props;
@@ -32,7 +41,11 @@ const CardHeaderM = props => {
                     const rdmKey = Math.random()
                         .toString(36)
                         .substring(7);
-                    return <Instance key={rdmKey}>{instance}</Instance>
+                    return (
+                        <Container>
+                            <Instance key={rdmKey}>{instance}</Instance>
+                        </Container>
+                    )
                 })}
             </InstanceContainerA>
         </RowContainerA>

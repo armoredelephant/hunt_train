@@ -42,17 +42,24 @@ const scoutDataReducer = (draft, action) => {
             draft.currentMark = action.mark;
             draft.totalStops = action.count;
             return;
-        }
+        };
         case 'nextMark': {
             draft.currentStop = draft.currentStop + 1;
             draft.currentMark = draft.routeData[draft.currentStop];
             return;
-        }
+        };
+        case 'prevMark': {
+            draft.currentStop = draft.currentStop - 1;
+            draft.currentMark = draft.routeData[draft.currentStop];
+            return;
+        };
         case 'end': {
             draft.scoutData = initialState.scoutData;
             draft.routeData = initialState.routeData;
+            draft.currentStop = initialState.currentStop;
+            draft.totalStops = initialState.totalStops;
             return
-        }
+        };
         default:
             break;
     };

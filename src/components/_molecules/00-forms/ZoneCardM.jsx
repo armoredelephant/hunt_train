@@ -18,7 +18,6 @@ const Card = styled.div`
     display: flex;
     flex-flow: column;
     margin: 5px;
-    width: 100%;
 `;
 
 const ZoneCardM = props => {

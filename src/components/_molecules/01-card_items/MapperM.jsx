@@ -6,14 +6,19 @@ import { DispatchContext, StateContext } from '@O/00-pages/ScouterPageO';
 const Container = styled.div`
     display: flex;
     flex-flow: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 80px;
 `;
 
 const MapButton = styled.button`
     color: white;
 `;
 
-const Coords = styled.div`
+const Coords = styled.p`
+    font-size: 12px;
     color: white;
+    text-align: ${props => props.theme.ta};
 `;
 
 const MapperM = props => {

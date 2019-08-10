@@ -17,6 +17,7 @@ const theme = {
     btnOutline: 'none',
     btnLH: 'normal',
     btnBG: 'rgba(255, 255, 255, 0.4)',
+    ta: 'center',
 }
 
 export default theme;

@@ -4,8 +4,8 @@ import styled from 'styled-components';
 const Container = styled.div`
     display: flex;
     flex-flow: row;
-    flex: 1 1 auto;
     align-content: center;
+    width: 200px;
 `;
 
 const ZoneMarkContainerA = props => {
