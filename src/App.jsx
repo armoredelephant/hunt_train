@@ -12,9 +12,9 @@ const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <Router>
-        <Route exact path='/' component={SplashPageO} />
-        <Route exact path='/scouter' component={ScouterPageO} />
-        <Route exact path='/train' />
+        <Route exact path="/" component={SplashPageO} />
+        <Route exact path="/scouter" component={ScouterPageO} />
+        <Route exact path="/train" />
       </Router>
     </ThemeProvider>
   );

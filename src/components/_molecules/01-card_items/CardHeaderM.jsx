@@ -6,50 +6,50 @@ import InstanceContainerA from '@A/00-containers/InstanceContainerA';
 import ZoneMarkContainerA from '@A/00-containers/ZoneMarkContainerA';
 
 const Zone = styled.h3`
-    padding: 0;
-    margin: 0;
-    color: ${props => props.theme.fntClr};
-    font-family: ${props => props.theme.ff};
-`
+  padding: 0;
+  margin: 0;
+  color: ${props => props.theme.fntClr};
+  font-family: ${props => props.theme.ff};
+`;
 
 const Instance = styled.h3`
-    align-self: center;
-    padding: 0;
-    margin: 0;
-    color: ${props => props.theme.fntClr};
-    font-family: ${props => props.theme.ff};
-    text-align: ${props => props.theme.ta};
-`
+  align-self: center;
+  padding: 0;
+  margin: 0;
+  color: ${props => props.theme.fntClr};
+  font-family: ${props => props.theme.ff};
+  text-align: ${props => props.theme.ta};
+`;
 
 const Container = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80px;
 `;
 
 const CardHeaderM = props => {
-    const { zone } = props;
-    const instances = [1, 2, 3];
-    return (
-        <RowContainerA>
-            <ZoneMarkContainerA>
-                <Zone>{zone}</Zone>
-            </ZoneMarkContainerA>
-            <InstanceContainerA>
-                {instances.map(instance => {
-                    const rdmKey = Math.random()
-                        .toString(36)
-                        .substring(7);
-                    return (
-                        <Container>
-                            <Instance key={rdmKey}>{instance}</Instance>
-                        </Container>
-                    )
-                })}
-            </InstanceContainerA>
-        </RowContainerA>
-    );
+  const { zone } = props;
+  const instances = [1, 2, 3];
+  return (
+    <RowContainerA>
+      <ZoneMarkContainerA>
+        <Zone>{zone}</Zone>
+      </ZoneMarkContainerA>
+      <InstanceContainerA>
+        {instances.map(instance => {
+          const rdmKey = Math.random()
+            .toString(36)
+            .substring(7);
+          return (
+            <Container>
+              <Instance key={rdmKey}>{instance}</Instance>
+            </Container>
+          );
+        })}
+      </InstanceContainerA>
+    </RowContainerA>
+  );
 };
 
 export default CardHeaderM;

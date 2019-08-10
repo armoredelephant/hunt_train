@@ -5,50 +5,46 @@ import MarkInfoContainerA from '@A/00-containers/MarkInfoContainerA';
 import FinalMarkNotificationA from '@A/03-notifications/FinalMarkNotificationA';
 
 const MarkContainer = styled.div`
-    display: flex;
-    flex-flow: column;
-    border: 1px solid green;
+  display: flex;
+  flex-flow: column;
 `;
 
 const Warning = styled.p`
-    color: white;
+  color: white;
 `;
 
 const InfoContainer = styled.div`
-    display: flex;
-    flex-flow: row;
-    border: 1px solid white;
-    justify-content: space-between;
-    align-items: center;
-    margin: 5px;
+  display: flex;
+  flex-flow: row;
+  background-color: #2b2b2b;
+  border-radius: ${props => props.theme.brad};
+  justify-content: space-between;
+  border-top: 2px solid #222;
+  border-left: 1px solid #222;
+  border-right: 1px solid #222;
+  border-bottom: 1px solid #242424;
+  align-items: center;
+  margin: 5px;
 `;
 
 const MarkDisplayM = props => {
-    const { currentMark, currentStop, totalStops } = props;
-    const items = ['coords', 'instance', 'mark', 'zone'];
-    console.log(totalStops, currentStop);
+  const { currentMark, currentStop, totalStops } = props;
+  const items = ['zone', 'instance', 'mark', 'coords'];
+  console.log(totalStops, currentStop);
 
-    return (
-        <MarkContainer>
-            <FinalMarkNotificationA
-                hidden={currentStop !== totalStops && true}
-            />
-            <InfoContainer>
-                {items.map(item => {
-                    const rdmKey = Math.random()
-                        .toString(36)
-                        .substring(7);
-                    return (
-                        <MarkInfoContainerA
-                            data={currentMark[item]}
-                            label={item}
-                            key={rdmKey}
-                        />
-                    );
-                })}
-            </InfoContainer>
-        </MarkContainer>
-    );
+  return (
+    <MarkContainer>
+      <FinalMarkNotificationA hidden={currentStop !== totalStops && true} />
+      <InfoContainer>
+        {items.map(item => {
+          const rdmKey = Math.random()
+            .toString(36)
+            .substring(7);
+          return <MarkInfoContainerA data={currentMark[item]} label={item} key={rdmKey} />;
+        })}
+      </InfoContainer>
+    </MarkContainer>
+  );
 };
 
 export default MarkDisplayM;

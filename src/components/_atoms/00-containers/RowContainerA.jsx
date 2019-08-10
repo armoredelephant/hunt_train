@@ -5,14 +5,13 @@ const Container = styled.div`
     display: flex;
     flex-flow; row;
     justify-content: space-between;
-    border: 1px solid green; 
+    padding-bottom: 5px;
+    border-bottom: 1px solid #2b2b2b;
 `;
 
 const RowContainerA = props => {
-    const { children } = props;
-    return (
-        <Container>{children}</Container>
-    );
+  const { children } = props;
+  return <Container>{children}</Container>;
 };
 
 export default RowContainerA;

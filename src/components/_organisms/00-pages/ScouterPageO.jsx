@@ -17,53 +17,46 @@ export const DispatchContext = createContext();
 export const StateContext = createContext();
 
 const ScouterPageO = () => {
-    const [state, dispatch] = useImmerReducer(scoutDataReducer, initialState);
-    const { zoneData, zoneKeys, mapZone, mapMark, showModal } = state;
+  const [state, dispatch] = useImmerReducer(scoutDataReducer, initialState);
+  const { zoneData, zoneKeys, mapZone, mapMark, showModal } = state;
 
-    const fetchData = async url => {
-        const result = await Axios.get(url);
-        const zoneKeys = Object.keys(result.data);
-        const zoneData = result.data;
+  const fetchData = async url => {
+    const result = await Axios.get(url);
+    const zoneKeys = Object.keys(result.data);
+    const zoneData = result.data;
 
-        dispatch({ type: 'fetch', zoneKeys: zoneKeys, zoneData: zoneData })
-    }
+    dispatch({ type: 'fetch', zoneKeys, zoneData });
+  };
 
-    useEffect(() => {
-        fetchData('/resources/stubs/hunt_data.json');
-    }, []);
+  useEffect(() => {
+    fetchData('/resources/stubs/hunt_data.json');
+  }, []);
 
-    if (!zoneData || !zoneKeys) {
-        return null;
-    } else {
-        return (
-            <DispatchContext.Provider value={dispatch}>
-                <StateContext.Provider value={state}>
-                    {/** top component with a "Optimize Route & Conduct Train" button */}
-                    <MainContainerA>
-                        <TrainCardM />
-                    </MainContainerA>
-                    <MainContainerA>
-                        {zoneKeys.map(item => {
-                            const rdmKey = Math.random()
-                                .toString(36)
-                                .substring(7);
-                            return (
-                                <ZoneCardM
-                                    key={rdmKey}
-                                    marks={zoneData[item].marks}
-                                    zone={zoneData[item].zone} />
-                            )
-                        })}
-                    </MainContainerA>
-                    {(showModal && mapZone) &&
-                        <ModalContainerA>
-                            <ZoneMapM mapZone={mapZone} mapMark={mapMark} />
-                        </ModalContainerA>
-                    }
-                </StateContext.Provider>
-            </DispatchContext.Provider>
-        );
-    }
+  if (!zoneData || !zoneKeys) {
+    return null;
+  }
+  return (
+    <DispatchContext.Provider value={dispatch}>
+      <StateContext.Provider value={state}>
+        <MainContainerA>
+          <TrainCardM />
+          {zoneKeys.map(item => {
+            const rdmKey = Math.random()
+              .toString(36)
+              .substring(7);
+            return (
+              <ZoneCardM key={rdmKey} marks={zoneData[item].marks} zone={zoneData[item].zone} />
+            );
+          })}
+        </MainContainerA>
+        {showModal && mapZone && (
+          <ModalContainerA>
+            <ZoneMapM mapZone={mapZone} mapMark={mapMark} />
+          </ModalContainerA>
+        )}
+      </StateContext.Provider>
+    </DispatchContext.Provider>
+  );
 };
 
 export default ScouterPageO;
