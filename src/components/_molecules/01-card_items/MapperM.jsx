@@ -17,11 +17,20 @@ const MapButton = styled.button`
   letter-spacing: ${props => props.theme.ls};
   border: none;
   padding: 3px 16px;
+  outline: none;
   font-size: ${props => props.theme.btnFS};
   border-radius: ${props => props.theme.brad};
-  box-shadow: ${props => props.theme.bshad};
   background-color: ${props => props.theme.blue};
+  text-decoration: none;
 
+  &:visited,
+  &:focus,
+  &:hover,
+  &:active {
+    text-decoration: none;
+    outline: none;
+  }
+  
   @media (max-width: 415px) {
     font-size: ${props => props.theme.mfs};
     padding: 1px 12px;

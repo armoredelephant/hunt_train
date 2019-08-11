@@ -24,25 +24,28 @@ const ButtonContainer = styled.div`
 `;
 
 const StartButton = styled.button`
-    display: ${props => props.theme.btnDisplay};
-    background-color: ${props => props.theme.cardbg};
-    width: ${props => props.theme.btnW};
-    height: ${props => props.theme.btnH};
-    padding: 12px 25px
-    font-size: ${props => props.theme.btnFS};
-    text-transform: ${props => props.theme.btnTT};
-    letter-spacing: ${props => props.theme.btnLS};
-    color: ${props => props.theme.blue};
-    border: 1px solid ${props => props.theme.blue};
-    border-radius: ${props => props.theme.btnBorderRadius};
-    text-align: ${props => props.theme.btnTA};
-    text-decoration: ${props => props.theme.btnTD};
-    cursor: ${props => props.theme.btnCursor};
-    outline: ${props => props.theme.btnOutline};
-    line-height: ${props => props.theme.btnLH};
-    position: ${props => props.theme.btnPos};
-    font-family: ${props => props.theme.ff};
-    align-self: center;
+  color: ${props => props.theme.cardbg};
+  font-family: ${props => props.theme.ff};
+  letter-spacing: ${props => props.theme.ls};
+  border: none;
+  padding: 3px 16px;
+  outline: none;
+  font-size: ${props => props.theme.btnFS};
+  border-radius: ${props => props.theme.brad};
+  background-color: ${props => props.theme.blue};
+  text-decoration: none;
+
+  &:visited,
+  &:focus,
+  &:hover,
+  &:active {
+    text-decoration: none;
+    outline: none;
+  }
+  @media (max-width: 415px) {
+    font-size: ${props => props.theme.mfs};
+    padding: 1px 12px;
+  }
 `;
 
 const TrainCardM = () => {
