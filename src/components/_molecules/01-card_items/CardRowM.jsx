@@ -19,6 +19,14 @@ const Mark = styled.h4`
     and (-webkit-device-pixel-ration: 3) {
       font-size: ${props => props.theme.mfs};
     };
+
+  @media only screen
+    and (device-width: 414px)
+    and (device-height: 896px)
+    and (-webkit-device-pixel-ratio: 3) {
+      font-size: ${props => props.theme.mfs};
+      color: red;
+    }
 `;
 
 const CardRowM = props => {
