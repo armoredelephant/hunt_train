@@ -6,8 +6,7 @@ import { StateContext, DispatchContext } from '@O/00-pages/ScouterPageO';
 const Container = styled.div`
   display: flex;
   align-self: center;
-  max-width: 640px;
-  max-height: 640px;
+  overflow: auto;
   `;
 
 const Image = styled.img`
