@@ -7,6 +7,7 @@ const Container = styled.div`
   justify-content: center;
   align-content: center;
   padding: 5px;
+  flex-grow: 2;
 `;
 
 const Label = styled.p`
@@ -14,6 +15,10 @@ const Label = styled.p`
   letter-spacing: ${props => props.theme.ls};
   font-family: ${props => props.theme.ff};
   color: ${props => props.theme.fntClr};
+
+  @media (max-width: 415px) {
+    font-size: ${props => props.theme.mfs};
+  }
 `;
 
 const Info = styled.p`
@@ -24,6 +29,10 @@ const Info = styled.p`
   text-align: ${props => props.theme.ta};
   padding-bottom: 3px;
   color: ${props => props.theme.red};
+
+  @media (max-width: 414px) {
+    font-size: ${props => props.theme.mfs};
+  }
   
 `;
 

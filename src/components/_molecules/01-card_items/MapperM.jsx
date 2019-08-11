@@ -21,6 +21,11 @@ const MapButton = styled.button`
   border-radius: ${props => props.theme.brad};
   box-shadow: ${props => props.theme.bshad};
   background-color: ${props => props.theme.blue};
+
+  @media (max-width: 415px) {
+    font-size: ${props => props.theme.mfs};
+    padding: 1px 12px;
+  }
 `;
 
 const Coords = styled.p`

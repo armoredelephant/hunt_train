@@ -10,6 +10,10 @@ const Zone = styled.h3`
   margin: 0;
   color: ${props => props.theme.fntClr};
   font-family: ${props => props.theme.ff};
+
+  @media (max-width: 415px) {
+    font-size: ${props => props.theme.mfs};
+  }
 `;
 
 const Instance = styled.h3`
@@ -19,6 +23,10 @@ const Instance = styled.h3`
   color: ${props => props.theme.fntClr};
   font-family: ${props => props.theme.ff};
   text-align: ${props => props.theme.ta};
+
+  @media (max-width: 415px) {
+    font-size: ${props => props.theme.mfs};
+  }
 `;
 
 const Container = styled.div`

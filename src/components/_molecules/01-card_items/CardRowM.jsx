@@ -12,6 +12,10 @@ const Mark = styled.h4`
   color: ${props => props.theme.fntClr};
   margin: 0;
   align-self: flex-end;
+
+  @media (max-width: 415px) {
+    font-size: ${props => props.theme.mfs};
+  }
 `;
 
 const CardRowM = props => {

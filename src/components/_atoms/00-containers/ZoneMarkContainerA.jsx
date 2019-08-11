@@ -7,9 +7,8 @@ const Container = styled.div`
   align-content: flex-end;
   width: 200px;
 
-  @media (max-width: 414px) {
-    width: auto;
-    max-width: 100px;
+  @media (max-width: 415px) {
+    width: 100px;
   }
 `;
 
