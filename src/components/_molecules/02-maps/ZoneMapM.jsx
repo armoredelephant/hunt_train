@@ -6,11 +6,14 @@ import { StateContext, DispatchContext } from '@O/00-pages/ScouterPageO';
 const Container = styled.div`
   display: flex;
   align-self: center;
-`;
+  max-width: 640px;
+  max-height: 640px;
+  `;
 
 const Image = styled.img`
-  align-self: center;
-  max-width: 100%;
+    min-width: 640px;
+    align-self: center;
+    min-height: 640px;
 `;
 
 const ZoneMapM = () => {
@@ -46,7 +49,7 @@ const ZoneMapM = () => {
   };
 
   return (
-    <>
+    <Container>
       <Image src={`/resources/maps/${mapZone}_${mapMark}.svg`} useMap="#zone-map" />
       <map name="zone-map">
         {markCoords.map(location => {
@@ -64,7 +67,7 @@ const ZoneMapM = () => {
           );
         })}
       </map>
-    </>
+    </Container>
   );
 };
 

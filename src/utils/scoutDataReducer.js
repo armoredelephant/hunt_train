@@ -42,7 +42,7 @@ const scoutDataReducer = (draft, action) => {
       draft.routeData = action.route;
       draft.currentMark = action.mark;
       draft.totalStops = action.count;
-      draft.currentStop = initialState.currentStop;
+      draft.currentStop = 0;
       return;
     }
     case 'nextMark': {
