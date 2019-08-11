@@ -9,6 +9,7 @@ const Container = styled.div`
 
   @media (max-width: 414px) {
     width: auto;
+    max-width: 100px;
   }
 `;
 

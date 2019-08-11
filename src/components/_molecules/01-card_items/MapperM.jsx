@@ -9,10 +9,6 @@ const Container = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 80px;
-
-  @media (max-width: 414px) {
-    width: auto;
-  }
 `;
 
 const MapButton = styled.button`
@@ -25,8 +21,6 @@ const MapButton = styled.button`
   border-radius: ${props => props.theme.brad};
   box-shadow: ${props => props.theme.bshad};
   background-color: ${props => props.theme.blue};
-
-
 `;
 
 const Coords = styled.p`
