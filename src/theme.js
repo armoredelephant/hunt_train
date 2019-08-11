@@ -23,7 +23,8 @@ const theme = {
   bshad: '0px 7px 20px rgba(1, 1, 1, 0.30)',
   cardbg: '#363636',
   blue: 'rgb(131, 208, 242)',
-  red: '#e85943'
+  red: '#e85943',
+  mfs: '12px',
 };
 
 export default theme;

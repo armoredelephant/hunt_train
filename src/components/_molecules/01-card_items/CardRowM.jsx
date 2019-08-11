@@ -12,6 +12,13 @@ const Mark = styled.h4`
   color: ${props => props.theme.fntClr};
   margin: 0;
   align-self: flex-end;
+
+  @media only screen
+    and (device-width: 375)
+    and (device-height: 812px)
+    and (-webkit-device-pixel-ration: 3) {
+      font-size: ${props => props.theme.mfs};
+    };
 `;
 
 const CardRowM = props => {
