@@ -5,7 +5,7 @@ import CardHeaderM from '@M/01-card_items/CardHeaderM';
 import CardRowM from '@M/01-card_items/CardRowM';
 
 const CardContainer = styled.div`
-  min-width: 468px;
+  min-width: 300px;
   background-color: ${props => props.theme.cardbg};
   border-radius: ${props => props.theme.brad};
   box-shadow: ${props => props.theme.bshad};
