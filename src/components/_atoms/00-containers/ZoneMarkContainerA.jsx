@@ -6,6 +6,10 @@ const Container = styled.div`
   flex-flow: row;
   align-content: flex-end;
   width: 200px;
+
+  @media (max-width: 414px) {
+    width: auto;
+  }
 `;
 
 const ZoneMarkContainerA = props => {
