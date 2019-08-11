@@ -6,7 +6,6 @@ import { DispatchContext, StateContext } from '@O/00-pages/ScouterPageO';
 import RouteContainerA from '@A/00-containers/RouteContainerA';
 
 const Container = styled.div`
-  min-width: 300px;
   background-color: ${props => props.theme.cardbg};
   border-radius: ${props => props.theme.brad};
   box-shadow: ${props => props.theme.bshad};
