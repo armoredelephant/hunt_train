@@ -8,7 +8,6 @@ import PreviousButtonA from '@A/02-buttons/PreviousButtonA';
 import MarkDisplayM from '@M/00-forms/MarkDisplayM';
 
 const RouteContainer = styled.div`
-  min-width: 400px;
   display: flex;
   flex-flow: row;
   justify-content: space-evenly;
@@ -48,8 +47,8 @@ const RouteContainerA = props => {
           <NextButtonA handleClick={handleNext} hidden={currentStop === totalStops && true} />
         </>
       ) : (
-        <p>Train has concluded or hasn't departed!</p>
-      )}
+          <p>Train has concluded or hasn't departed!</p>
+        )}
     </RouteContainer>
   );
 };
