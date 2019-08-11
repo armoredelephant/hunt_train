@@ -18,15 +18,54 @@ const Mark = styled.h4`
     and (device-height: 812px)
     and (-webkit-device-pixel-ration: 3) {
       font-size: ${props => props.theme.mfs};
-    };
+  };
 
+  @media only screen
+      and (device-width: 414px)
+      and (device-height: 896px)
+      and (-webkit-device-pixel-ratio: 3) {
+      font-size: ${props => props.theme.mfs};
+  };
+  
+  @media only screen
+    and (device-width: 375px)
+    and (device-height: 812px)
+    and (-webkit-device-pixel-ratio: 3) {
+    font-size: ${props => props.theme.mfs};
+  };
+  
   @media only screen
     and (device-width: 414px)
     and (device-height: 896px)
+    and (-webkit-device-pixel-ratio: 2) {
+    font-size: ${props => props.theme.mfs};
+  };
+
+  @media only screen
+    and (device-width: 375px)
+    and (device-height: 667px)
+    and (-webkit-device-pixel-ratio: 2) {
+    font-size: ${props => props.theme.mfs};
+  };
+
+  @media only screen
+    and (device-width: 414px)
+    and (device-height: 736px)
     and (-webkit-device-pixel-ratio: 3) {
+    font-size: ${props => props.theme.mfs};
+  };
+
+  @media only screen
+    and (min-device-width: 375px)
+    and (max-device-width: 667px) {
       font-size: ${props => props.theme.mfs};
-      color: red;
-    }
+  }
+
+  @media only screen
+    and (min-device-width: 414px)
+    and (max-device-width: 667px) {
+      font-size: ${props => props.theme.mfs};
+  }
 `;
 
 const CardRowM = props => {

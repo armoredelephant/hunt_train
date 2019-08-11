@@ -9,10 +9,6 @@ const MarkContainer = styled.div`
   flex-flow: column;
 `;
 
-const Warning = styled.p`
-  color: white;
-`;
-
 const InfoContainer = styled.div`
   display: flex;
   flex-flow: row;

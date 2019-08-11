@@ -25,6 +25,7 @@ const theme = {
   blue: 'rgb(131, 208, 242)',
   red: '#e85943',
   mfs: '12px',
+  mw: '60px',
 };
 
 export default theme;
