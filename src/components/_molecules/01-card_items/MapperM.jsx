@@ -34,6 +34,10 @@ const Coords = styled.p`
   color: #e85943;
   font-family: ${props => props.theme.ff};
   text-align: ${props => props.theme.ta};
+
+  @media (max-width: 415px) {
+    font-size: ${props => props.theme.mfs};
+  }
 `;
 
 const MapperM = props => {
