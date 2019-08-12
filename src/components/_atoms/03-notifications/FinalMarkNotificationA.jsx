@@ -8,12 +8,12 @@ const Container = styled.div`
 `;
 
 const Notification = styled.p`
-    align-self: center;
-    text-align: center;
-    color: #bce843
-    font-size: 20px;
-    font-family: ${props => props.theme.ff};
-    letter-spacing: ${props => props.theme.ls};
+  align-self: center;
+  text-align: center;
+  color: ${props => props.theme.red};
+  font-size: 20px;
+  font-family: ${props => props.theme.ff};
+  letter-spacing: ${props => props.theme.ls};
 `;
 
 const FinalMarkNotificationA = props => {

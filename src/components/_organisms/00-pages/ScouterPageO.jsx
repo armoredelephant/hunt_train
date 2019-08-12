@@ -18,7 +18,6 @@ export const StateContext = createContext();
 
 const ScouterPageO = () => {
   const [state, dispatch] = useImmerReducer(scoutDataReducer, initialState);
-  const { zoneData, zoneKeys, mapZone, mapMark, showModal } = state;
 
   const fetchData = async url => {
     const result = await Axios.get(url);
@@ -27,6 +26,8 @@ const ScouterPageO = () => {
 
     dispatch({ type: 'fetch', zoneKeys, zoneData });
   };
+
+  const { zoneData, zoneKeys, mapZone, mapMark, showModal } = state;
 
   useEffect(() => {
     fetchData('/resources/stubs/hunt_data.json');
@@ -45,7 +46,11 @@ const ScouterPageO = () => {
               .toString(36)
               .substring(7);
             return (
-              <ZoneCardM key={rdmKey} marks={zoneData[item].marks} zone={zoneData[item].zone} />
+              <ZoneCardM // prettier-ignore
+                key={rdmKey}
+                marks={zoneData[item].marks}
+                zone={zoneData[item].zone}
+              />
             );
           })}
         </MainContainerA>

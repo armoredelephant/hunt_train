@@ -8,17 +8,17 @@ const CardContainer = styled.div`
   background-color: ${props => props.theme.cardbg};
   border-radius: ${props => props.theme.brad};
   box-shadow: ${props => props.theme.bshad};
-  margin: 5px;
+  margin: ${props => props.theme.margin};
   display: flex;
   justify-content: center;
   align-content: center;
-  padding: 5px;
+  padding: ${props => props.theme.pad};
 `;
 
 const Card = styled.div`
   display: flex;
   flex-flow: column;
-  margin: 5px;
+  margin: ${props => props.theme.margin};
 `;
 
 const ZoneCardM = props => {

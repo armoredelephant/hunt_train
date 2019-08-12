@@ -1,4 +1,3 @@
-import React from 'react';
 import initialState from './initialState';
 
 const scoutDataReducer = (draft, action) => {
@@ -60,6 +59,7 @@ const scoutDataReducer = (draft, action) => {
       draft.routeData = initialState.routeData;
       draft.currentStop = initialState.currentStop;
       draft.totalStops = initialState.totalStops;
+      break;
     }
     default:
       break;

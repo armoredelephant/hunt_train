@@ -12,15 +12,15 @@ const MarkContainer = styled.div`
 const InfoContainer = styled.div`
   display: flex;
   flex-flow: row;
-  background-color: #2b2b2b;
+  background-color: ${props => props.theme.darkestbg};
   border-radius: ${props => props.theme.brad};
-  justify-content: space-between;
+  justify-content: ${props => props.theme.between};
   border-top: 2px solid #222;
   border-left: 1px solid #222;
   border-right: 1px solid #222;
   border-bottom: 1px solid #242424;
   align-items: center;
-  margin: 5px;
+  margin: ${props => props.theme.margin};
 `;
 
 const MarkDisplayM = props => {

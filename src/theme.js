@@ -24,8 +24,13 @@ const theme = {
   cardbg: '#363636',
   blue: 'rgb(131, 208, 242)',
   red: '#e85943',
+  green: '#bce843',
   mfs: '12px',
   mw: '60px',
+  darkestbg: '#2b2b2b',
+  between: 'space-between',
+  margin: '5px',
+  pad: '5px'
 };
 
 export default theme;

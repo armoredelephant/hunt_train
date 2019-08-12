@@ -4,7 +4,7 @@ import styled from 'styled-components';
 const Container = styled.div`
   display: flex;
   flex-flow: ${props => (props.column ? 'column' : 'row')};
-  justify-content: space-between;
+  justify-content: ${props => props.theme.between};
 `;
 
 const InstanceContainerA = props => {

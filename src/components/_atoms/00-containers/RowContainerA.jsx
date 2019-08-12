@@ -4,9 +4,9 @@ import styled from 'styled-components';
 const Container = styled.div`
     display: flex;
     flex-flow; row;
-    justify-content: space-between;
+    justify-content: ${props => props.theme.between};
     padding-bottom: 5px;
-    border-bottom: 1px solid #2b2b2b;
+    border-bottom: 1px solid ${props => props.theme.darkestbg};
 `;
 
 const RowContainerA = props => {

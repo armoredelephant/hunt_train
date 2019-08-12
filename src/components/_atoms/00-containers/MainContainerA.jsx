@@ -8,7 +8,7 @@ const Container = styled.main`
   flex-flow: column;
   justify-content: space-evenly;
   align-items: center;
-  padding: 5px;
+  padding: ${props => props.theme.pad};
 `;
 
 const MainContainerA = props => {

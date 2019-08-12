@@ -7,12 +7,12 @@ const Container = styled.div`
   display: flex;
   align-self: center;
   overflow: auto;
-  `;
+`;
 
 const Image = styled.img`
-    min-width: 640px;
-    align-self: center;
-    min-height: 640px;
+  min-width: 640px;
+  align-self: center;
+  min-height: 640px;
 `;
 
 const ZoneMapM = () => {
@@ -49,7 +49,10 @@ const ZoneMapM = () => {
 
   return (
     <Container>
-      <Image src={`/resources/maps/${mapZone}_${mapMark}.svg`} useMap="#zone-map" />
+      <Image // prettier-ignore
+        src={`/resources/maps/${mapZone}_${mapMark}.svg`}
+        useMap="#zone-map"
+      />
       <map name="zone-map">
         {markCoords.map(location => {
           const rdmKey = Math.random()
@@ -57,6 +60,7 @@ const ZoneMapM = () => {
             .substring(7);
           return (
             <area
+              alt="mark coordinate"
               coords={location.coords}
               key={rdmKey}
               onClick={handleCoords}

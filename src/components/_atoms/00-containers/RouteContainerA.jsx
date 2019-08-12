@@ -47,8 +47,8 @@ const RouteContainerA = props => {
           <NextButtonA handleClick={handleNext} hidden={currentStop === totalStops && true} />
         </>
       ) : (
-          <p>Train has concluded or hasn't departed!</p>
-        )}
+        <p>Train has concluded or hasn't departed!</p>
+      )}
     </RouteContainer>
   );
 };

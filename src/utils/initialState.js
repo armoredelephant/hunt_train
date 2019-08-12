@@ -45,7 +45,13 @@ const initialState = {
   currentMark: null,
   showModal: false,
   trainZone: 'Lakeland',
-  zonesRemaining: ['Kholusia', 'Amh Araeng', "The Rak'tika Greatwood", 'The Tempest'],
+  zonesRemaining: [
+    // prettier-ignore
+    'Kholusia',
+    'Amh Araeng',
+    "The Rak'tika Greatwood",
+    'The Tempest'
+  ],
   zoneKeys: null,
   zoneData: null
 };

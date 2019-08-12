@@ -7,8 +7,7 @@ import SplashHeaderA from '@A/01-headers/SplashHeaderA';
 import TextContainerA from '@A/00-containers/TextContainerA';
 import ThemedButtonA from '@A/02-buttons/ThemedButtonA';
 
-const paragraph =
-  'This app was designed to make the scouting and conducting of a hunt train easier.';
+const paragraph = '';
 
 const SplashPageO = () => {
   return (

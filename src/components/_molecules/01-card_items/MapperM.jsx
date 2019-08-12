@@ -6,7 +6,7 @@ import { DispatchContext, StateContext } from '@O/00-pages/ScouterPageO';
 const Container = styled.div`
   display: flex;
   flex-flow: column;
-  justify-content: space-between;
+  justify-content: ${props => props.theme.between};
   align-items: center;
   width: 80px;
 `;
@@ -30,7 +30,7 @@ const MapButton = styled.button`
     text-decoration: none;
     outline: none;
   }
-  
+
   @media (max-width: 415px) {
     font-size: ${props => props.theme.mfs};
     padding: 1px 12px;
@@ -40,7 +40,7 @@ const MapButton = styled.button`
 const Coords = styled.p`
   font-size: 16px;
   padding: 10px 0;
-  color: #e85943;
+  color: ${props => (props.active ? props.theme.green : props.theme.red)};
   font-family: ${props => props.theme.ff};
   text-align: ${props => props.theme.ta};
 
@@ -54,7 +54,7 @@ const MapperM = props => {
   const state = useContext(StateContext);
 
   const { instance, mark, zone } = props;
-  const { zoneData, scoutData, mapMark } = state;
+  const { zoneData, scoutData, currentMark, mapMark } = state;
 
   let markCoords = ' - ';
 
@@ -73,15 +73,28 @@ const MapperM = props => {
     }
   }
 
+  let currentMarkCoords = '';
+  let currentMarkInstance = '';
+
+  if (currentMark) {
+    currentMarkCoords = currentMark.coords;
+    currentMarkInstance = currentMark.instance;
+  }
+
   return (
     <Container>
-      <Coords>{markCoords}</Coords>
+      <Coords
+        active={
+          // prettier-ignore
+          !!(currentMarkCoords === markCoords // prettier-ignore
+            && currentMarkInstance === instance)
+        }
+      >
+        {markCoords}
+      </Coords>
       <MapButton onClick={handleClick}>Map</MapButton>
     </Container>
   );
 };
 
 export default MapperM;
-
-// <ModalContainer>
-// <Map> over the Modal Container

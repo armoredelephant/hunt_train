@@ -9,7 +9,7 @@ import './sass/base.scss';
 const App = () => {
   return (
     <ThemeProvider theme={theme}>
-        <ScouterPageO />
+      <ScouterPageO />
     </ThemeProvider>
   );
 };

@@ -6,7 +6,7 @@ const Container = styled.div`
   flex-flow: column;
   justify-content: center;
   align-content: center;
-  padding: 5px;
+  padding: ${props => props.theme.pad};
   flex-grow: 2;
 `;
 
@@ -25,15 +25,14 @@ const Info = styled.p`
   font-family: ${props => props.theme.ff};
   letter-spacing: ${props => props.theme.ls};
   font-size: ${props => props.theme.fntSz};
-  border-bottom: 1px solid #2b2b2b;
+  border-bottom: 1px solid ${props => props.theme.darkestbg};
   text-align: ${props => props.theme.ta};
   padding-bottom: 3px;
-  color: ${props => props.theme.red};
+  color: ${props => props.theme.green};
 
   @media (max-width: 414px) {
     font-size: ${props => props.theme.mfs};
   }
-  
 `;
 
 const MarkInfoContainerA = props => {
