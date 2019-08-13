@@ -21,6 +21,7 @@ const InfoContainer = styled.div`
   border-bottom: 1px solid #242424;
   align-items: center;
   margin: ${props => props.theme.margin};
+  min-width: 229px;
 `;
 
 const MarkDisplayM = props => {
@@ -30,7 +31,9 @@ const MarkDisplayM = props => {
 
   return (
     <MarkContainer>
-      <FinalMarkNotificationA hidden={currentStop !== totalStops && true} />
+      <FinalMarkNotificationA
+        hidden={((currentStop !== totalStops) || (currentMark.instance === ' - ')) && true}
+      />
       <InfoContainer>
         {items.map(item => {
           const rdmKey = Math.random()

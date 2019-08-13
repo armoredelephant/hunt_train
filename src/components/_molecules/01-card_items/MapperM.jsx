@@ -3,38 +3,14 @@ import styled from 'styled-components';
 
 import { DispatchContext, StateContext } from '@O/00-pages/ScouterPageO';
 
+import StyledButtonA from '@A/02-buttons/StyledButtonA';
+
 const Container = styled.div`
   display: flex;
   flex-flow: column;
   justify-content: ${props => props.theme.between};
   align-items: center;
   width: 80px;
-`;
-
-const MapButton = styled.button`
-  color: ${props => props.theme.cardbg};
-  font-family: ${props => props.theme.ff};
-  letter-spacing: ${props => props.theme.ls};
-  border: none;
-  padding: 3px 16px;
-  outline: none;
-  font-size: ${props => props.theme.btnFS};
-  border-radius: ${props => props.theme.brad};
-  background-color: ${props => props.theme.blue};
-  text-decoration: none;
-
-  &:visited,
-  &:focus,
-  &:hover,
-  &:active {
-    text-decoration: none;
-    outline: none;
-  }
-
-  @media (max-width: 415px) {
-    font-size: ${props => props.theme.mfs};
-    padding: 1px 12px;
-  }
 `;
 
 const Coords = styled.p`
@@ -54,7 +30,7 @@ const MapperM = props => {
   const state = useContext(StateContext);
 
   const { instance, mark, zone } = props;
-  const { zoneData, scoutData, currentMark, mapMark } = state;
+  const { zoneData, scoutData, currentMark } = state;
 
   let markCoords = ' - ';
 
@@ -92,7 +68,10 @@ const MapperM = props => {
       >
         {markCoords}
       </Coords>
-      <MapButton onClick={handleClick}>Map</MapButton>
+      <StyledButtonA
+        handleClick={handleClick}
+        text={'Map'}
+      />
     </Container>
   );
 };

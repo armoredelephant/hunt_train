@@ -6,6 +6,7 @@ import MainContainerA from '@A/00-containers/MainContainerA';
 import ZoneCardM from '@M/00-forms/ZoneCardM';
 import ModalContainerA from '@A/00-containers/ModalContainerA';
 import ZoneMapM from '@M/02-maps/ZoneMapM';
+import MarkLocationMapM from '@M/02-maps/MarkLocationMapM';
 import TrainCardM from '@M/01-card_items/TrainCardM';
 
 // state management
@@ -27,7 +28,7 @@ const ScouterPageO = () => {
     dispatch({ type: 'fetch', zoneKeys, zoneData });
   };
 
-  const { zoneData, zoneKeys, mapZone, mapMark, showModal } = state;
+  const { currentMark, zoneData, zoneKeys, mapZone, mapMark, showModal, showLocation } = state;
 
   useEffect(() => {
     fetchData('/resources/stubs/hunt_data.json');
@@ -54,9 +55,14 @@ const ScouterPageO = () => {
             );
           })}
         </MainContainerA>
-        {showModal && mapZone && (
+        {showModal && (
           <ModalContainerA>
-            <ZoneMapM mapZone={mapZone} mapMark={mapMark} />
+            {showLocation ?
+              <MarkLocationMapM
+                currentMark={currentMark}
+              /> :
+              <ZoneMapM mapZone={mapZone} mapMark={mapMark} />
+            }
           </ModalContainerA>
         )}
       </StateContext.Provider>

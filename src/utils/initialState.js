@@ -42,8 +42,14 @@ const initialState = {
   markCoords: [],
   totalStops: 0,
   currentStop: 0,
-  currentMark: null,
+  currentMark: {
+    mark: ' - ',
+    zone: ' - ',
+    coords: ' - ',
+    instance: ' - '
+  },
   showModal: false,
+  showLocation: false,
   trainZone: 'Lakeland',
   zonesRemaining: [
     // prettier-ignore

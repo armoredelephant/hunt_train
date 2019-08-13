@@ -1,9 +1,12 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 
+import initialState from 'Utils/initialState';
+
 import { DispatchContext, StateContext } from '@O/00-pages/ScouterPageO';
 
 import RouteContainerA from '@A/00-containers/RouteContainerA';
+import StyledButtonA from '@A/02-buttons/StyledButtonA';
 
 const Container = styled.div`
   background-color: ${props => props.theme.cardbg};
@@ -15,11 +18,13 @@ const Container = styled.div`
   justify-content: ${props => props.theme.between};
   align-content: center;
   padding: ${props => props.theme.pad};
+  min-width: 330px;
 `;
 
 const ButtonContainer = styled.div`
   display: flex;
-  justify-content: center;
+  flex-flow: row;
+  justify-content: space-between;
   align-content: center;
 `;
 
@@ -70,7 +75,7 @@ const TrainCardM = () => {
 
     const markData = routeData[0];
 
-    dispatch({
+    if (markData) dispatch({
       type: 'route',
       route: routeData,
       mark: markData,
@@ -78,13 +83,25 @@ const TrainCardM = () => {
     });
   };
 
+  const handleMap = () => {
+    dispatch({ type: 'mapToggler' }) // mark map
+  }
+
   return (
     <Container>
-      {currentMark && <RouteContainerA />}
+      {/* {currentMark && <RouteContainerA />} */}
+      <RouteContainerA />
       <ButtonContainer>
-        <StartButton onClick={handleRouteCreation}>
-          {currentMark ? 'Restart Train' : 'Start Train'}
+        <StyledButtonA isDisabled={true} text={'Guide'} />
+        <StartButton
+          onClick={handleRouteCreation}
+        >
+          {currentMark === initialState.currentMark ? 'Start Train' : 'Restart Train'}
         </StartButton>
+        <StyledButtonA
+          isDisabled={currentMark.coords === ' - '}
+          handleClick={handleMap} text={'Map'}
+        />
       </ButtonContainer>
     </Container>
   );

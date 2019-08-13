@@ -14,7 +14,7 @@ const scoutDataReducer = (draft, action) => {
       return;
     }
     case 'map': {
-      draft.showModal = !draft.showModal;
+      draft.showModal = true;
       draft.mapZone = action.zone;
       draft.mapMark = action.mark;
       draft.markCoords = action.markCoords;
@@ -23,6 +23,7 @@ const scoutDataReducer = (draft, action) => {
     }
     case 'modal': {
       draft.showModal = false;
+      draft.showLocation = false;
       draft.mapZone = '';
       draft.mapMark = '';
       return;
@@ -59,7 +60,12 @@ const scoutDataReducer = (draft, action) => {
       draft.routeData = initialState.routeData;
       draft.currentStop = initialState.currentStop;
       draft.totalStops = initialState.totalStops;
-      break;
+      return;
+    }
+    case 'mapToggler': {
+      draft.showLocation = true;
+      draft.showModal = true;
+      return;
     }
     default:
       break;

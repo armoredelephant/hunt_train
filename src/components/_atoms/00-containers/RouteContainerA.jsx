@@ -14,10 +14,6 @@ const RouteContainer = styled.div`
   align-content: center;
 `;
 
-const NextButton = styled.button``;
-
-const PreviousButton = styled.button``;
-
 const RouteContainerA = props => {
   const state = useContext(StateContext);
   const dispatch = useContext(DispatchContext);
@@ -47,8 +43,8 @@ const RouteContainerA = props => {
           <NextButtonA handleClick={handleNext} hidden={currentStop === totalStops && true} />
         </>
       ) : (
-        <p>Train has concluded or hasn't departed!</p>
-      )}
+          <></>
+        )}
     </RouteContainer>
   );
 };
