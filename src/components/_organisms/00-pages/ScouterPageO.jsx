@@ -32,6 +32,9 @@ const ScouterPageO = () => {
 
   useEffect(() => {
     fetchData('/resources/stubs/hunt_data.json');
+    /**
+     * also needs to axios.get(/key)
+     */
   }, []);
 
   if (!zoneData || !zoneKeys) {

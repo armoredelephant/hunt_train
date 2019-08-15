@@ -50,14 +50,6 @@ const initialState = {
   },
   showModal: false,
   showLocation: false,
-  trainZone: 'Lakeland',
-  zonesRemaining: [
-    // prettier-ignore
-    'Kholusia',
-    'Amh Araeng',
-    "The Rak'tika Greatwood",
-    'The Tempest'
-  ],
   zoneKeys: null,
   zoneData: null
 };

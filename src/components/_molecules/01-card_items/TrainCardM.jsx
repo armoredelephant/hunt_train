@@ -59,6 +59,11 @@ const TrainCardM = () => {
 
   const { currentMark, scoutData, zoneKeys } = state;
 
+  /**
+   * will need to axios.get() to get the scoutData
+   *  
+   */
+
   const handleRouteCreation = () => {
     const routeData = [];
 
@@ -75,6 +80,10 @@ const TrainCardM = () => {
 
     const markData = routeData[0];
 
+    /**
+     * if markData : axios.post(routeData)
+     * rest of the data can still be handled by internal state?
+     */
     if (markData) dispatch({
       type: 'route',
       route: routeData,

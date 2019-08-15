@@ -23,6 +23,7 @@ const ZoneMapM = () => {
 
   const handleCoords = e => {
     e.preventDefault();
+
     const { target } = e;
 
     const splitString = target.title.split(' | ');
@@ -41,6 +42,13 @@ const ZoneMapM = () => {
     const instanceMarks = scoutData[mapZone][mapInstance];
 
     if (instanceMarks.length !== 0 && distance < instanceMarks[0].distance) {
+      /**
+       * instead of dispatch()
+       * axios.push(/scout/{key_generated_initially_For_Card}/scoutData)
+       * back end will then need to navigate to zone/instance and then unshift
+       * The conditional will be done on the backend, pass through distance in options
+       * will unshift/push on backend.
+       */
       dispatch({ type: 'markUnshift', mark: markData });
     } else {
       dispatch({ type: 'markPush', mark: markData });
