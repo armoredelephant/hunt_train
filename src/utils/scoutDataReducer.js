@@ -67,6 +67,13 @@ const scoutDataReducer = (draft, action) => {
       draft.showModal = true;
       return;
     }
+    case 'card': {
+      draft.cardKey = action.cardKey;
+      draft.scoutData = action.scoutData;
+      draft.routeData = action.routeData;
+      draft.isLoading = action.isLoading;
+      return;
+    }
     default:
       break;
   }

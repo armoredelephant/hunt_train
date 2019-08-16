@@ -20,7 +20,7 @@ const Mark = styled.h4`
 
 const CardRowM = props => {
   const { mark, zone } = props;
-  const instances = [1, 2, 3];
+  const instances = [0, 1, 2];
 
   return (
     <RowContainerA>

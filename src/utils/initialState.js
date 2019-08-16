@@ -48,6 +48,8 @@ const initialState = {
     coords: ' - ',
     instance: ' - '
   },
+  isLoading: true,
+  cardKey: null,
   showModal: false,
   showLocation: false,
   zoneKeys: null,

@@ -17,10 +17,12 @@ import scoutDataReducer from 'Utils/scoutDataReducer';
 export const DispatchContext = createContext();
 export const StateContext = createContext();
 
+const API_HOST_URL = process.env.API_URL;
+
 const ScouterPageO = props => {
   const [state, dispatch] = useImmerReducer(scoutDataReducer, initialState);
 
-  const fetchData = async url => {
+  const fetchLocalData = async url => {
     const result = await Axios.get(url);
     const zoneKeys = Object.keys(result.data);
     const zoneData = result.data;
@@ -28,23 +30,44 @@ const ScouterPageO = props => {
     dispatch({ type: 'fetch', zoneKeys, zoneData });
   };
 
-  const { currentMark, zoneData, zoneKeys, mapZone, mapMark, showModal, showLocation } = state;
+  const { currentMark, isLoading, zoneData, zoneKeys, mapZone, mapMark, showModal, showLocation } = state;
 
   useEffect(() => {
-    fetchData('/resources/stubs/hunt_data.json');
-    /**
-     * also needs to axios.get(/key)
-     */
+    fetchLocalData('/resources/stubs/hunt_data.json');
   }, []);
 
-  if (!zoneData || !zoneKeys) {
+  useEffect(() => {
+    let source = Axios.CancelToken.source();
+
+    const fetchFbData = async url => {
+      const histLocation = props.history.location.pathname;
+      const cardKey = histLocation.split('/')[1]
+
+      const options = {
+        params: {
+          uniqueId: cardKey
+        }
+      };
+
+      const results = await Axios.get(url, options);
+      const newScoutData = results.data.newData[cardKey].scoutData;
+      const newRouteData = results.data.newData[cardKey].routeData;
+
+      dispatch({
+        type: 'card', cardKey: cardKey, scoutData: newScoutData, RouteData: newRouteData, isLoading: false
+      });
+    }
+
+    fetchFbData(`${API_HOST_URL}/api/scout/`);
+    return () => {
+      source.cancel();
+    }
+  }, [showModal]);
+
+  if (!zoneData || !zoneKeys || isLoading) {
     return null;
   }
 
-  // need a dispatch that adds this to state for ScoutPage
-  const histLocation = props.history.location.pathname;
-  const cardKey = histLocation.split('/')[1]
-  console.log(cardKey)
   return (
     <DispatchContext.Provider value={dispatch}>
       <StateContext.Provider value={state}>
