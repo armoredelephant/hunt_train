@@ -16,25 +16,31 @@ const paragraph = '';
  * axios.post()
  */
 
-const handleNew = () => {
-  Axios.post(`${API_HOST_URL}/api/scout`)
-  /** axios.post() 
-   * on the backend this will generate a new card based on fb_example.json
-   * will return a crypto key
-   * key will be passed as destination /key
-   * key will be require by ScoutPageO
-   */
-}
+/** axios.post() 
+ * on the backend this will generate a new card based on fb_example.json
+ * will return a crypto key
+ * key will be passed as destination /key
+ * key will be require by ScoutPageO
+ */
 
-const SplashPageO = () => {
+
+const SplashPageO = props => {
+  const handleNew = () => {
+    console.log(props.history);
+    Axios.post(`${API_HOST_URL}/api/scout/new`)
+      .then(res => {
+        let path = res.data.uniqueId;
+        props.history.push(path);
+      });
+  }
   return (
     <SplashContainerA className="darken">
       <ContentContainerA>
         <SplashHeaderA>Welcome to Hunt Conductor</SplashHeaderA>
         <TextContainerA text={paragraph} />
         <ThemedButtonA // prettier-ignore
-          destination="/scouter"
-          onClick={handleNew}
+          // destination="/scouter"
+          handleClick={handleNew}
           text="Start a Train"
         />
         {/** Button that prompts for key, then destination is /key. ScouterPage will query the key for available data */}

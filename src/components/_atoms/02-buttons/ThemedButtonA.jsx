@@ -1,8 +1,8 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom'; // was { Link }
 import styled from 'styled-components';
 
-const Button = styled(Link)`
+const Button = styled.button`
   display: ${props => props.theme.btnDisplay};
   background-color: ${props => props.theme.btnBG};
   width: ${props => props.theme.btnW};
@@ -27,7 +27,7 @@ const Button = styled(Link)`
 
 const ThemedButtonA = props => {
   const { text, destination, handleClick } = props;
-  return <Button to={destination}>{text}</Button>;
+  return <Button onClick={handleClick}>{text}</Button>;
 };
 
-export default ThemedButtonA;
+export default withRouter(ThemedButtonA);

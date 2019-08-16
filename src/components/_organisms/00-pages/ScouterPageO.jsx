@@ -17,7 +17,7 @@ import scoutDataReducer from 'Utils/scoutDataReducer';
 export const DispatchContext = createContext();
 export const StateContext = createContext();
 
-const ScouterPageO = () => {
+const ScouterPageO = props => {
   const [state, dispatch] = useImmerReducer(scoutDataReducer, initialState);
 
   const fetchData = async url => {
@@ -40,6 +40,11 @@ const ScouterPageO = () => {
   if (!zoneData || !zoneKeys) {
     return null;
   }
+
+  // need a dispatch that adds this to state for ScoutPage
+  const histLocation = props.history.location.pathname;
+  const cardKey = histLocation.split('/')[1]
+  console.log(cardKey)
   return (
     <DispatchContext.Provider value={dispatch}>
       <StateContext.Provider value={state}>
