@@ -49,6 +49,7 @@ const initialState = {
     instance: ' - '
   },
   isLoading: true,
+  needsUdpate: false,
   cardKey: null,
   showModal: false,
   showLocation: false,

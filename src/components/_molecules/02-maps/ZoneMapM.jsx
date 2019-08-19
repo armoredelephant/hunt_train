@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import styled from 'styled-components';
 
 import { StateContext, DispatchContext } from '@O/00-pages/ScouterPageO';
@@ -46,17 +46,11 @@ const ZoneMapM = () => {
       cardKey: cardKey,
       instance: mapInstance,
       map: mapZone,
-      mark: markData
+      mark: markData,
     };
 
-    const instanceMarks = scoutData[mapZone][mapInstance - 1];
-    console.log(scoutData, options);
-
-    if (!instanceMarks) {
-      Axios.post(`${API_HOST_URL}/api/scout/newMark`, options)
-      dispatch({ type: 'modal' });
-    }
-
+    Axios.post(`${API_HOST_URL}/api/scout/firstMark`, options)
+    dispatch({ type: 'modal' });
 
     // check if scoutData[mapZone][mapInstance - 1] = false
     // if it's false

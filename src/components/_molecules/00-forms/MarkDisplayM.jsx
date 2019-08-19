@@ -27,7 +27,6 @@ const InfoContainer = styled.div`
 const MarkDisplayM = props => {
   const { currentMark, currentStop, totalStops } = props;
   const items = ['zone', 'instance', 'coords'];
-  console.log(totalStops, currentStop);
 
   return (
     <MarkContainer>

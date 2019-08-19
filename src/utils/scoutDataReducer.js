@@ -26,6 +26,7 @@ const scoutDataReducer = (draft, action) => {
       draft.showLocation = false;
       draft.mapZone = '';
       draft.mapMark = '';
+      draft.needsUpdate = !draft.needsUpdate;
       return;
     }
     case 'markUnshift': {
@@ -73,6 +74,9 @@ const scoutDataReducer = (draft, action) => {
       draft.routeData = action.routeData;
       draft.isLoading = action.isLoading;
       return;
+    }
+    case 'update': {
+      draft.needsUpdate = !draft.needsUpdate;
     }
     default:
       break;

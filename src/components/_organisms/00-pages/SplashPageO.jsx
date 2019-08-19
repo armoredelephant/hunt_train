@@ -26,7 +26,6 @@ const paragraph = '';
 
 const SplashPageO = props => {
   const handleNew = () => {
-    console.log(props.history);
     Axios.post(`${API_HOST_URL}/api/scout/new`)
       .then(res => {
         let path = res.data.uniqueId;

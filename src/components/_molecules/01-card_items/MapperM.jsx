@@ -36,18 +36,19 @@ const MapperM = props => {
 
   const handleClick = () => {
     const coordsArray = zoneData[zone].marks[mark].locations;
+    // const arr = scoutData[zone][instance];
 
     dispatch({ type: 'map', zone, mark, instance, markCoords: coordsArray });
   };
 
-  if (scoutData[zone][instance].length != 0) {
-    const getMarkData = scoutData[zone][instance].filter(markData => {
-      return markData.mark === mark;
-    });
-    if (getMarkData != 0) {
-      markCoords = getMarkData[0].coords;
-    }
-  }
+  // if (scoutData[zone][instance].length != 0) {
+  //   const getMarkData = scoutData[zone][instance].filter(markData => {
+  //     return markData.mark === mark;
+  //   });
+  //   if (getMarkData != 0) {
+  //     markCoords = getMarkData[0].coords;
+  //   }
+  // }
 
   let currentMarkCoords = '';
   let currentMarkInstance = '';

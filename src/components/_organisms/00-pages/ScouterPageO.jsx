@@ -30,7 +30,7 @@ const ScouterPageO = props => {
     dispatch({ type: 'fetch', zoneKeys, zoneData });
   };
 
-  const { currentMark, isLoading, zoneData, zoneKeys, mapZone, mapMark, showModal, showLocation } = state;
+  const { currentMark, isLoading, needsUpdate, zoneData, zoneKeys, mapZone, mapMark, showModal, showLocation } = state;
 
   useEffect(() => {
     fetchLocalData('/resources/stubs/hunt_data.json');
@@ -38,7 +38,6 @@ const ScouterPageO = props => {
 
   useEffect(() => {
     let source = Axios.CancelToken.source();
-
     const fetchFbData = async url => {
       const histLocation = props.history.location.pathname;
       const cardKey = histLocation.split('/')[1]
@@ -50,8 +49,8 @@ const ScouterPageO = props => {
       };
 
       const results = await Axios.get(url, options);
-      const newScoutData = results.data.newData[cardKey].scoutData;
-      const newRouteData = results.data.newData[cardKey].routeData;
+      const newScoutData = results.data.newData.scoutData || true
+      const newRouteData = results.data.newData.routeData || true
 
       dispatch({
         type: 'card', cardKey: cardKey, scoutData: newScoutData, RouteData: newRouteData, isLoading: false
@@ -62,7 +61,26 @@ const ScouterPageO = props => {
     return () => {
       source.cancel();
     }
-  }, [showModal]);
+  }, [needsUpdate]);
+
+  useEffect(() => {
+
+    const updateCard = async url => {
+      const histLocation = props.history.location.pathname;
+      const cardKey = histLocation.split('/')[1]
+      const options = {
+        params: {
+          uniqueId: cardKey
+        }
+      };
+      await Axios.get(url, options).then(response => {
+        console.log(response.data.message);
+        response.data.message && dispatch({ type: 'update' })
+      });
+    }
+
+    updateCard(`${API_HOST_URL}/api/scout/update`)
+  })
 
   if (!zoneData || !zoneKeys || isLoading) {
     return null;
