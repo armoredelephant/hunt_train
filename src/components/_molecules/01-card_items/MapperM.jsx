@@ -30,14 +30,13 @@ const MapperM = props => {
   const state = useContext(StateContext);
 
   const { instance, mark, zone } = props;
-  const { zoneData, scoutData, currentMark } = state;
+  const { zoneData, currentMark } = state;
 
   let markCoords = ' - ';
 
   const handleClick = () => {
     const coordsArray = zoneData[zone].marks[mark].locations;
-    // const arr = scoutData[zone][instance];
-
+    console.log('map clicked');
     dispatch({ type: 'map', zone, mark, instance, markCoords: coordsArray });
   };
 

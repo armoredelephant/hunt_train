@@ -1,10 +1,9 @@
 import React, { useContext, useEffect } from 'react';
 import styled from 'styled-components';
+import firebase from 'firebase';
+import 'firebase/database';
 
 import { StateContext, DispatchContext } from '@O/00-pages/ScouterPageO';
-import Axios from 'axios';
-
-const API_HOST_URL = process.env.API_URL;
 
 const Container = styled.div`
   display: flex;
@@ -42,15 +41,20 @@ const ZoneMapM = () => {
       zone: mapZone
     };
 
-    const options = {
-      cardKey: cardKey,
-      instance: mapInstance,
-      map: mapZone,
-      mark: markData,
+    const fbDatabase = firebase.database();
+    const ref = fbDatabase.ref().child(`cards/${cardKey}/scoutData/${mapZone}/${mapInstance}`);
+    const newChildKey = ref.push().key;
+    const updates = {
+      [`/${newChildKey}`]: markData
     };
 
-    Axios.post(`${API_HOST_URL}/api/scout/firstMark`, options)
+    ref.update(updates);
+    console.log('called');
     dispatch({ type: 'modal' });
+
+
+    // Axios.post(`${API_HOST_URL}/api/scout/firstMark`, options)
+    // dispatch({ type: 'modal' });
 
     // check if scoutData[mapZone][mapInstance - 1] = false
     // if it's false

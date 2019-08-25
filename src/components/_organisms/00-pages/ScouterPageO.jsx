@@ -1,6 +1,8 @@
 import React, { useEffect, createContext } from 'react';
 import { useImmerReducer } from 'use-immer';
 import Axios from 'axios';
+import firebase from 'firebase';
+import 'firebase/database';
 
 import MainContainerA from '@A/00-containers/MainContainerA';
 import ZoneCardM from '@M/00-forms/ZoneCardM';
@@ -17,10 +19,28 @@ import scoutDataReducer from 'Utils/scoutDataReducer';
 export const DispatchContext = createContext();
 export const StateContext = createContext();
 
-const API_HOST_URL = process.env.API_URL;
-
 const ScouterPageO = props => {
   const [state, dispatch] = useImmerReducer(scoutDataReducer, initialState);
+  const { currentMark, zoneData, zoneKeys, mapZone, mapMark, scoutData, showModal, showLocation } = state;
+
+  const fbDatabase = firebase.database();
+  const histLocation = props.history.location.pathname;
+  const cardKey = histLocation.split('/')[1]
+  const cardRef = fbDatabase.ref(`cards/${cardKey}`)
+
+  useEffect(() => {
+    dispatch({ type: 'updateKey', key: cardKey });
+  }, []);
+
+  useEffect(() => {
+    cardRef.on('value', snapshot => {
+      const data = snapshot.val();
+      var newData = data;
+      if (scoutData !== newData) dispatch({ type: 'scoutDataFetch', scoutData: newData.scoutData })
+    });
+
+    return cardRef.off();
+  });
 
   const fetchLocalData = async url => {
     const result = await Axios.get(url);
@@ -30,59 +50,11 @@ const ScouterPageO = props => {
     dispatch({ type: 'fetch', zoneKeys, zoneData });
   };
 
-  const { currentMark, isLoading, needsUpdate, zoneData, zoneKeys, mapZone, mapMark, showModal, showLocation } = state;
-
   useEffect(() => {
     fetchLocalData('/resources/stubs/hunt_data.json');
   }, []);
 
-  useEffect(() => {
-    let source = Axios.CancelToken.source();
-    const fetchFbData = async url => {
-      const histLocation = props.history.location.pathname;
-      const cardKey = histLocation.split('/')[1]
-
-      const options = {
-        params: {
-          uniqueId: cardKey
-        }
-      };
-
-      const results = await Axios.get(url, options);
-      const newScoutData = results.data.newData.scoutData || true
-      const newRouteData = results.data.newData.routeData || true
-
-      dispatch({
-        type: 'card', cardKey: cardKey, scoutData: newScoutData, RouteData: newRouteData, isLoading: false
-      });
-    }
-
-    fetchFbData(`${API_HOST_URL}/api/scout/`);
-    return () => {
-      source.cancel();
-    }
-  }, [needsUpdate]);
-
-  useEffect(() => {
-
-    const updateCard = async url => {
-      const histLocation = props.history.location.pathname;
-      const cardKey = histLocation.split('/')[1]
-      const options = {
-        params: {
-          uniqueId: cardKey
-        }
-      };
-      await Axios.get(url, options).then(response => {
-        console.log(response.data.message);
-        response.data.message && dispatch({ type: 'update' })
-      });
-    }
-
-    updateCard(`${API_HOST_URL}/api/scout/update`)
-  })
-
-  if (!zoneData || !zoneKeys || isLoading) {
+  if (!zoneData || !zoneKeys) {
     return null;
   }
 

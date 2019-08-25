@@ -1,5 +1,6 @@
 import React from 'react';
-import Axios from 'axios';
+import firebase from 'firebase';
+import 'firebase/database';
 
 import SplashContainerA from '@A/00-containers/SplashContainerA';
 import ContentContainerA from '@A/00-containers/ContentContainerA';
@@ -8,30 +9,28 @@ import SplashHeaderA from '@A/01-headers/SplashHeaderA';
 import TextContainerA from '@A/00-containers/TextContainerA';
 import ThemedButtonA from '@A/02-buttons/ThemedButtonA';
 
-const API_HOST_URL = process.env.API_URL;
-
 const paragraph = '';
-
-/**
- * axios.post()
- */
-
-/** axios.post() 
- * on the backend this will generate a new card based on fb_example.json
- * will return a crypto key
- * key will be passed as destination /key
- * key will be require by ScoutPageO
- */
-
 
 const SplashPageO = props => {
   const handleNew = () => {
-    Axios.post(`${API_HOST_URL}/api/scout/new`)
-      .then(res => {
-        let path = res.data.uniqueId;
+    const initialData = {
+      scoutData: true
+    };
+
+    const fbDatabase = firebase.database();
+    const cardsRef = fbDatabase.ref().child('cards')
+    const newCardKey = cardsRef.push().key;
+    const updates = {
+      [`/${newCardKey}`]: initialData
+    };
+
+    return cardsRef.update(updates)
+      .then(() => {
+        let path = newCardKey;
         props.history.push(path);
       });
   }
+
   return (
     <SplashContainerA className="darken">
       <ContentContainerA>

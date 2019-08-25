@@ -1,36 +1,5 @@
 const initialState = {
-  scoutData: {
-    Lakeland: {
-      1: [],
-      2: [],
-      3: []
-    },
-    Kholusia: {
-      1: [],
-      2: [],
-      3: []
-    },
-    'Amh Araeng': {
-      1: [],
-      2: [],
-      3: []
-    },
-    'Il Mheg': {
-      1: [],
-      2: [],
-      3: []
-    },
-    "The Rak'tika Greatwood": {
-      1: [],
-      2: [],
-      3: []
-    },
-    'The Tempest': {
-      1: [],
-      2: [],
-      3: []
-    }
-  },
+  scoutData: true,
   routeData: {
     Lakeland: [],
     Kholusia: [],
@@ -48,9 +17,7 @@ const initialState = {
     coords: ' - ',
     instance: ' - '
   },
-  isLoading: true,
-  needsUdpate: false,
-  cardKey: null,
+  cardKey: '',
   showModal: false,
   showLocation: false,
   zoneKeys: null,

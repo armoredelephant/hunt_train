@@ -7,12 +7,6 @@ const scoutDataReducer = (draft, action) => {
       draft.zoneData = action.zoneData;
       return;
     }
-    case 'scout': {
-      // refactor
-      draft.scoutData[action.zone][action.mark].coords = action.coords;
-      draft.scoutData[action.zone][action.mark].distance = action.distance;
-      return;
-    }
     case 'map': {
       draft.showModal = true;
       draft.mapZone = action.zone;
@@ -26,7 +20,6 @@ const scoutDataReducer = (draft, action) => {
       draft.showLocation = false;
       draft.mapZone = '';
       draft.mapMark = '';
-      draft.needsUpdate = !draft.needsUpdate;
       return;
     }
     case 'markUnshift': {
@@ -72,11 +65,14 @@ const scoutDataReducer = (draft, action) => {
       draft.cardKey = action.cardKey;
       draft.scoutData = action.scoutData;
       draft.routeData = action.routeData;
-      draft.isLoading = action.isLoading;
       return;
     }
-    case 'update': {
-      draft.needsUpdate = !draft.needsUpdate;
+    case 'scoutDataFetch': {
+      draft.scoutData = action.scoutData;
+      return;
+    }
+    case 'updateKey': {
+      draft.cardKey = action.key;
     }
     default:
       break;
