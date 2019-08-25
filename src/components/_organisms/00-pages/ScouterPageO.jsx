@@ -1,7 +1,8 @@
-import React, { useEffect, createContext } from 'react';
+import React, { useEffect, createContext, useState } from 'react';
 import { useImmerReducer } from 'use-immer';
 import Axios from 'axios';
 import firebase from 'firebase';
+
 import 'firebase/database';
 
 import MainContainerA from '@A/00-containers/MainContainerA';
@@ -22,6 +23,7 @@ export const StateContext = createContext();
 const ScouterPageO = props => {
   const [state, dispatch] = useImmerReducer(scoutDataReducer, initialState);
   const { currentMark, zoneData, zoneKeys, mapZone, mapMark, scoutData, showModal, showLocation } = state;
+  const [messages, setMessages] = useState(null);
 
   const fbDatabase = firebase.database();
   const histLocation = props.history.location.pathname;
@@ -29,18 +31,22 @@ const ScouterPageO = props => {
   const cardRef = fbDatabase.ref(`cards/${cardKey}`)
 
   useEffect(() => {
+    const onChange = snapshot => {
+      if (snapshot.val()) {
+        dispatch({ type: 'sdFetch', newData: snapshot.val() });
+      }
+    }
+
+    cardRef.on('child_changed', onChange)
+    return () => {
+      cardRef.off('child_changed', onChange);
+    }
+  });
+
+  useEffect(() => {
     dispatch({ type: 'updateKey', key: cardKey });
   }, []);
 
-  useEffect(() => {
-    cardRef.on('value', snapshot => {
-      const data = snapshot.val();
-      var newData = data;
-      if (scoutData !== newData) dispatch({ type: 'scoutDataFetch', scoutData: newData.scoutData })
-    });
-
-    return cardRef.off();
-  });
 
   const fetchLocalData = async url => {
     const result = await Axios.get(url);

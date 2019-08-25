@@ -43,13 +43,28 @@ const ZoneMapM = () => {
 
     const fbDatabase = firebase.database();
     const ref = fbDatabase.ref().child(`cards/${cardKey}/scoutData/${mapZone}/${mapInstance}`);
-    const newChildKey = ref.push().key;
-    const updates = {
-      [`/${newChildKey}`]: markData
-    };
+    ref.once('value', snapshot => {
+      // if no children, push right away, else loop
+      if (!snapshot.val()) {
+        const newChildKey = ref.push().key;
+        const updates = {
+          [`/${newChildKey}`]: markData
+        };
 
-    ref.update(updates);
-    console.log('called');
+        ref.update(updates);
+      } else {
+        snapshot.forEach(child => {
+          console.log(child);
+        })
+      }
+    })
+    // const newChildKey = ref.push().key;
+    // const updates = {
+    //   [`/${newChildKey}`]: markData
+    // };
+
+    // ref.update(updates);
+    // console.log('called');
     dispatch({ type: 'modal' });
 
 

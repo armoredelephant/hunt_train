@@ -1,5 +1,5 @@
 const initialState = {
-  scoutData: true,
+  scoutData: {},
   routeData: {
     Lakeland: [],
     Kholusia: [],

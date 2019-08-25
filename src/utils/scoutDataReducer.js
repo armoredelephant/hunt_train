@@ -7,6 +7,10 @@ const scoutDataReducer = (draft, action) => {
       draft.zoneData = action.zoneData;
       return;
     }
+    case 'sdFetch': {
+      draft.scoutData = action.newData;
+      return;
+    }
     case 'map': {
       draft.showModal = true;
       draft.mapZone = action.zone;
@@ -22,16 +26,16 @@ const scoutDataReducer = (draft, action) => {
       draft.mapMark = '';
       return;
     }
-    case 'markUnshift': {
-      draft.showModal = false;
-      draft.scoutData[draft.mapZone][draft.mapInstance].unshift(action.mark);
-      return;
-    }
-    case 'markPush': {
-      draft.showModal = false;
-      draft.scoutData[draft.mapZone][draft.mapInstance].push(action.mark);
-      return;
-    }
+    // case 'markUnshift': {
+    //   draft.showModal = false;
+    //   draft.scoutData[draft.mapZone][draft.mapInstance].unshift(action.mark);
+    //   return;
+    // }
+    // case 'markPush': {
+    //   draft.showModal = false;
+    //   draft.scoutData[draft.mapZone][draft.mapInstance].push(action.mark);
+    //   return;
+    // }
     case 'route': {
       draft.routeData = action.route;
       draft.currentMark = action.mark;
@@ -61,18 +65,9 @@ const scoutDataReducer = (draft, action) => {
       draft.showModal = true;
       return;
     }
-    case 'card': {
-      draft.cardKey = action.cardKey;
-      draft.scoutData = action.scoutData;
-      draft.routeData = action.routeData;
-      return;
-    }
-    case 'scoutDataFetch': {
-      draft.scoutData = action.scoutData;
-      return;
-    }
     case 'updateKey': {
       draft.cardKey = action.key;
+      return;
     }
     default:
       break;
