@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import firebase from 'firebase';
 import 'firebase/database';
@@ -21,7 +21,7 @@ const ZoneMapM = () => {
   const state = useContext(StateContext);
   const dispatch = useContext(DispatchContext);
 
-  const { cardKey, mapZone, mapMark, markCoords, mapInstance, scoutData } = state;
+  const { cardKey, mapZone, mapMark, markCoords, mapInstance } = state;
 
   const handleCoords = e => {
     e.preventDefault();
@@ -43,8 +43,10 @@ const ZoneMapM = () => {
 
     const fbDatabase = firebase.database();
     const ref = fbDatabase.ref().child(`cards/${cardKey}/scoutData/${mapZone}/${mapInstance}`);
+
     ref.once('value', snapshot => {
-      // if no children, push right away, else loop
+      let refKeys = [];
+      // if no there is no data for the instance, create a new key and update with the key/data
       if (!snapshot.val()) {
         const newChildKey = ref.push().key;
         const updates = {
@@ -53,40 +55,28 @@ const ZoneMapM = () => {
 
         ref.update(updates);
       } else {
+        // grab all keys
         snapshot.forEach(child => {
-          console.log(child);
+          refKeys.push(child.key)
+        })
+        // loop through the keys to see if mark already has a key
+        refKeys.map(key => {
+          // if there is a key containing the current mark, we are replacing it.
+          if (snapshot.val()[key].mark === mapMark) {
+            const keyRef = fbDatabase.ref().child(`cards/${cardKey}/scoutData/${mapZone}/${mapInstance}/${key}`);
+            keyRef.set(markData)
+          } else {
+            // if no key contains the current mark, then create a new key and update.
+            const newChildKey = ref.push().key;
+            const updates = {
+              [`/${newChildKey}`]: markData
+            };
+            ref.update(updates);
+          }
         })
       }
     })
-    // const newChildKey = ref.push().key;
-    // const updates = {
-    //   [`/${newChildKey}`]: markData
-    // };
-
-    // ref.update(updates);
-    // console.log('called');
     dispatch({ type: 'modal' });
-
-
-    // Axios.post(`${API_HOST_URL}/api/scout/firstMark`, options)
-    // dispatch({ type: 'modal' });
-
-    // check if scoutData[mapZone][mapInstance - 1] = false
-    // if it's false
-
-
-    // if (instanceMarks.length !== 0 && distance < instanceMarks[0].distance) {
-    /**
-     * instead of dispatch()
-     * axios.push(/scout/{key_generated_initially_For_Card}/scoutData)
-     * back end will then need to navigate to zone/instance and then unshift
-     * The conditional will be done on the backend, pass through distance in options
-     * will unshift/push on backend.
-     */
-    //     dispatch({ type: 'markUnshift', mark: markData });
-    //   } else {
-    //     dispatch({ type: 'markPush', mark: markData });
-    //   }
   };
 
   return (

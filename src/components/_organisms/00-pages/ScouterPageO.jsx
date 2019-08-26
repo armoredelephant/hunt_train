@@ -1,4 +1,4 @@
-import React, { useEffect, createContext, useState } from 'react';
+import React, { useEffect, createContext } from 'react';
 import { useImmerReducer } from 'use-immer';
 import Axios from 'axios';
 import firebase from 'firebase';
@@ -22,8 +22,7 @@ export const StateContext = createContext();
 
 const ScouterPageO = props => {
   const [state, dispatch] = useImmerReducer(scoutDataReducer, initialState);
-  const { currentMark, zoneData, zoneKeys, mapZone, mapMark, scoutData, showModal, showLocation } = state;
-  const [messages, setMessages] = useState(null);
+  const { currentMark, zoneData, zoneKeys, mapZone, mapMark, showModal, showLocation } = state;
 
   const fbDatabase = firebase.database();
   const histLocation = props.history.location.pathname;
@@ -43,11 +42,6 @@ const ScouterPageO = props => {
     }
   });
 
-  useEffect(() => {
-    dispatch({ type: 'updateKey', key: cardKey });
-  }, []);
-
-
   const fetchLocalData = async url => {
     const result = await Axios.get(url);
     const zoneKeys = Object.keys(result.data);
@@ -57,6 +51,7 @@ const ScouterPageO = props => {
   };
 
   useEffect(() => {
+    dispatch({ type: 'updateKey', key: cardKey });
     fetchLocalData('/resources/stubs/hunt_data.json');
   }, []);
 

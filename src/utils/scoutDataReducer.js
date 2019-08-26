@@ -26,16 +26,6 @@ const scoutDataReducer = (draft, action) => {
       draft.mapMark = '';
       return;
     }
-    // case 'markUnshift': {
-    //   draft.showModal = false;
-    //   draft.scoutData[draft.mapZone][draft.mapInstance].unshift(action.mark);
-    //   return;
-    // }
-    // case 'markPush': {
-    //   draft.showModal = false;
-    //   draft.scoutData[draft.mapZone][draft.mapInstance].push(action.mark);
-    //   return;
-    // }
     case 'route': {
       draft.routeData = action.route;
       draft.currentMark = action.mark;
