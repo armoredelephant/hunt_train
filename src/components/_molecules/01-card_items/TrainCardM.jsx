@@ -1,5 +1,7 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
+import firebase from 'firebase';
+import 'firebase/database';
 
 import initialState from 'Utils/initialState';
 
@@ -57,33 +59,35 @@ const TrainCardM = () => {
   const state = useContext(StateContext);
   const dispatch = useContext(DispatchContext);
 
-  const { currentMark, scoutData, zoneKeys } = state;
-
-  /**
-   * will need to axios.get() to get the scoutData
-   *  
-   */
+  const { cardKey, currentMark, scoutData, zoneKeys } = state;
 
   const handleRouteCreation = () => {
     const routeData = [];
+    const fbDatabase = firebase.database();
+    const zoneRef = fbDatabase.ref(`cards/${cardKey}/scoutData`)
 
     zoneKeys.map(zone => {
       const instanceData = [];
-      for (let i = 1; i <= 3; i++) {
-        const x = scoutData[zone][i];
-        instanceData.push(...x);
+      // set scoutedZoneKeys state with a dispatch that grabs zone kkeys from scoutData card from db
+      let newZoneKeys = Object.keys(zoneRef.once('value', snapshot => { snapshot.val() }));
+      console.log(newZoneKeys);
+      let keys;
+      for (let i = 0; i <= 2; i++) {
+        if (scoutData[zone] || scoutData[zone][i]) keys = Object.keys(scoutData[zone][i]);
+        console.log(keys);
+        // keys.forEach(key => {
+        //   instanceData.push(key)
+        // });
+        // const x = scoutData[zone][i];
+        // instanceData.push(...x);
       }
-      routeData.push(...instanceData);
+      // routeData.push(...instanceData);
     });
 
     const totalStops = routeData.length - 1;
 
     const markData = routeData[0];
 
-    /**
-     * if markData : axios.post(routeData)
-     * rest of the data can still be handled by internal state?
-     */
     if (markData) dispatch({
       type: 'route',
       route: routeData,
