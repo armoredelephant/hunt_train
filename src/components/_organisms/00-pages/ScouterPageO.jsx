@@ -53,11 +53,7 @@ const ScouterPageO = props => {
     // this call is used to fetch once, so it will initially grab the scoutData and set once
     cardRef.once('value', snapshot => {
       let snap = snapshot.val();
-      if (!snapshot.val()) {
-        props.history.push('error');
-      } else {
-        dispatch({ type: 'sdFetch', newData: snap.scoutData, scoutedZoneKeys: Object.keys(snap.scoutData) });
-      }
+      dispatch({ type: 'sdFetch', newData: snap.scoutData, scoutedZoneKeys: Object.keys(snap.scoutData) });
     });
   }, []);
 

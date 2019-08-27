@@ -57,7 +57,6 @@ const JoinButtonM = props => {
             }
             return;
         })
-
     }
 
     return (
@@ -68,7 +67,7 @@ const JoinButtonM = props => {
                 isDisabled={!joinURL}
                 inverted={true}
             />
-            <Input onChange={handleChange} placeholder={'Past key to join...'} />
+            <Input onChange={handleChange} placeholder={'Paste a key to join...'} />
         </Container>
     );
 };
