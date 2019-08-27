@@ -24,6 +24,11 @@ module.exports = {
         port: 9000,
         historyApiFallback: true
     },
+    plugins: [
+        new Dotenv({
+            path: './.env'
+        })
+    ],
     module: {
         rules: [
             {
