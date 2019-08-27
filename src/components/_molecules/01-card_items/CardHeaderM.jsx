@@ -10,6 +10,7 @@ const Zone = styled.h3`
   margin: 0;
   color: ${props => props.theme.fntClr};
   font-family: ${props => props.theme.ff};
+  letter-spacing: ${props => props.theme.ls};
 
   @media (max-width: 415px) {
     font-size: ${props => props.theme.mfs};

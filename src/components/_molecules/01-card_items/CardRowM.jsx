@@ -10,6 +10,7 @@ import MapperM from '@M/01-card_items/MapperM';
 const Mark = styled.h4`
   font-family: ${props => props.theme.ff};
   color: ${props => props.theme.fntClr};
+  letter-spacing: ${props => props.theme.ls};
   margin: 0;
   align-self: flex-end;
 

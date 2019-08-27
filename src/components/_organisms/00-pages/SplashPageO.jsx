@@ -37,11 +37,9 @@ const SplashPageO = props => {
         <SplashHeaderA>Welcome to Hunt Conductor</SplashHeaderA>
         <TextContainerA text={paragraph} />
         <ThemedButtonA // prettier-ignore
-          // destination="/scouter"
           handleClick={handleNew}
-          text="Start a Train"
+          text="Start Scouting"
         />
-        {/** Button that prompts for key, then destination is /key. ScouterPage will query the key for available data */}
       </ContentContainerA>
     </SplashContainerA>
   );

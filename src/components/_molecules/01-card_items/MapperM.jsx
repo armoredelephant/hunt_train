@@ -32,7 +32,7 @@ const MapperM = props => {
   const state = useContext(StateContext);
 
   const { instance, mark, zone } = props;
-  const { cardKey, zoneData, currentMark } = state;
+  const { cardKey, zoneData, currentMark, scoutData } = state;
 
   const fbDatabase = firebase.database();
   const instanceRef = fbDatabase.ref(`cards/${cardKey}/scoutData/${zone}/${instance}`)
@@ -44,16 +44,14 @@ const MapperM = props => {
     dispatch({ type: 'map', zone, mark, instance, markCoords: coordsArray });
   };
 
-  // refactor 
-  instanceRef.on('value', snapshot => {
-    if (snapshot.val()) {
-      const keys = Object.keys(snapshot.val());
-      keys.map(key => {
-        const currentMarks = snapshot.val()[key];
-        if (currentMarks.mark === mark) markCoords = currentMarks.coords;
-      })
-    }
-  })
+  if (scoutData && scoutData[zone] && scoutData[zone][instance]) {
+    const data = scoutData[zone][instance];
+    const keys = Object.keys(data);
+    keys.map(key => {
+      const currentMarks = data[key];
+      if (currentMarks.mark === mark) markCoords = currentMarks.coords;
+    })
+  }
 
   let currentMarkCoords = '';
   let currentMarkInstance = '';
