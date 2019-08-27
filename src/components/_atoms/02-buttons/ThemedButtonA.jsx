@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 const Button = styled.button`
   display: ${props => props.theme.btnDisplay};
-  background-color: ${props => props.theme.btnBG};
+  background-color: ${props => props.inverted ? props.theme.darkBG : props.theme.btnBG};
   width: ${props => props.theme.btnW};
   height: ${props => props.theme.btnH};
   padding: ${props => props.theme.btnP};
@@ -22,12 +22,12 @@ const Button = styled.button`
   position: ${props => props.theme.btnPos};
   font-family: ${props => props.theme.ff};
   align-self: center;
-  order: 1;
+  order: ${props => props.order};
 `;
 
 const ThemedButtonA = props => {
-  const { text, destination, handleClick } = props;
-  return <Button onClick={handleClick}>{text}</Button>;
+  const { text, inverted, isDisabled, handleClick } = props;
+  return <Button inverted={inverted} disabled={isDisabled} onClick={handleClick}>{text}</Button>;
 };
 
 export default withRouter(ThemedButtonA);

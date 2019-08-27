@@ -67,6 +67,10 @@ const scoutDataReducer = (draft, action) => {
       draft.showModal = true;
       return;
     }
+    case 'join': {
+      draft.joinURL = action.value;
+      return;
+    }
     default:
       break;
   }

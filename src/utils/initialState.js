@@ -18,6 +18,7 @@ const initialState = {
     instance: ' - '
   },
   cardKey: '',
+  joinURL: null,
   scoutedZoneKeys: [],
   shared: false,
   showModal: false,

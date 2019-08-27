@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import firebase from 'firebase';
 import 'firebase/database';
 
-import { StateContext, DispatchContext } from '@O/00-pages/ScouterPageO';
+import { StateContext, DispatchContext } from '../../../App';
 
 const Container = styled.div`
   display: flex;

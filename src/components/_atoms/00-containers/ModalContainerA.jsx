@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 
-import { DispatchContext } from '@O/00-pages/ScouterPageO';
+import { DispatchContext } from '../../../App';
 
 const Backdrop = styled.div`
   display: flex;

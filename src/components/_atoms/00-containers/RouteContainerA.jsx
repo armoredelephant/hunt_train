@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 
-import { DispatchContext, StateContext } from '@O/00-pages/ScouterPageO';
+import { DispatchContext, StateContext } from '../../../App';
 
 import NextButtonA from '@A/02-buttons/NextButtonA';
 import PreviousButtonA from '@A/02-buttons/PreviousButtonA';

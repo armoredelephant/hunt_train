@@ -34,7 +34,7 @@ const Wrapper = styled.div`
 
 const ShareContainerA = props => {
     const { url } = props;
-    const fullURL = `hunt-conductor.com${url}`;
+    const fullURL = `${url}`;
     const urlRef = useRef(null);
 
     const handleCopy = () => {

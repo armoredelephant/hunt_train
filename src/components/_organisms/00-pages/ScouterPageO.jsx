@@ -1,9 +1,10 @@
-import React, { useEffect, createContext } from 'react';
-import { useImmerReducer } from 'use-immer';
+import React, { useEffect, useContext } from 'react';
 import Axios from 'axios';
 import firebase from 'firebase';
 
 import 'firebase/database';
+
+import { DispatchContext, StateContext } from '../../../App';
 
 import MainContainerA from '@A/00-containers/MainContainerA';
 import ZoneCardM from '@M/00-forms/ZoneCardM';
@@ -13,16 +14,9 @@ import MarkLocationMapM from '@M/02-maps/MarkLocationMapM';
 import TrainCardM from '@M/01-card_items/TrainCardM';
 import ShareContainerA from '@A/00-containers/ShareContainerA';
 
-// state management
-import initialState from 'Utils/initialState';
-import scoutDataReducer from 'Utils/scoutDataReducer';
-
-// context
-export const DispatchContext = createContext();
-export const StateContext = createContext();
-
 const ScouterPageO = props => {
-  const [state, dispatch] = useImmerReducer(scoutDataReducer, initialState);
+  const state = useContext(StateContext);
+  const dispatch = useContext(DispatchContext);
   const { currentMark, zoneData, zoneKeys, mapZone, mapMark, shared, showModal, showLocation } = state;
 
   const fbDatabase = firebase.database();
@@ -35,7 +29,6 @@ const ScouterPageO = props => {
       let keys;
       if (snapshot.val()) {
         keys = Object.keys(snapshot.val());
-        console.log(keys)
         dispatch({ type: 'sdFetch', newData: snapshot.val(), scoutedZoneKeys: keys });
       }
     }
@@ -60,7 +53,11 @@ const ScouterPageO = props => {
     // this call is used to fetch once, so it will initially grab the scoutData and set once
     cardRef.once('value', snapshot => {
       let snap = snapshot.val();
-      dispatch({ type: 'sdFetch', newData: snap.scoutData, scoutedZoneKeys: Object.keys(snap.scoutData) });
+      if (!snapshot.val()) {
+        props.history.push('error');
+      } else {
+        dispatch({ type: 'sdFetch', newData: snap.scoutData, scoutedZoneKeys: Object.keys(snap.scoutData) });
+      }
     });
   }, []);
 
@@ -69,39 +66,37 @@ const ScouterPageO = props => {
   }
 
   return (
-    <DispatchContext.Provider value={dispatch}>
-      <StateContext.Provider value={state}>
-        <MainContainerA>
-          <TrainCardM />
-          {zoneKeys.map(item => {
-            const rdmKey = Math.random()
-              .toString(36)
-              .substring(7);
-            return (
-              <ZoneCardM // prettier-ignore
-                key={rdmKey}
-                marks={zoneData[item].marks}
-                zone={zoneData[item].zone}
-              />
-            );
-          })}
-        </MainContainerA>
-        {showModal && (
-          <ModalContainerA>
-            {showLocation ?
-              <MarkLocationMapM
-                currentMark={currentMark}
-              />
+    <>
+      <MainContainerA>
+        <TrainCardM />
+        {zoneKeys.map(item => {
+          const rdmKey = Math.random()
+            .toString(36)
+            .substring(7);
+          return (
+            <ZoneCardM // prettier-ignore
+              key={rdmKey}
+              marks={zoneData[item].marks}
+              zone={zoneData[item].zone}
+            />
+          );
+        })}
+      </MainContainerA>
+      {showModal && (
+        <ModalContainerA>
+          {showLocation ?
+            <MarkLocationMapM
+              currentMark={currentMark}
+            />
+            :
+            shared ?
+              <ShareContainerA url={histLocation} />
               :
-              shared ?
-                <ShareContainerA url={histLocation} />
-                :
-                <ZoneMapM mapZone={mapZone} mapMark={mapMark} />
-            }
-          </ModalContainerA>
-        )}
-      </StateContext.Provider>
-    </DispatchContext.Provider>
+              <ZoneMapM mapZone={mapZone} mapMark={mapMark} />
+          }
+        </ModalContainerA>
+      )}
+    </>
   );
 };
 

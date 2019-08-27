@@ -18,6 +18,7 @@ const theme = {
   btnOutline: 'none',
   btnLH: 'normal',
   btnBG: 'rgba(255, 255, 255, 0.4)',
+  darkBG: 'rgba(0, 0, 0, 0.5)',
   ta: 'center',
   brad: '5px 5px 5px 5px',
   bshad: '0px 7px 20px rgba(1, 1, 1, 0.30)',

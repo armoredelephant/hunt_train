@@ -1,13 +1,12 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
-import firebase from 'firebase';
-import 'firebase/database';
 
 import initialState from 'Utils/initialState';
 
-import { DispatchContext, StateContext } from '@O/00-pages/ScouterPageO';
+import { DispatchContext, StateContext } from '../../../App';
 
 import RouteContainerA from '@A/00-containers/RouteContainerA';
+import ButtonContainerA from '@A/00-containers/ButtonContainerA';
 import StyledButtonA from '@A/02-buttons/StyledButtonA';
 
 const Container = styled.div`
@@ -21,14 +20,6 @@ const Container = styled.div`
   align-content: center;
   padding: ${props => props.theme.pad};
   min-width: 300px;
-`;
-
-const ButtonContainer = styled.div`
-  display: flex;
-  flex-flow: row;
-  justify-content: space-around;
-  align-content: center;
-  margin: 5px;
 `;
 
 const StartButton = styled.button`
@@ -106,7 +97,6 @@ const TrainCardM = () => {
 
   const handleShare = e => {
     e.preventDefault();
-    console.log('clicked')
     dispatch({ type: 'share' });
   }
 
@@ -118,7 +108,7 @@ const TrainCardM = () => {
     <Container>
       {/* {currentMark && <RouteContainerA />} */}
       <RouteContainerA />
-      <ButtonContainer>
+      <ButtonContainerA>
         <>
           <StyledButtonA isDisabled={true} text={'Guide'} />
         </>
@@ -131,8 +121,8 @@ const TrainCardM = () => {
             handleClick={handleMap} text={'Map'}
           />
         </>
-      </ButtonContainer>
-      <ButtonContainer>
+      </ButtonContainerA>
+      <ButtonContainerA>
         <>
           <StartButton
             onClick={handleRouteCreation}
@@ -140,7 +130,7 @@ const TrainCardM = () => {
             {currentMark === initialState.currentMark ? 'Start Train' : 'Restart Train'}
           </StartButton>
         </>
-      </ButtonContainer>
+      </ButtonContainerA>
     </Container>
   );
 };

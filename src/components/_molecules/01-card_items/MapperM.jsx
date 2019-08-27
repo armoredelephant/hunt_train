@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import firebase from 'firebase';
 import 'firebase/database';
 
-import { DispatchContext, StateContext } from '@O/00-pages/ScouterPageO';
+import { DispatchContext, StateContext } from '../../../App';
 
 import StyledButtonA from '@A/02-buttons/StyledButtonA';
 
