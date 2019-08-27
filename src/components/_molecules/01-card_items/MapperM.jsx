@@ -1,5 +1,7 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
+import firebase from 'firebase';
+import 'firebase/database';
 
 import { DispatchContext, StateContext } from '@O/00-pages/ScouterPageO';
 
@@ -30,7 +32,10 @@ const MapperM = props => {
   const state = useContext(StateContext);
 
   const { instance, mark, zone } = props;
-  const { zoneData, currentMark } = state;
+  const { cardKey, zoneData, currentMark } = state;
+
+  const fbDatabase = firebase.database();
+  const instanceRef = fbDatabase.ref(`cards/${cardKey}/scoutData/${zone}/${instance}`)
 
   let markCoords = ' - ';
 
@@ -39,21 +44,22 @@ const MapperM = props => {
     dispatch({ type: 'map', zone, mark, instance, markCoords: coordsArray });
   };
 
-  // if (scoutData[zone][instance].length != 0) {
-  //   const getMarkData = scoutData[zone][instance].filter(markData => {
-  //     return markData.mark === mark;
-  //   });
-  //   if (getMarkData != 0) {
-  //     markCoords = getMarkData[0].coords;
-  //   }
-  // }
+  instanceRef.on('value', snapshot => {
+    if (snapshot.val()) {
+      const keys = Object.keys(snapshot.val());
+      keys.map(key => {
+        const currentMarks = snapshot.val()[key];
+        if (currentMarks.mark === mark) markCoords = currentMarks.coords;
+      })
+    }
+  })
 
   let currentMarkCoords = '';
   let currentMarkInstance = '';
 
   if (currentMark) {
     currentMarkCoords = currentMark.coords;
-    currentMarkInstance = currentMark.instance;
+    currentMarkInstance = currentMark.instance - 1;
   }
 
   return (

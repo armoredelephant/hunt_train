@@ -19,7 +19,6 @@ const MarkLocationMapM = props => {
   const { coords, zone } = currentMark;
 
   const coordinates = coords.replace(/[^0-9]/g, "");
-  console.log(currentMark, coordinates);
 
   return (
     <Container>

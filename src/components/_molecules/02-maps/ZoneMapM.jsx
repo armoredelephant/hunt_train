@@ -36,7 +36,7 @@ const ZoneMapM = () => {
     const markData = {
       coords,
       distance,
-      instance: mapInstance,
+      instance: mapInstance + 1,
       mark: mapMark,
       zone: mapZone
     };
@@ -53,27 +53,29 @@ const ZoneMapM = () => {
           [`/${newChildKey}`]: markData
         };
 
-        ref.update(updates);
+        return ref.update(updates);
       } else {
         // grab all keys
         snapshot.forEach(child => {
           refKeys.push(child.key)
         })
         // loop through the keys to see if mark already has a key
-        refKeys.map(key => {
+        let filteredKeys = refKeys.filter(key => {
+          return snapshot.val()[key].mark === mapMark
+        });
+
+        if (filteredKeys.length !== 0) {
           // if there is a key containing the current mark, we are replacing it.
-          if (snapshot.val()[key].mark === mapMark) {
-            const keyRef = fbDatabase.ref().child(`cards/${cardKey}/scoutData/${mapZone}/${mapInstance}/${key}`);
-            keyRef.set(markData)
-          } else {
-            // if no key contains the current mark, then create a new key and update.
-            const newChildKey = ref.push().key;
-            const updates = {
-              [`/${newChildKey}`]: markData
-            };
-            ref.update(updates);
-          }
-        })
+          const keyRef = fbDatabase.ref().child(`cards/${cardKey}/scoutData/${mapZone}/${mapInstance}/${filteredKeys[0]}`);
+          return keyRef.update(markData)
+        } else {
+          // if no key contains the current mark, then create a new key and update.
+          const newChildKey = ref.push().key;
+          const updates = {
+            [`/${newChildKey}`]: markData
+          };
+          return ref.update(updates);
+        }
       }
     })
     dispatch({ type: 'modal' });

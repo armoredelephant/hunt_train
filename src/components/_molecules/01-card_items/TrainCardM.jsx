@@ -20,7 +20,7 @@ const Container = styled.div`
   justify-content: ${props => props.theme.between};
   align-content: center;
   padding: ${props => props.theme.pad};
-  min-width: 330px;
+  min-width: 300px;
 `;
 
 const ButtonContainer = styled.div`
@@ -59,29 +59,39 @@ const TrainCardM = () => {
   const state = useContext(StateContext);
   const dispatch = useContext(DispatchContext);
 
-  const { cardKey, currentMark, scoutData, zoneKeys } = state;
+  const { cardKey, currentMark, scoutedZoneKeys, zoneKeys } = state;
 
   const handleRouteCreation = () => {
     const routeData = [];
     const fbDatabase = firebase.database();
-    const zoneRef = fbDatabase.ref(`cards/${cardKey}/scoutData`)
 
-    zoneKeys.map(zone => {
-      const instanceData = [];
-      // set scoutedZoneKeys state with a dispatch that grabs zone kkeys from scoutData card from db
-      let newZoneKeys = Object.keys(zoneRef.once('value', snapshot => { snapshot.val() }));
-      console.log(newZoneKeys);
-      let keys;
+    // this is used to re-arrange array to keep them in order.
+    const newZoneKeys = zoneKeys.filter(zone => {
+      return scoutedZoneKeys.includes(zone);
+    })
+
+    newZoneKeys.map(zone => {
+      let lastDistance;
+
       for (let i = 0; i <= 2; i++) {
-        if (scoutData[zone] || scoutData[zone][i]) keys = Object.keys(scoutData[zone][i]);
-        console.log(keys);
-        // keys.forEach(key => {
-        //   instanceData.push(key)
-        // });
-        // const x = scoutData[zone][i];
-        // instanceData.push(...x);
+        const instanceData = [];
+        const newRef = fbDatabase.ref(`cards/${cardKey}/scoutData/${zone}/${i}`).orderByChild('distance');
+        newRef.once('value', snapshot => {
+          if (snapshot.val()) {
+            const markKey = Object.keys(snapshot.val())
+            markKey.map(key => {
+              const currentKeyData = snapshot.val()[key]
+              if (currentKeyData.distance < lastDistance) {
+                instanceData.unshift(currentKeyData);
+              } else {
+                instanceData.push(currentKeyData);
+              }
+              lastDistance = currentKeyData.distance;
+            })
+          }
+        });
+        routeData.push(...instanceData)
       }
-      // routeData.push(...instanceData);
     });
 
     const totalStops = routeData.length - 1;

@@ -9,6 +9,7 @@ const scoutDataReducer = (draft, action) => {
     }
     case 'sdFetch': {
       draft.scoutData = action.newData;
+      draft.scoutedZoneKeys = action.scoutedZoneKeys;
       return;
     }
     case 'map': {

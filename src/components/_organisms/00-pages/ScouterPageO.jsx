@@ -31,8 +31,11 @@ const ScouterPageO = props => {
 
   useEffect(() => {
     const onChange = snapshot => {
+      let keys;
       if (snapshot.val()) {
-        dispatch({ type: 'sdFetch', newData: snapshot.val() });
+        keys = Object.keys(snapshot.val());
+        console.log(keys)
+        dispatch({ type: 'sdFetch', newData: snapshot.val(), scoutedZoneKeys: keys });
       }
     }
 
@@ -55,7 +58,8 @@ const ScouterPageO = props => {
     fetchLocalData('/resources/stubs/hunt_data.json');
     // this call is used to fetch once, so it will initially grab the scoutData and set once
     cardRef.once('value', snapshot => {
-      dispatch({ type: 'sdFetch', newData: snapshot.val().scoutData });
+      let snap = snapshot.val();
+      dispatch({ type: 'sdFetch', newData: snap.scoutData, scoutedZoneKeys: Object.keys(snap.scoutData) });
     });
   }, []);
 
