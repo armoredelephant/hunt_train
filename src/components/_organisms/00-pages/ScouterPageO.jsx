@@ -86,7 +86,7 @@ const ScouterPageO = props => {
             />
             :
             shared ?
-              <ShareContainerA url={histLocation} />
+              <ShareContainerA url={cardKey} />
               :
               <ZoneMapM mapZone={mapZone} mapMark={mapMark} />
           }
