@@ -75,6 +75,7 @@ const TrainCardM = () => {
 
       for (let i = 0; i <= 2; i++) {
         const instanceData = [];
+        // refactor to use obJect.keys(scoutData[zone][i]). Will need to determine how to order them.
         const newRef = fbDatabase.ref(`cards/${cardKey}/scoutData/${zone}/${i}`).orderByChild('distance');
         newRef.once('value', snapshot => {
           if (snapshot.val()) {
