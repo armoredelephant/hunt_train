@@ -19,6 +19,7 @@ const initialState = {
   },
   cardKey: '',
   scoutedZoneKeys: [],
+  shared: false,
   showModal: false,
   showLocation: false,
   zoneKeys: null,

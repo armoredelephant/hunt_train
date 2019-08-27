@@ -11,6 +11,7 @@ import ModalContainerA from '@A/00-containers/ModalContainerA';
 import ZoneMapM from '@M/02-maps/ZoneMapM';
 import MarkLocationMapM from '@M/02-maps/MarkLocationMapM';
 import TrainCardM from '@M/01-card_items/TrainCardM';
+import ShareContainerA from '@A/00-containers/ShareContainerA';
 
 // state management
 import initialState from 'Utils/initialState';
@@ -22,7 +23,7 @@ export const StateContext = createContext();
 
 const ScouterPageO = props => {
   const [state, dispatch] = useImmerReducer(scoutDataReducer, initialState);
-  const { currentMark, zoneData, zoneKeys, mapZone, mapMark, showModal, showLocation } = state;
+  const { currentMark, zoneData, zoneKeys, mapZone, mapMark, shared, showModal, showLocation } = state;
 
   const fbDatabase = firebase.database();
   const histLocation = props.history.location.pathname;
@@ -90,8 +91,12 @@ const ScouterPageO = props => {
             {showLocation ?
               <MarkLocationMapM
                 currentMark={currentMark}
-              /> :
-              <ZoneMapM mapZone={mapZone} mapMark={mapMark} />
+              />
+              :
+              shared ?
+                <ShareContainerA url={histLocation} />
+                :
+                <ZoneMapM mapZone={mapZone} mapMark={mapMark} />
             }
           </ModalContainerA>
         )}

@@ -23,6 +23,7 @@ const scoutDataReducer = (draft, action) => {
     case 'modal': {
       draft.showModal = false;
       draft.showLocation = false;
+      draft.shared = false;
       draft.mapZone = '';
       draft.mapMark = '';
       return;
@@ -49,6 +50,7 @@ const scoutDataReducer = (draft, action) => {
       draft.routeData = initialState.routeData;
       draft.currentStop = initialState.currentStop;
       draft.totalStops = initialState.totalStops;
+      draft.shared = initialState.shared;
       return;
     }
     case 'mapToggler': {
@@ -58,6 +60,11 @@ const scoutDataReducer = (draft, action) => {
     }
     case 'updateKey': {
       draft.cardKey = action.key;
+      return;
+    }
+    case 'share': {
+      draft.shared = true;
+      draft.showModal = true;
       return;
     }
     default:

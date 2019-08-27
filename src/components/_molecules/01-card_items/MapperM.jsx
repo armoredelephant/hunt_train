@@ -44,6 +44,7 @@ const MapperM = props => {
     dispatch({ type: 'map', zone, mark, instance, markCoords: coordsArray });
   };
 
+  // refactor 
   instanceRef.on('value', snapshot => {
     if (snapshot.val()) {
       const keys = Object.keys(snapshot.val());

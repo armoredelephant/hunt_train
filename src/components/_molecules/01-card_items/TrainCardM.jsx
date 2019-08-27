@@ -26,8 +26,9 @@ const Container = styled.div`
 const ButtonContainer = styled.div`
   display: flex;
   flex-flow: row;
-  justify-content: space-between;
+  justify-content: space-around;
   align-content: center;
+  margin: 5px;
 `;
 
 const StartButton = styled.button`
@@ -59,11 +60,10 @@ const TrainCardM = () => {
   const state = useContext(StateContext);
   const dispatch = useContext(DispatchContext);
 
-  const { cardKey, currentMark, scoutedZoneKeys, zoneKeys } = state;
+  const { currentMark, scoutedZoneKeys, scoutData, zoneKeys } = state;
 
   const handleRouteCreation = () => {
     const routeData = [];
-    const fbDatabase = firebase.database();
 
     // this is used to re-arrange array to keep them in order.
     const newZoneKeys = zoneKeys.filter(zone => {
@@ -75,22 +75,19 @@ const TrainCardM = () => {
 
       for (let i = 0; i <= 2; i++) {
         const instanceData = [];
-        // refactor to use obJect.keys(scoutData[zone][i]). Will need to determine how to order them.
-        const newRef = fbDatabase.ref(`cards/${cardKey}/scoutData/${zone}/${i}`).orderByChild('distance');
-        newRef.once('value', snapshot => {
-          if (snapshot.val()) {
-            const markKey = Object.keys(snapshot.val())
-            markKey.map(key => {
-              const currentKeyData = snapshot.val()[key]
-              if (currentKeyData.distance < lastDistance) {
-                instanceData.unshift(currentKeyData);
-              } else {
-                instanceData.push(currentKeyData);
-              }
-              lastDistance = currentKeyData.distance;
-            })
-          }
-        });
+        // if there is scoutData for this instance, proceed.
+        if (scoutData[zone][i]) {
+          const markKeys = Object.keys(scoutData[zone][i]);
+          markKeys.map(key => {
+            const keyData = scoutData[zone][i][key];
+            if (keyData.distance < lastDistance) {
+              instanceData.unshift(keyData);
+            } else {
+              instanceData.push(keyData);
+            }
+            lastDistance = keyData.distance;
+          });
+        }
         routeData.push(...instanceData)
       }
     });
@@ -107,6 +104,12 @@ const TrainCardM = () => {
     });
   };
 
+  const handleShare = e => {
+    e.preventDefault();
+    console.log('clicked')
+    dispatch({ type: 'share' });
+  }
+
   const handleMap = () => {
     dispatch({ type: 'mapToggler' }) // mark map
   }
@@ -116,16 +119,27 @@ const TrainCardM = () => {
       {/* {currentMark && <RouteContainerA />} */}
       <RouteContainerA />
       <ButtonContainer>
-        <StyledButtonA isDisabled={true} text={'Guide'} />
-        <StartButton
-          onClick={handleRouteCreation}
-        >
-          {currentMark === initialState.currentMark ? 'Start Train' : 'Restart Train'}
-        </StartButton>
-        <StyledButtonA
-          isDisabled={currentMark.coords === ' - '}
-          handleClick={handleMap} text={'Map'}
-        />
+        <>
+          <StyledButtonA isDisabled={true} text={'Guide'} />
+        </>
+        <>
+          <StyledButtonA handleClick={handleShare} text={'Share'} />
+        </>
+        <>
+          <StyledButtonA
+            isDisabled={currentMark.coords === ' - '}
+            handleClick={handleMap} text={'Map'}
+          />
+        </>
+      </ButtonContainer>
+      <ButtonContainer>
+        <>
+          <StartButton
+            onClick={handleRouteCreation}
+          >
+            {currentMark === initialState.currentMark ? 'Start Train' : 'Restart Train'}
+          </StartButton>
+        </>
       </ButtonContainer>
     </Container>
   );
