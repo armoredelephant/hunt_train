@@ -41,6 +41,7 @@ const MapperM = props => {
 
   const handleClick = () => {
     const coordsArray = zoneData[zone].marks[mark].locations;
+    console.log('clicked');
     dispatch({ type: 'map', zone, mark, instance, markCoords: coordsArray });
   };
 

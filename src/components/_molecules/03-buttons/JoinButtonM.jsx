@@ -38,7 +38,7 @@ const JoinButtonM = props => {
     const state = useContext(StateContext);
     const dispatch = useContext(DispatchContext);
     const { joinURL } = state;
-    const { history } = props;
+    const { allow, history } = props;
 
     const fbDatabase = firebase.database();
     const cardRef = fbDatabase.ref(`cards/${joinURL}`)
@@ -49,13 +49,13 @@ const JoinButtonM = props => {
         dispatch({ type: 'join', value: target.value });
     };
 
-    const handleJoin = props => {
+    const handleJoin = e => {
+        e.preventDefault();
+        const target = e.target;
+
         cardRef.once('value', snapshot => {
-            if (snapshot.val()) {
-                dispatch({ type: 'updateKey', cardKey: joinURL })
-                history.push(joinURL);
-            }
-            return;
+            dispatch({ type: 'updateKey', cardKey: joinURL })
+            history.push(joinURL);
         })
     }
 
@@ -64,7 +64,7 @@ const JoinButtonM = props => {
             <ThemedButtonA // prettier-ignore
                 handleClick={handleJoin}
                 text="Join in-progress"
-                isDisabled={!joinURL}
+                isDisabled={!allow}
                 inverted={true}
             />
             <Input onChange={handleChange} placeholder={'Paste a key to join...'} />

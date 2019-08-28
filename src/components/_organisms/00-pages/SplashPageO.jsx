@@ -1,8 +1,8 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import firebase from 'firebase';
 import 'firebase/database';
 
-import { DispatchContext } from '../../../App';
+import { DispatchContext, StateContext } from '../../../App';
 
 import SplashContainerA from '@A/00-containers/SplashContainerA';
 import ContentContainerA from '@A/00-containers/ContentContainerA';
@@ -17,14 +17,16 @@ const paragraph = '';
 
 const SplashPageO = props => {
   const dispatch = useContext(DispatchContext);
+  const state = useContext(StateContext);
+  let { allow, joinURL } = state;
+
+  const fbDatabase = firebase.database();
+  const cardsRef = fbDatabase.ref().child('cards')
 
   const handleNew = () => {
     const initialData = {
       scoutData: true
     };
-
-    const fbDatabase = firebase.database();
-    const cardsRef = fbDatabase.ref().child('cards')
     const newCardKey = cardsRef.push().key;
     const updates = {
       [`/${newCardKey}`]: initialData
@@ -34,9 +36,20 @@ const SplashPageO = props => {
       .then(() => {
         let path = newCardKey;
         props.history.push(path);
-        dispatch({ type: 'updateKey', cardKey: newCardKey });
+        // dispatch({ type: 'updateKey', cardKey: newCardKey });
       });
   }
+
+  useEffect(() => {
+    cardsRef.once('value', snapshot => {
+      if (snapshot.val()) {
+        let keys = Object.keys(snapshot.val());
+        keys.map(key => {
+          key === joinURL && dispatch({ type: 'allow' });
+        })
+      }
+    })
+  }, [joinURL])
 
   return (
     <SplashContainerA className="darken">
@@ -48,7 +61,7 @@ const SplashPageO = props => {
             handleClick={handleNew}
             text="Start Scouting"
           />
-          <JoinButtonM history={props.history} />
+          <JoinButtonM allow={allow} history={props.history} />
         </ButtonContainerA>
       </ContentContainerA>
     </SplashContainerA>

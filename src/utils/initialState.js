@@ -1,4 +1,5 @@
 const initialState = {
+  allow: false,
   scoutData: {},
   routeData: {
     Lakeland: [],
@@ -9,6 +10,7 @@ const initialState = {
     'The Tempest': []
   },
   markCoords: [],
+  error: false,
   totalStops: 0,
   currentStop: 0,
   currentMark: {
