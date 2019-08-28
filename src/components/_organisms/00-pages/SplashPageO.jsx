@@ -1,4 +1,5 @@
 import React, { useContext, useEffect } from 'react';
+import styled from 'styled-components';
 import firebase from 'firebase';
 import 'firebase/database';
 
@@ -14,6 +15,18 @@ import ThemedButtonA from '@A/02-buttons/ThemedButtonA';
 import JoinButtonM from '@M/03-buttons/JoinButtonM';
 
 const paragraph = '';
+
+const Container = styled.div`
+    display: flex;
+    flex-flow: column;
+    border: 1px solid white;
+    border-radius: ${props => props.theme.brad};
+    margin-top: 5px;
+    height: 200px;
+    justify-content: center;
+    align-items: center;
+    background: ${props => props.theme.btnBG};
+`;
 
 const SplashPageO = props => {
   const dispatch = useContext(DispatchContext);
@@ -42,6 +55,9 @@ const SplashPageO = props => {
 
   useEffect(() => {
     cardsRef.once('value', snapshot => {
+      if (joinURL) {
+        dispatch({ type: 'error' });
+      }
       if (snapshot.val()) {
         let keys = Object.keys(snapshot.val());
         keys.map(key => {
@@ -56,13 +72,14 @@ const SplashPageO = props => {
       <ContentContainerA>
         <SplashHeaderA>Welcome to Hunt Conductor</SplashHeaderA>
         <TextContainerA text={paragraph} />
-        <ButtonContainerA column={true} >
+        <Container>
           <ThemedButtonA // prettier-ignore
             handleClick={handleNew}
+            inverted={true}
             text="Start Scouting"
           />
           <JoinButtonM allow={allow} history={props.history} />
-        </ButtonContainerA>
+        </Container>
       </ContentContainerA>
     </SplashContainerA>
   );

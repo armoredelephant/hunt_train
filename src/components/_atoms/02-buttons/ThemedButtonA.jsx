@@ -23,6 +23,7 @@ const Button = styled.button`
   font-family: ${props => props.theme.ff};
   align-self: center;
   order: ${props => props.order};
+  margin: 5px;
 
   @media (max-width: 415px) {
     font-size: ${props => props.theme.mfs};

@@ -7,7 +7,7 @@ import 'firebase/database';
 import { DispatchContext, StateContext } from '../../../App';
 
 import ThemedButtonA from '@A/02-buttons/ThemedButtonA';
-
+import ErrorNotificationA from '@A/03-notifications/ErrorNotificationA';
 const Container = styled.div`
     display: flex;
     flex-flow: column;
@@ -15,7 +15,7 @@ const Container = styled.div`
     border-radius: ${props => props.theme.brad};
     margin-top: 5px;
     height: 200px;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
     background: ${props => props.theme.btnBG};
 `;
@@ -34,14 +34,25 @@ const Input = styled.input`
     }
 `;
 
+const InnerContainer = styled.div`
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
+    align-items: center;
+    margin: 5px;
+
+`;
+
 const JoinButtonM = props => {
     const state = useContext(StateContext);
     const dispatch = useContext(DispatchContext);
-    const { joinURL } = state;
+    const { joinURL, error } = state;
     const { allow, history } = props;
 
     const fbDatabase = firebase.database();
     const cardRef = fbDatabase.ref(`cards/${joinURL}`)
+
+    joinURL === '' && dispatch({ type: 'clear' });
 
     const handleChange = e => {
         e.preventDefault();
@@ -51,8 +62,6 @@ const JoinButtonM = props => {
 
     const handleJoin = e => {
         e.preventDefault();
-        const target = e.target;
-
         cardRef.once('value', snapshot => {
             dispatch({ type: 'updateKey', cardKey: joinURL })
             history.push(joinURL);
@@ -60,15 +69,20 @@ const JoinButtonM = props => {
     }
 
     return (
-        <Container>
+        // <Container>
+        <>
             <ThemedButtonA // prettier-ignore
                 handleClick={handleJoin}
                 text="Join in-progress"
                 isDisabled={!allow}
                 inverted={true}
             />
-            <Input onChange={handleChange} placeholder={'Paste a key to join...'} />
-        </Container>
+            <InnerContainer>
+                <Input onChange={handleChange} placeholder={'Paste a key to join...'} />
+                <ErrorNotificationA error={error} />
+            </InnerContainer>
+        </>
+        // {/* </Container> */ }
     );
 };
 

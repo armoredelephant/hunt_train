@@ -23,7 +23,6 @@ const scoutDataReducer = (draft, action) => {
     }
     case 'modal': {
       draft.showModal = false;
-      // draft.showLocation = false;
       draft.shared = false;
       draft.mapZone = '';
       draft.mapMark = '';
@@ -56,7 +55,6 @@ const scoutDataReducer = (draft, action) => {
       return;
     }
     case 'mapToggler': {
-      // draft.showLocation = true;
       draft.modalType = 'location';
       draft.showModal = true;
       return;
@@ -66,7 +64,6 @@ const scoutDataReducer = (draft, action) => {
       return;
     }
     case 'share': {
-      // draft.shared = true;
       draft.modalType = 'shared';
       draft.showModal = true;
       return;
@@ -76,12 +73,16 @@ const scoutDataReducer = (draft, action) => {
       return;
     }
     case 'error': {
-      draft.showModal = true;
       draft.error = true;
+      return;
+    }
+    case 'clear': {
+      draft.error = false;
       return;
     }
     case 'allow': {
       draft.allow = true;
+      draft.error = false;
       return;
     }
     default:
