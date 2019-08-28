@@ -14,6 +14,7 @@ const scoutDataReducer = (draft, action) => {
     }
     case 'map': {
       draft.showModal = true;
+      draft.modalType = 'map';
       draft.mapZone = action.zone;
       draft.mapMark = action.mark;
       draft.markCoords = action.markCoords;
@@ -22,10 +23,11 @@ const scoutDataReducer = (draft, action) => {
     }
     case 'modal': {
       draft.showModal = false;
-      draft.showLocation = false;
+      // draft.showLocation = false;
       draft.shared = false;
       draft.mapZone = '';
       draft.mapMark = '';
+      draft.modalType = null;
       return;
     }
     case 'route': {
@@ -54,7 +56,8 @@ const scoutDataReducer = (draft, action) => {
       return;
     }
     case 'mapToggler': {
-      draft.showLocation = true;
+      // draft.showLocation = true;
+      draft.modalType = 'location';
       draft.showModal = true;
       return;
     }
@@ -63,7 +66,8 @@ const scoutDataReducer = (draft, action) => {
       return;
     }
     case 'share': {
-      draft.shared = true;
+      // draft.shared = true;
+      draft.modalType = 'shared';
       draft.showModal = true;
       return;
     }

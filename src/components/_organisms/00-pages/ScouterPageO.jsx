@@ -9,15 +9,13 @@ import { DispatchContext, StateContext } from '../../../App';
 import MainContainerA from '@A/00-containers/MainContainerA';
 import ZoneCardM from '@M/00-forms/ZoneCardM';
 import ModalContainerA from '@A/00-containers/ModalContainerA';
-import ZoneMapM from '@M/02-maps/ZoneMapM';
-import MarkLocationMapM from '@M/02-maps/MarkLocationMapM';
 import TrainCardM from '@M/01-card_items/TrainCardM';
-import ShareContainerA from '@A/00-containers/ShareContainerA';
+import ModalManagerM from '@M/04-utils/ModalManagerM';
 
 const ScouterPageO = props => {
   const state = useContext(StateContext);
   const dispatch = useContext(DispatchContext);
-  const { currentMark, zoneData, zoneKeys, mapZone, mapMark, shared, showModal, showLocation } = state;
+  const { zoneData, zoneKeys, showModal } = state;
 
   const fbDatabase = firebase.database();
   const histLocation = props.history.location.pathname;
@@ -81,16 +79,7 @@ const ScouterPageO = props => {
       </MainContainerA>
       {showModal && (
         <ModalContainerA>
-          {showLocation ?
-            <MarkLocationMapM
-              currentMark={currentMark}
-            />
-            :
-            shared ?
-              <ShareContainerA url={cardKey} />
-              :
-              <ZoneMapM mapZone={mapZone} mapMark={mapMark} />
-          }
+          <ModalManagerM />
         </ModalContainerA>
       )}
     </>

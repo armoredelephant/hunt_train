@@ -23,6 +23,11 @@ const Button = styled.button`
   font-family: ${props => props.theme.ff};
   align-self: center;
   order: ${props => props.order};
+
+  @media (max-width: 415px) {
+    font-size: ${props => props.theme.mfs};
+    padding: 5px 18px;
+  }
 `;
 
 const ThemedButtonA = props => {

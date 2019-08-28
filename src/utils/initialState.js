@@ -21,6 +21,7 @@ const initialState = {
   },
   cardKey: '',
   joinURL: null,
+  modalType: null,
   scoutedZoneKeys: [],
   shared: false,
   showModal: false,
