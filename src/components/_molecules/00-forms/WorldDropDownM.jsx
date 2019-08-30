@@ -7,7 +7,7 @@ import { DispatchContext, StateContext } from '../../../App';
 const Container = styled.div`
     display: flex;
     flex-flow: row;
-    justify-content: center;
+    justify-content: space-evently;
 
 `;
 

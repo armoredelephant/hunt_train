@@ -46,7 +46,7 @@ const DiscordButtonA = () => {
             method: 'POST',
             url: `${dataCenterURL}`,
             data: {
-                username: 'DaBot',
+                username: 'hunt-conductor',
                 content: `${data}`,
                 avatar_url: ''
             },
