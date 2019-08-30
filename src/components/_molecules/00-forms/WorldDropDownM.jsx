@@ -66,7 +66,7 @@ const WorldDropDownM = () => {
         <>
             <Container>
                 <Wrapper>
-                    <Label>Data center:</Label>
+                    <Label>data center:</Label>
                     <Select onChange={handleDC} value={datacenter}>
                         <Option value={'select'}>select</Option>
                         {allDatacenters.map(dc => {
@@ -87,7 +87,7 @@ const WorldDropDownM = () => {
             </Container>
             <Container>
                 <Wrapper>
-                    <Label>World server:</Label>
+                    <Label>world server:</Label>
                     <Select onChange={handleWorld} value={world}>
                         <Option value={'select'}>select</Option>
                         {allWorlds &&
