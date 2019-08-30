@@ -1,5 +1,13 @@
+import { nullLiteral } from "@babel/types";
+
 const initialState = {
   allow: false,
+  allWorlds: null,
+  allDatacenters: [
+    'Aether',
+    'Primal',
+    'Crystal'
+  ],
   scoutData: {},
   routeData: {
     Lakeland: [],
@@ -20,12 +28,14 @@ const initialState = {
     instance: ' - '
   },
   cardKey: '',
+  datacenter: '',
   joinURL: null,
   modalType: null,
   scoutedZoneKeys: [],
   shared: false,
   showModal: false,
   showLocation: false,
+  world: '',
   zoneKeys: null,
   zoneData: null
 };

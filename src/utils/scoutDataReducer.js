@@ -85,6 +85,15 @@ const scoutDataReducer = (draft, action) => {
       draft.error = false;
       return;
     }
+    case 'datacenter': {
+      draft.datacenter = action.dc;
+      draft.allWorlds = action.worlds;
+      return;
+    }
+    case 'world': {
+      draft.world = action.world;
+      return;
+    }
     default:
       break;
   }

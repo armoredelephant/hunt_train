@@ -1,6 +1,6 @@
 import React, { useEffect, useContext } from 'react';
 import Axios from 'axios';
-import firebase from 'firebase';
+import firebase from 'firebase/app';
 
 import 'firebase/database';
 
@@ -46,7 +46,6 @@ const ScouterPageO = props => {
   };
 
   useEffect(() => {
-    console.log(cardKey)
     dispatch({ type: 'updateKey', key: cardKey });
     fetchLocalData('/resources/stubs/hunt_data.json');
     // this call is used to fetch once, so it will initially grab the scoutData and set once

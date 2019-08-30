@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
-import firebase from 'firebase';
+import firebase from 'firebase/app';
 import 'firebase/database';
 
 import { DispatchContext, StateContext } from '../../../App';
@@ -41,7 +41,6 @@ const MapperM = props => {
 
   const handleClick = () => {
     const coordsArray = zoneData[zone].marks[mark].locations;
-    console.log('clicked');
     dispatch({ type: 'map', zone, mark, instance, markCoords: coordsArray });
   };
 

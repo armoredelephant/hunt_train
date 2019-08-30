@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Button = styled.button`
+  display: flex;
   color: ${props => props.theme.cardbg};
   font-family: ${props => props.theme.ff};
   letter-spacing: ${props => props.theme.ls};
@@ -12,6 +13,7 @@ const Button = styled.button`
   border-radius: ${props => props.theme.brad};
   background-color: ${props => props.theme.blue};
   text-decoration: none;
+  margin: 5px;
 
   &:visited,
   &:focus,

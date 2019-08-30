@@ -8,6 +8,9 @@ import { DispatchContext, StateContext } from '../../../App';
 import RouteContainerA from '@A/00-containers/RouteContainerA';
 import ButtonContainerA from '@A/00-containers/ButtonContainerA';
 import StyledButtonA from '@A/02-buttons/StyledButtonA';
+import DiscordButtonA from '@A/02-buttons/DiscordButtonA';
+import RowContainerA from '@A/00-containers/RowContainerA';
+import WorldDropDownM from '@M/00-forms/WorldDropDownM';
 
 const Container = styled.div`
   background-color: ${props => props.theme.cardbg};
@@ -106,31 +109,32 @@ const TrainCardM = () => {
 
   return (
     <Container>
-      {/* {currentMark && <RouteContainerA />} */}
       <RouteContainerA />
-      <ButtonContainerA>
-        <>
+      <RowContainerA center={true}>
+        <ButtonContainerA>
           <StyledButtonA isDisabled={true} text={'Guide'} />
-        </>
-        <>
           <StyledButtonA handleClick={handleShare} text={'Share'} />
-        </>
-        <>
           <StyledButtonA
             isDisabled={currentMark.coords === ' - '}
             handleClick={handleMap} text={'Map'}
           />
-        </>
-      </ButtonContainerA>
-      <ButtonContainerA>
-        <>
+        </ButtonContainerA>
+      </RowContainerA>
+      <RowContainerA center={true}>
+        <ButtonContainerA>
           <StartButton
             onClick={handleRouteCreation}
           >
             {currentMark === initialState.currentMark ? 'Start Train' : 'Restart Train'}
           </StartButton>
-        </>
-      </ButtonContainerA>
+        </ButtonContainerA>
+      </RowContainerA>
+      <RowContainerA>
+        <WorldDropDownM />
+        <ButtonContainerA>
+          <DiscordButtonA />
+        </ButtonContainerA>
+      </RowContainerA>
     </Container>
   );
 };
