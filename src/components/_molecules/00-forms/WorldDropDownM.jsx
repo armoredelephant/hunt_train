@@ -27,6 +27,13 @@ const Label = styled.label`
 
 const Select = styled.select`
     display: flex;
+    outline: none;
+
+    &:focus,
+    &:clicked,
+    &:active {
+        outline: none;
+    }
 `;
 
 const Option = styled.option`
