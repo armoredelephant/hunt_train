@@ -39,8 +39,6 @@ const WorldDropDownM = () => {
 
     const { allWorlds, allDatacenters, datacenter, world } = state;
 
-    console.log(allDatacenters);
-
     // dispatch after axios call that sets worlds for fetched DC.
     const handleDC = e => {
         e.preventDefault()
@@ -50,7 +48,6 @@ const WorldDropDownM = () => {
         if (dc === 'Select a datacenter...') return;
         Axios.get(`/resources/stubs/${lowerCaseDC}_worlds.json`)
             .then(res => {
-                console.log(dc);
                 const worlds = res.data.worlds;
                 dispatch({ type: 'datacenter', worlds: worlds, dc: dc }); // DC will be used in dc manager to select webhook.
             });
