@@ -1,27 +1,50 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import Axios from 'axios';
 import styled from 'styled-components';
 
+import { StateContext, DispatchContext } from '../../../App';
+import discordSwitch from 'Utils/discordSwitch';
+
 import { discordConfig } from 'Utils/discordConfig';
-import { StateContext } from '../../../App';
+
+import { faDiscord } from "@fortawesome/free-brands-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Button = styled.button`
+display: flex;
+align-self: center;
+    color: #7289DA;
+    background-color: ${props => props.theme.cardbg};
+    border: none;
+    padding: 0;
+    outline: none;
 
+    &:active {
+        color: #6E87D8;
+    }
 `;
-
-// possibly need a data_center_manager component with a switch that determines which discord webhook to use based on DC.
 
 const DiscordButtonA = () => {
     const state = useContext(StateContext);
-    const { token, hookID } = discordConfig;
-    const { currentStop, routeData } = state;
+    const dispatch = useContext(DispatchContext);
+    const { currentStop, datacenter, dataCenterURL, routeData, world } = state;
+
+    useEffect(() => {
+        const discordUrl = discordSwitch(datacenter);
+        dispatch({ type: 'dataCenterURL', url: discordUrl })
+    }, [datacenter]);
 
     const handlePing = () => {
-        if (routeData === {}) return null;
-        const data = routeData[currentStop].zone
-        const options = {
+        if (routeData[currentStop] === undefined) return;
+        if (!dataCenterURL) return;
+        if (world === '') return;
+
+        const { zone, instance, coords } = routeData[currentStop];
+
+        const data = `${world} train <> ${zone} ${coords} i${instance}`
+        const centurio = {
             method: 'POST',
-            url: `https://discordapp.com/api/webhooks/${hookID}/${token}`,
+            url: `${dataCenterURL}`,
             data: {
                 username: 'DaBot',
                 content: `${data}`,
@@ -30,13 +53,29 @@ const DiscordButtonA = () => {
             headers: {
                 'Content-Type': 'application/json',
             }
-        }
+        };
 
-        Axios(options);
+        const coeurl = {
+            method: 'POST',
+            url: `${discordConfig.coeurlURL}`,
+            data: {
+                username: 'hunt-conductor',
+                content: `${data}`,
+                avatar_url: ''
+            },
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        };
+
+        Axios(centurio);
+        // Axios(coeurl);
     }
 
     return (
-        <Button onClick={handlePing}></Button>
+        <Button onClick={handlePing}>
+            <FontAwesomeIcon icon={faDiscord} size='3x' />
+        </Button>
     );
 };
 

@@ -5,19 +5,28 @@ import styled from 'styled-components';
 import { DispatchContext, StateContext } from '../../../App';
 
 const Container = styled.div`
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
 
 `;
 
 const Wrapper = styled.div`
-
+    display: flex;
+    justify-content: space-between;
+    margin: 5px;
+    flex-flow: column;
+    
 `;
 
 const Label = styled.label`
-
+    font-family: ${props => props.theme.ff};
+    line-spacing: ${props => props.theme.ls};
+    color: ${props => props.theme.fntClr};
 `;
 
 const Select = styled.select`
-
+    display: flex;
 `;
 
 const Option = styled.option`
@@ -38,6 +47,7 @@ const WorldDropDownM = () => {
         const target = e.target;
         const dc = target.value;
         const lowerCaseDC = dc.toLowerCase();
+        if (dc === 'Select a datacenter...') return;
         Axios.get(`/resources/stubs/${lowerCaseDC}_worlds.json`)
             .then(res => {
                 console.log(dc);
@@ -58,9 +68,9 @@ const WorldDropDownM = () => {
     return (
         <Container>
             <Wrapper>
-                <Label>Datacenter:</Label>
+                <Label>Data center:</Label>
                 <Select onChange={handleDC} value={datacenter}>
-                    <Option value={'Select a dataceter...'} selected>Select a datacenter...</Option>
+                    <Option value={'select'}>select</Option>
                     {allDatacenters.map(dc => {
                         const rdmKey = Math.random()
                             .toString(36)
@@ -77,9 +87,9 @@ const WorldDropDownM = () => {
                 </Select>
             </Wrapper>
             <Wrapper>
-                <Label>World:</Label>
+                <Label>World server:</Label>
                 <Select onChange={handleWorld} value={world}>
-                    <Option value={'Select a world...'} selected>Select a world...</Option>
+                    <Option value={'select'}>select</Option>
                     {allWorlds &&
                         allWorlds.map(world => {
                             const rdmKey = Math.random()

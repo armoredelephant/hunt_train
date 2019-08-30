@@ -22,7 +22,6 @@ const Container = styled.div`
   justify-content: ${props => props.theme.between};
   align-content: center;
   padding: ${props => props.theme.pad};
-  min-width: 300px;
 `;
 
 const StartButton = styled.button`
@@ -110,7 +109,7 @@ const TrainCardM = () => {
   return (
     <Container>
       <RouteContainerA />
-      <RowContainerA center={true}>
+      <RowContainerA align={'center'}>
         <ButtonContainerA>
           <StyledButtonA isDisabled={true} text={'Guide'} />
           <StyledButtonA handleClick={handleShare} text={'Share'} />
@@ -120,7 +119,7 @@ const TrainCardM = () => {
           />
         </ButtonContainerA>
       </RowContainerA>
-      <RowContainerA center={true}>
+      <RowContainerA align={'center'}>
         <ButtonContainerA>
           <StartButton
             onClick={handleRouteCreation}
@@ -129,11 +128,9 @@ const TrainCardM = () => {
           </StartButton>
         </ButtonContainerA>
       </RowContainerA>
-      <RowContainerA>
+      <RowContainerA align={'space-evenly'}>
         <WorldDropDownM />
-        <ButtonContainerA>
-          <DiscordButtonA />
-        </ButtonContainerA>
+        <DiscordButtonA />
       </RowContainerA>
     </Container>
   );

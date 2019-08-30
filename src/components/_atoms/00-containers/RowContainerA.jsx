@@ -4,8 +4,8 @@ import styled from 'styled-components';
 const Container = styled.div`
     display: flex;
     flex-flow; row;
-    justify-content: ${props => props.center ? 'center' : props.theme.between};
-    padding-bottom: 5px;
+    justify-content: ${props => props.align ? props.align : props.theme.between};
+    padding-bottom: ${props => props.nopad ? '0px' : '5px'};
     border-bottom: 1px solid ${props => props.theme.darkestbg};
 `;
 

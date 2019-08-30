@@ -29,6 +29,7 @@ const initialState = {
   },
   cardKey: '',
   datacenter: '',
+  dataCenterURL: null,
   joinURL: null,
   modalType: null,
   scoutedZoneKeys: [],

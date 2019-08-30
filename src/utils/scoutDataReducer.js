@@ -94,6 +94,10 @@ const scoutDataReducer = (draft, action) => {
       draft.world = action.world;
       return;
     }
+    case 'dataCenterURL': {
+      draft.dataCenterURL = action.url;
+      return;
+    }
     default:
       break;
   }
