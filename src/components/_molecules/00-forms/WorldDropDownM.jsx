@@ -66,48 +66,52 @@ const WorldDropDownM = () => {
     // dispatch for selected world.
 
     return (
-        <Container>
-            <Wrapper>
-                <Label>Data center:</Label>
-                <Select onChange={handleDC} value={datacenter}>
-                    <Option value={'select'}>select</Option>
-                    {allDatacenters.map(dc => {
-                        const rdmKey = Math.random()
-                            .toString(36)
-                            .substring(7);
-                        return (
-                            <Option
-                                key={rdmKey}
-                                value={dc}
-                            >
-                                {dc}
-                            </Option>
-                        )
-                    })}
-                </Select>
-            </Wrapper>
-            <Wrapper>
-                <Label>World server:</Label>
-                <Select onChange={handleWorld} value={world}>
-                    <Option value={'select'}>select</Option>
-                    {allWorlds &&
-                        allWorlds.map(world => {
+        <>
+            <Container>
+                <Wrapper>
+                    <Label>Data center:</Label>
+                    <Select onChange={handleDC} value={datacenter}>
+                        <Option value={'select'}>select</Option>
+                        {allDatacenters.map(dc => {
                             const rdmKey = Math.random()
                                 .toString(36)
                                 .substring(7);
                             return (
                                 <Option
                                     key={rdmKey}
-                                    value={world}
+                                    value={dc}
                                 >
-                                    {world}
+                                    {dc}
                                 </Option>
                             )
-                        })
-                    }
-                </Select>
-            </Wrapper>
-        </Container>
+                        })}
+                    </Select>
+                </Wrapper>
+            </Container>
+            <Container>
+                <Wrapper>
+                    <Label>World server:</Label>
+                    <Select onChange={handleWorld} value={world}>
+                        <Option value={'select'}>select</Option>
+                        {allWorlds &&
+                            allWorlds.map(world => {
+                                const rdmKey = Math.random()
+                                    .toString(36)
+                                    .substring(7);
+                                return (
+                                    <Option
+                                        key={rdmKey}
+                                        value={world}
+                                    >
+                                        {world}
+                                    </Option>
+                                )
+                            })
+                        }
+                    </Select>
+                </Wrapper>
+            </Container>
+        </>
     );
 };
 
