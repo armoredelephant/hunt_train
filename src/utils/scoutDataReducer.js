@@ -60,7 +60,7 @@ const scoutDataReducer = (draft, action) => {
       return;
     }
     case 'updateKey': {
-      draft.cardKey = action.key;
+      draft.cardKey = action.cardKey;
       return;
     }
     case 'share': {

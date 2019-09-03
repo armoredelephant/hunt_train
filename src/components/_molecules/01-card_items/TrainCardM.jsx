@@ -19,7 +19,7 @@ const Container = styled.div`
   margin: ${props => props.theme.margin};
   display: flex;
   flex-flow: column;
-  justify-content: ${props => props.theme.between};
+  justify-content: center;
   align-content: center;
   padding: ${props => props.theme.pad};
 `;

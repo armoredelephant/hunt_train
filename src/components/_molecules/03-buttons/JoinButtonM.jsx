@@ -62,10 +62,8 @@ const JoinButtonM = props => {
 
     const handleJoin = e => {
         e.preventDefault();
-        cardRef.once('value', snapshot => {
-            dispatch({ type: 'updateKey', cardKey: joinURL })
-            history.push(joinURL);
-        })
+        dispatch({ type: 'updateKey', cardKey: joinURL })
+        history.push(joinURL);
     }
 
     return (

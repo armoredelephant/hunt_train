@@ -22,6 +22,28 @@ const ScouterPageO = props => {
   const cardKey = histLocation.split('/')[1]
   const cardRef = fbDatabase.ref(`cards/${cardKey}`)
 
+  // Fetches the card data in realtime
+
+  // useEffect(() => {
+  //   const dataListener = async url => {
+  //     const options = {
+  //       params: {
+  //         key: cardKey
+  //       }
+  //     }
+  //     const result = await Axios.get(url, options);
+  //     if (result) {
+  //       const cardData = result.data.cardData;
+  //       const keys = result.data.cardKeys;
+  //       dispatch({ type: 'sdFetch', newData: cardData, scoutedZoneKeys: keys });
+  //     }
+  //   }
+  //   dataListener(`${API_HOST_URL}/api/scout/on`);
+  //   return () => {
+  //     dataListener(`${API_HOST_URL}/api/scout/off`);
+  //   }
+  // })
+
   useEffect(() => {
     const onChange = snapshot => {
       let keys;
@@ -46,7 +68,7 @@ const ScouterPageO = props => {
   };
 
   useEffect(() => {
-    dispatch({ type: 'updateKey', key: cardKey });
+    dispatch({ type: 'updateKey', cardKey: cardKey });
     fetchLocalData('/resources/stubs/hunt_data.json');
     // this call is used to fetch once, so it will initially grab the scoutData and set once
     cardRef.once('value', snapshot => {

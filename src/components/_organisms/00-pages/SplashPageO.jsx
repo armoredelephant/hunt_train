@@ -1,7 +1,6 @@
 import React, { useContext, useEffect } from 'react';
+import Axios from 'axios';
 import styled from 'styled-components';
-import firebase from 'firebase/app';
-import 'firebase/database';
 
 import { DispatchContext, StateContext } from '../../../App';
 
@@ -10,11 +9,12 @@ import ContentContainerA from '@A/00-containers/ContentContainerA';
 
 import SplashHeaderA from '@A/01-headers/SplashHeaderA';
 import TextContainerA from '@A/00-containers/TextContainerA';
-import ButtonContainerA from '@A/00-containers/ButtonContainerA';
 import ThemedButtonA from '@A/02-buttons/ThemedButtonA';
 import JoinButtonM from '@M/03-buttons/JoinButtonM';
 
 const paragraph = '';
+
+const API_HOST_URL = process.env.API_URL;
 
 const Container = styled.div`
     display: flex;
@@ -33,39 +33,34 @@ const SplashPageO = props => {
   const state = useContext(StateContext);
   let { allow, joinURL } = state;
 
-  const fbDatabase = firebase.database();
-  const cardsRef = fbDatabase.ref().child('cards')
-
+  // Click handler, when clicked creates a new key in FB.
   const handleNew = () => {
-    const initialData = {
-      scoutData: true
-    };
-    const newCardKey = cardsRef.push().key;
-    const updates = {
-      [`/${newCardKey}`]: initialData
-    };
-
-    return cardsRef.update(updates)
-      .then(() => {
-        let path = newCardKey;
+    Axios.post(`${API_HOST_URL}/api/scout/new`)
+      .then(res => {
+        let path = res.data.uniqueId;
         props.history.push(path);
-        // dispatch({ type: 'updateKey', cardKey: newCardKey });
+        dispatch({ type: 'updateKey', cardKey: path });
       });
-  }
+  };
 
+  // useEffect that will check fb keys and allow if any key matches the joinURL
   useEffect(() => {
-    cardsRef.once('value', snapshot => {
-      if (joinURL) {
-        dispatch({ type: 'error' });
-      }
-      if (snapshot.val()) {
-        let keys = Object.keys(snapshot.val());
-        keys.map(key => {
-          key === joinURL && dispatch({ type: 'allow' });
-        })
-      }
-    })
-  }, [joinURL])
+    const checkJoinURL = async url => {
+      const options = {
+        params: {
+          joinURL: joinURL
+        }
+      };
+
+      await Axios.get(url, options).then(res => {
+        res.data.message && dispatch({ type: 'allow' });
+      })
+    }
+    if (joinURL) dispatch({ type: 'error' });
+    if (joinURL && joinURL.length === 20) {
+      checkJoinURL(`${API_HOST_URL}/api/scout/keys`);
+    }
+  }, [joinURL]);
 
   return (
     <SplashContainerA className="darken">
