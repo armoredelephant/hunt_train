@@ -1,7 +1,5 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
-import firebase from 'firebase/app';
-import 'firebase/database';
 
 import { DispatchContext, StateContext } from '../../../App';
 
@@ -32,10 +30,7 @@ const MapperM = props => {
   const state = useContext(StateContext);
 
   const { instance, mark, zone } = props;
-  const { cardKey, zoneData, currentMark, scoutData } = state;
-
-  const fbDatabase = firebase.database();
-  const instanceRef = fbDatabase.ref(`cards/${cardKey}/scoutData/${zone}/${instance}`)
+  const { zoneData, currentMark, scoutData } = state;
 
   let markCoords = ' - ';
 

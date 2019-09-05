@@ -35,7 +35,7 @@ const SplashPageO = props => {
 
   // Click handler, when clicked creates a new key in FB.
   const handleNew = () => {
-    Axios.post(`http://hunt-conductor.com/api/scout/new`)
+    Axios.post(`${API_HOST_URL}/api/scout/new`)
       .then(res => {
         let path = res.data.uniqueId;
         props.history.push(path);
@@ -58,7 +58,7 @@ const SplashPageO = props => {
     }
     if (joinURL) dispatch({ type: 'error' });
     if (joinURL && joinURL.length === 20) {
-      checkJoinURL(`http://hunt-conductor.com/api/scout/keys`);
+      checkJoinURL(`${API_HOST_URL}/api/scout/keys`);
     }
   }, [joinURL]);
 
