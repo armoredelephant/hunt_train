@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { DispatchContext, StateContext } from '../../../App';
 
 import StyledButtonA from '@A/02-buttons/StyledButtonA';
+import RemoveButtonA from '@A/02-buttons/RemoveButtonA';
 
 const Container = styled.div`
   display: flex;
@@ -25,12 +26,14 @@ const Coords = styled.p`
   }
 `;
 
+
+
 const MapperM = props => {
   const dispatch = useContext(DispatchContext);
   const state = useContext(StateContext);
 
   const { instance, mark, zone } = props;
-  const { zoneData, currentMark, scoutData } = state;
+  const { cardKey, zoneData, currentMark, scoutData } = state;
 
   let markCoords = ' - ';
 
@@ -67,11 +70,12 @@ const MapperM = props => {
       >
         {markCoords}
       </Coords>
+      <RemoveButtonA {...props} />
       <StyledButtonA
         handleClick={handleClick}
         text={'Map'}
       />
-    </Container>
+    </Container >
   );
 };
 

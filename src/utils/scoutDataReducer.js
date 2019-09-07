@@ -68,20 +68,7 @@ const scoutDataReducer = (draft, action) => {
       draft.showModal = true;
       return;
     }
-    case 'join': {
-      draft.joinURL = action.value;
-      return;
-    }
-    case 'error': {
-      draft.error = true;
-      return;
-    }
     case 'clear': {
-      draft.error = false;
-      return;
-    }
-    case 'allow': {
-      draft.allow = true;
       draft.error = false;
       return;
     }
@@ -96,6 +83,14 @@ const scoutDataReducer = (draft, action) => {
     }
     case 'dataCenterURL': {
       draft.dataCenterURL = action.url;
+      return;
+    }
+    case 'countAdd': {
+      draft.markCount = draft.markCount += 1;
+      return;
+    }
+    case 'countSubtract': {
+      draft.markCount = draft.markCount -= 1;
       return;
     }
     default:

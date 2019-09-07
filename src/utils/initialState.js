@@ -1,7 +1,6 @@
 import { nullLiteral } from "@babel/types";
 
 const initialState = {
-  allow: false,
   allWorlds: null,
   allDatacenters: [
     'Aether',
@@ -30,7 +29,7 @@ const initialState = {
   cardKey: '',
   datacenter: '',
   dataCenterURL: null,
-  joinURL: null,
+  markCount: 0,
   modalType: null,
   scoutedZoneKeys: [],
   shared: false,

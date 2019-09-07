@@ -1,8 +1,8 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import Axios from 'axios';
 import styled from 'styled-components';
 
-import { DispatchContext, StateContext } from '../../../App';
+import { DispatchContext } from '../../../App';
 
 import SplashContainerA from '@A/00-containers/SplashContainerA';
 import ContentContainerA from '@A/00-containers/ContentContainerA';
@@ -10,7 +10,6 @@ import ContentContainerA from '@A/00-containers/ContentContainerA';
 import SplashHeaderA from '@A/01-headers/SplashHeaderA';
 import TextContainerA from '@A/00-containers/TextContainerA';
 import ThemedButtonA from '@A/02-buttons/ThemedButtonA';
-import JoinButtonM from '@M/03-buttons/JoinButtonM';
 
 const paragraph = '';
 
@@ -30,8 +29,6 @@ const Container = styled.div`
 
 const SplashPageO = props => {
   const dispatch = useContext(DispatchContext);
-  const state = useContext(StateContext);
-  let { allow, joinURL } = state;
 
   // Click handler, when clicked creates a new key in FB.
   const handleNew = () => {
@@ -43,38 +40,16 @@ const SplashPageO = props => {
       });
   };
 
-  // useEffect that will check fb keys and allow if any key matches the joinURL
-  useEffect(() => {
-    const checkJoinURL = async url => {
-      const options = {
-        params: {
-          joinURL: joinURL
-        }
-      };
-
-      await Axios.get(url, options).then(res => {
-        res.data.message && dispatch({ type: 'allow' });
-      })
-    }
-    if (joinURL) dispatch({ type: 'error' });
-    if (joinURL && joinURL.length === 20) {
-      checkJoinURL(`${API_HOST_URL}/api/scout/keys`);
-    }
-  }, [joinURL]);
-
   return (
     <SplashContainerA className="darken">
       <ContentContainerA>
         <SplashHeaderA>Welcome to Hunt Conductor</SplashHeaderA>
         <TextContainerA text={paragraph} />
-        <Container>
-          <ThemedButtonA // prettier-ignore
-            handleClick={handleNew}
-            inverted={true}
-            text="Start Scouting"
-          />
-          <JoinButtonM allow={allow} history={props.history} />
-        </Container>
+        <ThemedButtonA // prettier-ignore
+          handleClick={handleNew}
+          inverted={true}
+          text="Start Scouting"
+        />
       </ContentContainerA>
     </SplashContainerA>
   );

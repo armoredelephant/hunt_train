@@ -6,9 +6,11 @@ import { StateContext, DispatchContext } from '../../../App';
 import discordSwitch from 'Utils/discordSwitch';
 
 import { discordConfig } from 'Utils/discordConfig';
-
+import { library } from '@fortawesome/fontawesome-svg-core';
 import { faDiscord } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+library.add(faDiscord);
 
 const Button = styled.button`
 display: flex;

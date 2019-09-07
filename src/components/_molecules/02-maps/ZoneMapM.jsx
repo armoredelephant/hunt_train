@@ -50,11 +50,12 @@ const ZoneMapM = () => {
     };
 
     const axiosPost = async url => {
-      await Axios.post(url, options).then(res => { console.log(res.data.message) });
+      await Axios.post(url, options);
     }
 
     axiosPost(`${API_HOST_URL}/api/scout/addMark`);
     dispatch({ type: 'modal' });
+    dispatch({ type: 'countAdd' });
   };
 
   // const handleCoords = e => {
