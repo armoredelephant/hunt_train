@@ -47,7 +47,6 @@ const RemoveButtonA = props => {
         }
 
         deleteMark(`${API_HOST_URL}/api/scout/deleteMark`);
-        dispatch({ type: 'countSubtract' });
     };
 
     return (

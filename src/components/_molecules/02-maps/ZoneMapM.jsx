@@ -55,7 +55,6 @@ const ZoneMapM = () => {
 
     axiosPost(`${API_HOST_URL}/api/scout/addMark`);
     dispatch({ type: 'modal' });
-    dispatch({ type: 'countAdd' });
   };
 
   // const handleCoords = e => {
