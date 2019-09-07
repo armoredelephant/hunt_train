@@ -15,6 +15,14 @@ const Button = styled.button`
   color: ${props => props.theme.red};
   background: ${props => props.theme.cardbg};
   border: none;
+
+  &:visited,
+  &:focus,
+  &:hover,
+  &:active {
+    text-decoration: none;
+    outline: none;
+  }
 `;
 
 const RemoveButtonA = props => {
