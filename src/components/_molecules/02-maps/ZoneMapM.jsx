@@ -1,8 +1,6 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 import Axios from 'axios';
-// import firebase from 'firebase/app';
-// import 'firebase/database';
 
 const API_HOST_URL = process.env.API_URL;
 
@@ -54,9 +52,8 @@ const ZoneMapM = () => {
     const axiosPost = async url => {
       await Axios.post(url, options).then(res => { console.log(res.data.message) });
     }
-    // Axios.post(`${API_HOST_URL}/api/scout/firstMark`, options);
 
-    axiosPost(`${API_HOST_URL}/api/scout/firstMark`)
+    axiosPost(`${API_HOST_URL}/api/scout/addMark`);
     dispatch({ type: 'modal' });
   };
 
