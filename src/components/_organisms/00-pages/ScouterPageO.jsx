@@ -53,7 +53,7 @@ const ScouterPageO = props => {
       }
     }
 
-    cardRef.on('child_changed', onChange)
+    cardRef.on('child_changed', onChange);
     return () => {
       cardRef.off('child_changed', onChange);
     }

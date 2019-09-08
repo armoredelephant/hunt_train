@@ -27,17 +27,15 @@ const Button = styled.button`
 
 const RemoveButtonA = props => {
     const state = useContext(StateContext);
-    const dispatch = useContext(DispatchContext);
 
     const { instance, mark, zone } = props;
-    const { cardKey, markCount } = state;
+    const { cardKey } = state;
 
     const handleRemove = e => {
         e.preventDefault();
         const deleteMark = async url => {
             const options = {
                 cardKey: cardKey,
-                count: markCount,
                 instance: instance,
                 mark: mark,
                 zone: zone
@@ -45,7 +43,6 @@ const RemoveButtonA = props => {
 
             await Axios.post(url, options)
         }
-
         deleteMark(`${API_HOST_URL}/api/scout/deleteMark`);
     };
 
