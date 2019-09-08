@@ -36,6 +36,7 @@ const MapperM = props => {
   const { cardKey, zoneData, currentMark, scoutData } = state;
 
   let markCoords = ' - ';
+  let allowed = false;
 
   const handleClick = () => {
     const coordsArray = zoneData[zone].marks[mark].locations;
@@ -47,7 +48,10 @@ const MapperM = props => {
     const keys = Object.keys(data);
     keys.map(key => {
       const currentMarks = data[key];
-      if (currentMarks.mark === mark) markCoords = currentMarks.coords;
+      if (currentMarks.mark === mark) {
+        markCoords = currentMarks.coords;
+        allowed = true;
+      }
     })
   }
 
@@ -70,7 +74,7 @@ const MapperM = props => {
       >
         {markCoords}
       </Coords>
-      <RemoveButtonA {...props} />
+      <RemoveButtonA {...props} allowed={allowed} />
       <StyledButtonA
         handleClick={handleClick}
         text={'Map'}

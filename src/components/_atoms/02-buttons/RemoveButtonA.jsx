@@ -28,8 +28,8 @@ const Button = styled.button`
 const RemoveButtonA = props => {
     const state = useContext(StateContext);
 
-    const { instance, mark, zone } = props;
-    const { cardKey } = state;
+    const { allowed, instance, mark, zone } = props;
+    const { cardKey, scoutData } = state;
 
     const handleRemove = e => {
         e.preventDefault();
@@ -46,8 +46,10 @@ const RemoveButtonA = props => {
         deleteMark(`${API_HOST_URL}/api/scout/deleteMark`);
     };
 
+    console.log(allowed);
+
     return (
-        <Button onClick={handleRemove}>
+        <Button onClick={handleRemove} disabled={!allowed}>
             <FontAwesomeIcon icon={faTrashAlt} size='1x' />
         </Button>
     );
