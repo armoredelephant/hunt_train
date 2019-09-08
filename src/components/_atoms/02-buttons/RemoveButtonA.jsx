@@ -12,7 +12,7 @@ library.add(faTrashAlt);
 const API_HOST_URL = process.env.API_URL;
 
 const Button = styled.button`
-  color: ${props => props.theme.red};
+  color: ${props => props.disabled ? '#893327' : props.theme.red};
   background: ${props => props.theme.cardbg};
   border: none;
 
