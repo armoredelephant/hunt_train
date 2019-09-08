@@ -46,8 +46,6 @@ const RemoveButtonA = props => {
         deleteMark(`${API_HOST_URL}/api/scout/deleteMark`);
     };
 
-    console.log(allowed);
-
     return (
         <Button onClick={handleRemove} disabled={!allowed}>
             <FontAwesomeIcon icon={faTrashAlt} size='1x' />
