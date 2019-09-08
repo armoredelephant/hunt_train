@@ -13,13 +13,16 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 library.add(faDiscord);
 
 const Button = styled.button`
-display: flex;
-align-self: center;
+    display: flex;
+    align-self: center;
+    justify-content: center;
     color: #7289DA;
-    background-color: ${props => props.theme.cardbg};
+    background-color: #FFFFFF;
     border: none;
     padding: 0;
     outline: none;
+    width: 25px
+    height: 30px;
 
     &:active {
         color: #6E87D8;
