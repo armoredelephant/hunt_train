@@ -31,7 +31,8 @@ const theme = {
   darkestbg: '#2b2b2b',
   between: 'space-between',
   margin: '5px',
-  pad: '5px'
+  pad: '5px',
+  authBorder: '1px solid #919191',
 };
 
 export default theme;

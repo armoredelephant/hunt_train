@@ -3,6 +3,7 @@ import { StateContext } from '../../../App';
 
 import ShareContainerA from '@A/00-containers/ShareContainerA';
 import MarkLocationMapM from '@M/02-maps/MarkLocationMapM';
+import LoginFormM from '@M/00-forms/LoginFormM';
 import ZoneMapM from '@M/02-maps/ZoneMapM';
 
 
@@ -19,6 +20,9 @@ const ModalManagerM = () => {
         }
         case 'map': {
             return <ZoneMapM mapZone={mapZone} mapMark={mapMark} />
+        }
+        case 'auth': {
+            return <LoginFormM />
         }
         // Need to add case 'guide': {} for the guide. Possibly move to SplashPage?
         default: {

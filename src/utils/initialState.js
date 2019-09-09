@@ -1,5 +1,3 @@
-import { nullLiteral } from "@babel/types";
-
 const initialState = {
   allWorlds: null,
   allDatacenters: [
@@ -29,6 +27,8 @@ const initialState = {
   cardKey: '',
   datacenter: '',
   dataCenterURL: null,
+  formLogin: true,
+  formCreate: false,
   markCount: 0,
   modalType: null,
   scoutedZoneKeys: [],

@@ -21,6 +21,21 @@ const scoutDataReducer = (draft, action) => {
       draft.mapInstance = action.instance;
       return;
     }
+    case 'mapToggler': {
+      draft.modalType = 'location';
+      draft.showModal = true;
+      return;
+    }
+    case 'share': {
+      draft.modalType = 'shared';
+      draft.showModal = true;
+      return;
+    }
+    case 'auth': {
+      draft.modalType = 'auth';
+      draft.showModal = true;
+      return;
+    }
     case 'modal': {
       draft.showModal = false;
       draft.shared = false;
@@ -54,18 +69,8 @@ const scoutDataReducer = (draft, action) => {
       draft.shared = initialState.shared;
       return;
     }
-    case 'mapToggler': {
-      draft.modalType = 'location';
-      draft.showModal = true;
-      return;
-    }
     case 'updateKey': {
       draft.cardKey = action.cardKey;
-      return;
-    }
-    case 'share': {
-      draft.modalType = 'shared';
-      draft.showModal = true;
       return;
     }
     case 'clear': {
@@ -85,12 +90,18 @@ const scoutDataReducer = (draft, action) => {
       draft.dataCenterURL = action.url;
       return;
     }
-    case 'countAdd': {
-      draft.markCount = draft.markCount += 1;
-      return;
-    }
     case 'countSubtract': {
       draft.markCount = draft.markCount -= 1;
+      return;
+    }
+    case 'log in': {
+      draft.formCreate = false;
+      draft.formLogin = true;
+      return;
+    }
+    case 'create': {
+      draft.formLogin = false;
+      draft.formCreate = true;
       return;
     }
     default:
