@@ -11,9 +11,10 @@ const Container = styled.div`
     align-self: flex-start;
     justify-content: space-evenly;
     width: 100%;
+    border-bottom: 1px solid ${props => props.theme.darkestbg};
 `;
 
-const LoginHeaderA = () => {
+const LogInHeaderA = () => {
     const state = useContext(StateContext);
     const { formLogin, formCreate } = state;
     return (
@@ -30,4 +31,4 @@ const LoginHeaderA = () => {
     );
 };
 
-export default LoginHeaderA;
+export default LogInHeaderA;

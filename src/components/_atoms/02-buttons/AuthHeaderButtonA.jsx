@@ -3,15 +3,16 @@ import styled from 'styled-components';
 
 import { DispatchContext } from '../../../App';
 
-// change to active one having the brighter background and it being like a button
-
 const Button = styled.button`
-    background-color: ${props => props.isActive ? '#FFFFFF' : '#C6C6C6'};
+    background-color: ${props => props.theme.cardbg};
+    color: ${props => props.isActive ? props.theme.blue : props.theme.fntClr};
+    font-family: ${props => props.theme.ff};
+    font-size: ${props => props.theme.btnFS};
+    letter-spacing: ${props => props.theme.ls};
     width: 50%;
-    padding-top: 15px;
-    text-align: left;
+    padding: 15px 0;
     border: none;
-    border-right: ${props => props.value === 'Log In' && props.theme.authBorder}
+    border-bottom: ${props => props.isActive && `1px solid ${props.theme.blue}`};
     outline: none;
 
     &:visited,
