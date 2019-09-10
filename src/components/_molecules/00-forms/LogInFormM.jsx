@@ -12,7 +12,7 @@ const Container = styled.div`
     width: 384px;
     height: 380px;
     radius: ${props => props.theme.brad};
-    margin-top: 5px;
+    margin: 8px;
     background: ${props => props.theme.cardbg};
     box-shadow: ${props => props.theme.bshad};
 `;
