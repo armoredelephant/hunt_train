@@ -17,11 +17,12 @@ const Container = styled.div`
     box-shadow: ${props => props.theme.bshad};
 `;
 
-const LogInFormM = () => {
+const LogInFormM = props => {
+    const { history } = props;
     return (
         <Container>
             <LogInHeaderA />
-            <LogInBodyContainerA />
+            <LogInBodyContainerA history={history} />
         </Container>
     );
 };

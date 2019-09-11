@@ -1,7 +1,12 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
+import firebase from 'firebase/app';
 
-import { StateContext } from '../../../App';
+import 'firebase/auth';
+
+import PasswordErrorA from '@A/04-errors/PasswordErrorA';
+
+import { DispatchContext, StateContext } from '../../../App';
 
 const Container = styled.div`
     display: flex;
@@ -116,16 +121,50 @@ const Submit = styled.input`
 //     flex: 3;
 // `;
 
-const LogInBodyContainerA = () => {
-    const state = useContext(StateContext);
-    const { formCreate } = state;
-    // keep me logged in ?
+// add Char name and server to "Create" login form
+// When successfully signed in, remove modal, and make header visibile?
 
-    // Google auth button ?
+const LogInBodyContainerA = props => {
+    const state = useContext(StateContext);
+    const dispatch = useContext(DispatchContext);
+    const { formCreate, formLogin, passLengthError } = state;
+    const { history } = props;
+
+    const auth = firebase.auth();
+
+    firebase.auth().onAuthStateChanged(user => {
+        dispatch({ type: 'userUpdate', user: user });
+    });
 
     const handleSubmit = e => {
+        e.preventDefault();
+        const target = e.target;
+        const email = target.email.value;
+        const pass = target.password.value;
+        const confirm = target.confirm.value;
+        const passLength = pass.length;
 
-    }
+        if (passLength < 8) {
+            return dispatch({ type: 'passLength' });
+        };
+
+        if (formCreate) {
+            if (confirm === pass) {
+                auth.createUserWithEmailAndPassword(email, pass)
+                    .then(() => {
+                        console.log('then');
+                        dispatch({ type: 'modal' });
+                        dispatch({ type: 'formReset' });
+                        target.email.value = '';
+                        target.password.value = '';
+                        target.confirm.value = '';
+                    });
+            };
+        };
+
+        // reset form
+        dispatch({ type: 'formReset' });
+    };
 
     return (
         <Container>
@@ -144,15 +183,21 @@ const LogInBodyContainerA = () => {
                         placeholder='Password'
                     />
                 </InputContainer>
+                {formLogin &&
+                    <PasswordErrorA passError={passLengthError} />
+                }
                 {formCreate &&
-                    <InputContainer>
-                        <Input
-                            type='password'
-                            name='confirm'
-                            placeholder='Confirm password'
-                            required
-                        />
-                    </InputContainer>
+                    <>
+                        <InputContainer>
+                            <Input
+                                type='password'
+                                name='confirm'
+                                placeholder='Confirm password'
+                                required
+                            />
+                        </InputContainer>
+                        <PasswordErrorA passError={passLengthError} />
+                    </>
                 }
                 <SubmitContainer>
                     <Submit type='submit' value={formCreate ? 'Create' : 'Log In'} />

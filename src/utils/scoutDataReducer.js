@@ -104,6 +104,18 @@ const scoutDataReducer = (draft, action) => {
       draft.formCreate = true;
       return;
     }
+    case 'passLength': {
+      draft.passLengthError = true;
+      return;
+    }
+    case 'formReset': {
+      draft.passLengthError = false;
+      return;
+    }
+    case 'userUpdate': {
+      draft.user = action.user;
+      return;
+    }
     default:
       break;
   }

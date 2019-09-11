@@ -4,7 +4,8 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import { firebaseConfig } from './utils/firebaseConfig';
 import firebase from 'firebase/app';
-import "firebase/database";
+// import "firebase/database";
+import 'firebase/auth';
 
 import SplashPageO from '@O/00-pages/SplashPageO';
 import ScouterPageO from '@O/00-pages/ScouterPageO';
@@ -24,6 +25,9 @@ firebase.initializeApp(firebaseConfig);
 
 const App = () => {
   const [state, dispatch] = useImmerReducer(scoutDataReducer, initialState);
+  // firebase.auth().onAuthStateChanged(user => {
+  //   dispatch({ type: 'userUpdate', user: user });
+  // });
   return (
     <DispatchContext.Provider value={dispatch}>
       <StateContext.Provider value={state}>

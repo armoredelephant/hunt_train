@@ -31,10 +31,12 @@ const initialState = {
   formCreate: false,
   markCount: 0,
   modalType: null,
+  passLengthError: false,
   scoutedZoneKeys: [],
   shared: false,
   showModal: false,
   showLocation: false,
+  user: null,
   world: '',
   zoneKeys: null,
   zoneData: null

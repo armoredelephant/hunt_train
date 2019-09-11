@@ -68,7 +68,7 @@ const SplashPageO = props => {
         </Container>
         {showModal && (
           <ModalContainerA>
-            <ModalManagerM />
+            <ModalManagerM history={props.history} />
           </ModalContainerA>
         )}
       </ContentContainerA>
