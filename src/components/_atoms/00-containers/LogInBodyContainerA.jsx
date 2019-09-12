@@ -1,10 +1,11 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import styled from 'styled-components';
 import firebase from 'firebase/app';
 
 import 'firebase/auth';
 
 import PasswordErrorA from '@A/04-errors/PasswordErrorA';
+import ServerSelectA from '@A/05-form_fields/ServerSelectA';
 
 import { DispatchContext, StateContext } from '../../../App';
 
@@ -180,7 +181,7 @@ const LogInBodyContainerA = props => {
                     <Input
                         type='password'
                         name='password'
-                        placeholder='Password'
+                        placeholder={formCreate ? 'Password - 8 char' : 'Password'}
                     />
                 </InputContainer>
                 {formLogin &&
@@ -196,6 +197,15 @@ const LogInBodyContainerA = props => {
                                 required
                             />
                         </InputContainer>
+                        <InputContainer>
+                            <Input
+                                type='text'
+                                name='character'
+                                placeholder='Character Name'
+                                required
+                            />
+                        </InputContainer>
+                        <ServerSelectA />
                         <PasswordErrorA passError={passLengthError} />
                     </>
                 }

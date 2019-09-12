@@ -10,7 +10,7 @@ const Container = styled.div`
     align-items: center;
     align-self: center;
     width: 384px;
-    height: 380px;
+    height: 500px;
     radius: ${props => props.theme.brad};
     margin: 8px;
     background: ${props => props.theme.cardbg};
