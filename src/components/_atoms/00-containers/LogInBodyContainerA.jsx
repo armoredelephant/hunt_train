@@ -1,5 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import styled from 'styled-components';
+import Axios from 'axios';
 import firebase from 'firebase/app';
 
 import 'firebase/auth';
@@ -137,13 +138,28 @@ const LogInBodyContainerA = props => {
         dispatch({ type: 'userUpdate', user: user });
     });
 
+
+    // first make a call to the API and get user's ID
+    // https://xivapi.com/character/search?name=Hattori+Hanzo&server=Leviathan
+    // 
+
+    // Then make a call here for the verification from profile page.
+    // https://xivapi.com/character/1624479
+
     const handleSubmit = e => {
+        // dispatch({isLoading: true})
         e.preventDefault();
         const target = e.target;
+
+        const character = target.character.value; // possibly have to add a check to make sure it's correct format if API doesn't handle
+        const confirm = target.confirm.value;
         const email = target.email.value;
         const pass = target.password.value;
-        const confirm = target.confirm.value;
+        const server = target.server.value;
+
         const passLength = pass.length;
+
+        if (server === 'default') return;
 
         if (passLength < 8) {
             return dispatch({ type: 'passLength' });
@@ -151,6 +167,17 @@ const LogInBodyContainerA = props => {
 
         if (formCreate) {
             if (confirm === pass) {
+                Axios.get(`https://xivapi.com/character/search?name=${character}&server=${server}`, { mode: 'cors' })
+                    .then(res => {
+                        if (!res.data.Results) return;
+                        const results = res.data.Results[0];
+                        const charData = {
+                            id: results.ID,
+                            avatar: results.Avatar
+                        };
+                        console.log(charData); // working so far, next we create the account, and then add this data to database along with a token created on backend.
+                    });
+
                 auth.createUserWithEmailAndPassword(email, pass)
                     .then(() => {
                         console.log('then');

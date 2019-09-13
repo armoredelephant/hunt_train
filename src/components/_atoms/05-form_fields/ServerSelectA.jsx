@@ -28,8 +28,8 @@ const Option = styled.option`
 const ServerSelectA = () => {
     return (
         <Container>
-            <Select placeholder={'Server'}>
-                <Option value={'Server'}>World server</Option>
+            <Select name='server' placeholder={'Server'} required>
+                <Option value={'default'}>World server</Option>
                 {serverList.map(server => {
                     const rdmKey = Math.random()
                         .toString(36)
