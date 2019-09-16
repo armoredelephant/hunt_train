@@ -126,6 +126,8 @@ const Submit = styled.input`
 // add Char name and server to "Create" login form
 // When successfully signed in, remove modal, and make header visibile?
 
+const API_HOST_URL = process.env.API_URL;
+
 const LogInBodyContainerA = props => {
     const state = useContext(StateContext);
     const dispatch = useContext(DispatchContext);
@@ -148,6 +150,7 @@ const LogInBodyContainerA = props => {
 
     const handleSubmit = e => {
         // dispatch({isLoading: true})
+        // disable button if loading
         e.preventDefault();
         const target = e.target;
 
@@ -169,23 +172,34 @@ const LogInBodyContainerA = props => {
             if (confirm === pass) {
                 Axios.get(`https://xivapi.com/character/search?name=${character}&server=${server}`, { mode: 'cors' })
                     .then(res => {
-                        if (!res.data.Results) return;
+                        if (!res.data.Results) return; // give error, currently it says cannot find ID of undefined
                         const results = res.data.Results[0];
                         const charData = {
                             id: results.ID,
                             avatar: results.Avatar
                         };
                         console.log(charData); // working so far, next we create the account, and then add this data to database along with a token created on backend.
-                    });
+                        auth.createUserWithEmailAndPassword(email, pass) // create the account
+                            .then(() => {
+                                // need to get the uID
+                                const options = {
+                                    character: charData,
+                                    userId: auth.currentUser.uid
+                                };
+                                Axios.post(`${API_HOST_URL}/api/auth/new`, options)
+                                    .then(res => {
+                                        console.log(res.message);
+                                    });
 
-                auth.createUserWithEmailAndPassword(email, pass)
-                    .then(() => {
-                        console.log('then');
-                        dispatch({ type: 'modal' });
-                        dispatch({ type: 'formReset' });
-                        target.email.value = '';
-                        target.password.value = '';
-                        target.confirm.value = '';
+                                let x = auth.currentUser.uid;
+                                console.log(x);
+                                // this needs to be last step along with a isLoading: false dispatch
+                                dispatch({ type: 'modal' });
+                                dispatch({ type: 'formReset' });
+                                target.email.value = '';
+                                target.password.value = '';
+                                target.confirm.value = '';
+                            });
                     });
             };
         };
