@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 
 import { serverList } from 'Utils/servers';
@@ -25,10 +25,24 @@ const Option = styled.option`
 
 `;
 
+import { DispatchContext, StateContext } from '../../../App';
+
 const ServerSelectA = () => {
+    const state = useContext(StateContext);
+    const dispatch = useContext(DispatchContext);
+
+    const { formServer } = state;
+
+    const handleServer = e => {
+        e.preventDefault();
+        const target = e.target;
+        const val = target.value;
+        dispatch({ type: 'formServer', server: val });
+    };
+
     return (
         <Container>
-            <Select name='server' placeholder={'Server'} required>
+            <Select onChange={handleServer} name='server' value={formServer} required>
                 <Option value={'default'}>World server</Option>
                 {serverList.map(server => {
                     const rdmKey = Math.random()

@@ -5,7 +5,7 @@ import firebase from 'firebase/app';
 
 import 'firebase/auth';
 
-import PasswordErrorA from '@A/04-errors/PasswordErrorA';
+import FormErrorA from '@A/04-errors/FormErrorA';
 import ServerSelectA from '@A/05-form_fields/ServerSelectA';
 
 import { DispatchContext, StateContext } from '../../../App';
@@ -102,27 +102,6 @@ const Submit = styled.input`
     }
 `;
 
-// const SpanContainer = styled.div`
-//     display: flex;
-//     flex-flow: row;
-//     justify-content: space-evenly;
-//     align-content: center;
-// `;
-
-// const Span = styled.span`
-//     color: ${props => props.theme.fntClr};
-//     text-align: center;
-//     flex: 1;
-// `;
-
-// const Hr = styled.hr`
-//     border: 0;
-//     height: 1px;
-//     background: ${props => props.theme.darkestbg};
-//     background-image: linear-gradient(to right, ${props => props.theme.cardbg}, ${props => props.theme.darkestbg}, ${props => props.theme.cardbg});
-//     flex: 3;
-// `;
-
 // add Char name and server to "Create" login form
 // When successfully signed in, remove modal, and make header visibile?
 
@@ -131,7 +110,7 @@ const API_HOST_URL = process.env.API_URL;
 const LogInBodyContainerA = props => {
     const state = useContext(StateContext);
     const dispatch = useContext(DispatchContext);
-    const { formCreate, formLogin, passLengthError } = state;
+    const { formCreate, formLogin, errorMessage, formError } = state;
     const { history } = props;
 
     const auth = firebase.auth();
@@ -140,71 +119,83 @@ const LogInBodyContainerA = props => {
         dispatch({ type: 'userUpdate', user: user });
     });
 
-
-    // first make a call to the API and get user's ID
-    // https://xivapi.com/character/search?name=Hattori+Hanzo&server=Leviathan
-    // 
-
     // Then make a call here for the verification from profile page.
     // https://xivapi.com/character/1624479
 
     const handleSubmit = e => {
-        // dispatch({isLoading: true})
-        // disable button if loading
         e.preventDefault();
         const target = e.target;
 
-        const character = target.character.value; // possibly have to add a check to make sure it's correct format if API doesn't handle
+        // form fields
+        const character = target.character.value;
         const confirm = target.confirm.value;
         const email = target.email.value;
         const pass = target.password.value;
         const server = target.server.value;
 
+        // password length
         const passLength = pass.length;
 
-        if (server === 'default') return;
+        dispatch({ type: 'clearErrors' }); // clean up errors
 
-        if (passLength < 8) {
-            return dispatch({ type: 'passLength' });
+        if (server === 'default') { // checking if a server was selected
+            dispatch({ type: 'formError', error: 'Please select a server.' });
+            return;
         };
 
-        if (formCreate) {
-            if (confirm === pass) {
-                Axios.get(`https://xivapi.com/character/search?name=${character}&server=${server}`, { mode: 'cors' })
-                    .then(res => {
-                        if (!res.data.Results) return; // give error, currently it says cannot find ID of undefined
-                        const results = res.data.Results[0];
-                        const charData = {
-                            id: results.ID,
-                            avatar: results.Avatar
-                        };
-                        console.log(charData); // working so far, next we create the account, and then add this data to database along with a token created on backend.
-                        auth.createUserWithEmailAndPassword(email, pass) // create the account
-                            .then(() => {
-                                // need to get the uID
-                                const options = {
-                                    character: charData,
-                                    userId: auth.currentUser.uid
-                                };
-                                Axios.post(`${API_HOST_URL}/api/auth/new`, options)
-                                    .then(res => {
-                                        console.log(res.message);
-                                    });
-
-                                let x = auth.currentUser.uid;
-                                console.log(x);
-                                // this needs to be last step along with a isLoading: false dispatch
-                                dispatch({ type: 'modal' });
-                                dispatch({ type: 'formReset' });
-                                target.email.value = '';
-                                target.password.value = '';
-                                target.confirm.value = '';
-                            });
-                    });
-            };
+        if (passLength < 8) { // checking if password is 8 characters
+            dispatch({ type: 'formError', error: 'Password must be at least 8 characters.' });
+            return;
         };
 
-        // reset form
+        if (formCreate) { // if create is selected it will run through this code
+            if (!(confirm === pass)) { // making sure passwords match
+                dispatch({ type: 'formError', error: 'Passwords do not match.' })
+                return;
+            }
+
+            dispatch({ type: 'loading' }); // START LOADING
+
+            // fetch FFXIV char data
+            Axios.get(`https://xivapi.com/character/search?name=${character}&server=${server}`, { mode: 'cors' })
+                .then(res => {
+                    // if (!res.data.Results[0]) { 
+                    //     dispatch({ type: 'formError', error: 'Character not found.' });
+                    // };
+
+                    const results = res.data.Results[0]; // results of fetch
+
+                    const charData = { // charData we need from fetch
+                        id: results.ID,
+                        avatar: results.Avatar
+                    };
+
+                    auth.createUserWithEmailAndPassword(email, pass) // create the account
+                        .then(() => {
+                            const options = { // sending out charData and firebase uId to backend.
+                                character: charData,
+                                userId: auth.currentUser.uid
+                            };
+
+                            Axios.post(`${API_HOST_URL}/api/auth/new`, options) // post data to backend
+                                .then(() => {
+                                    dispatch({ type: 'loading' }); // end loading
+                                    dispatch({ type: 'formReset' }); // reset form
+                                    return;
+                                })
+                                .catch(error => {
+                                    dispatch({ type: 'formError', error: error.message }); // if any issue posting to DB, dispatch error.
+                                });
+                        })
+                        .catch(error => {
+                            dispatch({ type: 'formError', error: error.message }); // if the email is already in-use, dispatch error.
+                        })
+                })
+                .catch(() => {
+                    dispatch({ type: 'formError', error: 'Character not found.' }); // if no char data is found on that server, dispatch error.
+                    return;
+                });
+        };
         dispatch({ type: 'formReset' });
     };
 
@@ -226,7 +217,10 @@ const LogInBodyContainerA = props => {
                     />
                 </InputContainer>
                 {formLogin &&
-                    <PasswordErrorA passError={passLengthError} />
+                    <FormErrorA
+                        errorMessage={errorMessage}
+                        formError={formError}
+                    />
                 }
                 {formCreate &&
                     <>
@@ -247,7 +241,10 @@ const LogInBodyContainerA = props => {
                             />
                         </InputContainer>
                         <ServerSelectA />
-                        <PasswordErrorA passError={passLengthError} />
+                        <FormErrorA
+                            errorMessage={errorMessage}
+                            formError={formError}
+                        />
                     </>
                 }
                 <SubmitContainer>

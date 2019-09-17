@@ -42,6 +42,9 @@ const scoutDataReducer = (draft, action) => {
       draft.mapZone = '';
       draft.mapMark = '';
       draft.modalType = null;
+      draft.formError = initialState.formError;
+      draft.errorMessage = initialState.errorMessage;
+      draft.formServer = initialState.formServer;
       return;
     }
     case 'route': {
@@ -104,16 +107,31 @@ const scoutDataReducer = (draft, action) => {
       draft.formCreate = true;
       return;
     }
-    case 'passLength': {
-      draft.passLengthError = true;
-      return;
-    }
     case 'formReset': {
       draft.passLengthError = false;
       return;
     }
     case 'userUpdate': {
       draft.user = action.user;
+      return;
+    }
+    case 'formServer': {
+      draft.formServer = action.server;
+      return;
+    };
+    case 'loading': {
+      draft.isLoading = !draft.isLoading;
+      return;
+    };
+    case 'formError': {
+      draft.formError = true;
+      draft.errorMessage = action.error;
+      draft.isLoading = !draft.isLoading;
+      return;
+    }
+    case 'clearErrors': {
+      draft.formError = initialState.formError;
+      draft.errorMessage = initialState.formError;
       return;
     }
     default:

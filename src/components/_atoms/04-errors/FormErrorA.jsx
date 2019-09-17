@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const Error = styled.p`
     color: ${props => props.theme.red};
-    visibility: ${props => !props.passError && 'hidden'};
+    visibility: ${props => !props.formError && 'hidden'};
 `;
 
 const Container = styled.div`
@@ -11,13 +11,13 @@ const Container = styled.div`
     margin-bottom: 15px;
 `;
 
-const PasswordErrorA = props => {
-    const { passError } = props;
+const FormErrorA = props => {
+    const { formError, errorMessage } = props;
     return (
         <Container>
-            <Error passError={passError}>Password must be at least 8 characters.</Error>
+            <Error formError={formError}>{errorMessage}</Error>
         </Container>
     );
 };
 
-export default PasswordErrorA;
+export default FormErrorA;
