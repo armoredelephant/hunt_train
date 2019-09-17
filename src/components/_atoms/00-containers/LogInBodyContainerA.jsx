@@ -184,7 +184,7 @@ const LogInBodyContainerA = props => {
                                     return;
                                 })
                                 .catch(error => {
-                                    dispatch({ type: 'formError', error: error.message }); // if any issue posting to DB, dispatch error.
+                                    dispatch({ type: 'formError', error: 'There was a problem handling this request, please try again.' }); // if any issue posting to DB, dispatch error.
                                 });
                         })
                         .catch(error => {
