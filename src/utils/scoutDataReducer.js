@@ -134,6 +134,10 @@ const scoutDataReducer = (draft, action) => {
       draft.errorMessage = initialState.formError;
       return;
     }
+    case 'user': {
+      draft.user = action.user;
+      return;
+    }
     default:
       break;
   }

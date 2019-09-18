@@ -126,22 +126,14 @@ const LogInBodyContainerA = props => {
         e.preventDefault();
         const target = e.target;
 
-        // form fields
-        const character = target.character.value;
-        const confirm = target.confirm.value;
+        // universal form fields
         const email = target.email.value;
         const pass = target.password.value;
-        const server = target.server.value;
 
         // password length
         const passLength = pass.length;
 
         dispatch({ type: 'clearErrors' }); // clean up errors
-
-        if (server === 'default') { // checking if a server was selected
-            dispatch({ type: 'formError', error: 'Please select a server.' });
-            return;
-        };
 
         if (passLength < 8) { // checking if password is 8 characters
             dispatch({ type: 'formError', error: 'Password must be at least 8 characters.' });
@@ -149,6 +141,16 @@ const LogInBodyContainerA = props => {
         };
 
         if (formCreate) { // if create is selected it will run through this code
+            // sign-up form fields
+            const character = target.character.value;
+            const confirm = target.confirm.value;
+            const server = target.server.value;
+
+            if (server === 'default') { // checking if a server was selected
+                dispatch({ type: 'formError', error: 'Please select a server.' });
+                return;
+            };
+
             if (!(confirm === pass)) { // making sure passwords match
                 dispatch({ type: 'formError', error: 'Passwords do not match.' })
                 return;
@@ -183,7 +185,7 @@ const LogInBodyContainerA = props => {
                                     dispatch({ type: 'formReset' }); // reset form
                                     return;
                                 })
-                                .catch(error => {
+                                .catch(() => {
                                     dispatch({ type: 'formError', error: 'There was a problem handling this request, please try again.' }); // if any issue posting to DB, dispatch error.
                                 });
                         })
@@ -195,7 +197,13 @@ const LogInBodyContainerA = props => {
                     dispatch({ type: 'formError', error: 'Character not found.' }); // if no char data is found on that server, dispatch error.
                     return;
                 });
-        };
+        } else {
+            // if formLogin 
+            auth.signInWithEmailAndPassword(email, pass)
+                .catch(() => {
+                    dispatchEvent({ type: 'formError', error: 'Invalid username or password.' });
+                });
+        }
         dispatch({ type: 'formReset' });
     };
 
