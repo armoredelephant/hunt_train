@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import Axios from 'axios';
 import firebase from 'firebase/app';
@@ -7,6 +7,8 @@ import 'firebase/auth';
 
 import FormErrorA from '@A/04-errors/FormErrorA';
 import ServerSelectA from '@A/05-form_fields/ServerSelectA';
+import SpinnerA from '@A/06-spinners/SpinnerA';
+import ClipSpinnerA from '@A/06-spinners/ClipSpinnerA';
 
 import { DispatchContext, StateContext } from '../../../App';
 
@@ -110,7 +112,7 @@ const API_HOST_URL = process.env.API_URL;
 const LogInBodyContainerA = props => {
     const state = useContext(StateContext);
     const dispatch = useContext(DispatchContext);
-    const { formCreate, formLogin, errorMessage, formError } = state;
+    const { formCreate, formLogin, errorMessage, formError, isLoading } = state;
     const { history } = props;
 
     const auth = firebase.auth();
@@ -161,10 +163,6 @@ const LogInBodyContainerA = props => {
             // fetch FFXIV char data
             Axios.get(`https://xivapi.com/character/search?name=${character}&server=${server}`, { mode: 'cors' })
                 .then(res => {
-                    // if (!res.data.Results[0]) { 
-                    //     dispatch({ type: 'formError', error: 'Character not found.' });
-                    // };
-
                     const results = res.data.Results[0]; // results of fetch
 
                     const charData = { // charData we need from fetch
@@ -172,25 +170,32 @@ const LogInBodyContainerA = props => {
                         avatar: results.Avatar
                     };
 
-                    auth.createUserWithEmailAndPassword(email, pass) // create the account
+                    auth.setPersistence(firebase.auth.Auth.Persistence.SESSION)
                         .then(() => {
-                            const options = { // sending out charData and firebase uId to backend.
-                                character: charData,
-                                userId: auth.currentUser.uid
-                            };
-
-                            Axios.post(`${API_HOST_URL}/api/auth/new`, options) // post data to backend
+                            auth.createUserWithEmailAndPassword(email, pass) // create the account
                                 .then(() => {
-                                    dispatch({ type: 'loading' }); // end loading
-                                    dispatch({ type: 'formReset' }); // reset form
-                                    return;
+                                    const options = { // sending out charData and firebase uId to backend.
+                                        character: charData,
+                                        userId: auth.currentUser.uid
+                                    };
+
+                                    Axios.post(`${API_HOST_URL}/api/auth/new`, options) // post data to backend
+                                        .then(() => {
+                                            dispatch({ type: 'loading' }); // end loading
+                                            dispatch({ type: 'formReset' }); // reset form
+                                            dispatch({ type: 'modal' });
+                                            return;
+                                        })
+                                        .catch(() => {
+                                            dispatch({ type: 'formError', error: 'There was a problem handling this request, please try again.' }); // if any issue posting to DB, dispatch error.
+                                        });
                                 })
-                                .catch(() => {
-                                    dispatch({ type: 'formError', error: 'There was a problem handling this request, please try again.' }); // if any issue posting to DB, dispatch error.
-                                });
+                                .catch(error => {
+                                    dispatch({ type: 'formError', error: error.message }); // if the email is already in-use, dispatch error.
+                                })
                         })
-                        .catch(error => {
-                            dispatch({ type: 'formError', error: error.message }); // if the email is already in-use, dispatch error.
+                        .catch(() => {
+                            dispatch({ type: 'formError', error: 'There was a problem creating session. Please try again shortly.' });
                         })
                 })
                 .catch(() => {
@@ -199,66 +204,79 @@ const LogInBodyContainerA = props => {
                 });
         } else {
             // if formLogin 
-            auth.signInWithEmailAndPassword(email, pass)
+            auth.setPersistence(firebase.auth.Auth.Persistence.SESSION)
+                .then(() => {
+                    auth.signInWithEmailAndPassword(email, pass)
+                        .then(() => {
+                            dispatch({ type: 'modal' });
+                        })
+                        .catch(() => {
+                            dispatchEvent({ type: 'formError', error: 'Invalid username or password.' });
+                        });
+                })
                 .catch(() => {
-                    dispatchEvent({ type: 'formError', error: 'Invalid username or password.' });
-                });
+                    dispatch({ type: 'formError', error: 'There was a problem creating session. Please try again shortly.' });
+                })
         }
         dispatch({ type: 'formReset' });
     };
 
     return (
         <Container>
-            <Form onSubmit={handleSubmit}>
-                <InputContainer>
-                    <Input
-                        type='email'
-                        name='email'
-                        placeholder='Email'
-                    />
-                </InputContainer>
-                <InputContainer>
-                    <Input
-                        type='password'
-                        name='password'
-                        placeholder={formCreate ? 'Password - 8 char' : 'Password'}
-                    />
-                </InputContainer>
-                {formLogin &&
-                    <FormErrorA
-                        errorMessage={errorMessage}
-                        formError={formError}
-                    />
-                }
-                {formCreate &&
-                    <>
-                        <InputContainer>
-                            <Input
-                                type='password'
-                                name='confirm'
-                                placeholder='Confirm password'
-                                required
-                            />
-                        </InputContainer>
-                        <InputContainer>
-                            <Input
-                                type='text'
-                                name='character'
-                                placeholder='Character Name'
-                                required
-                            />
-                        </InputContainer>
-                        <ServerSelectA />
+            {isLoading ?
+                <ClipSpinnerA />
+                :
+                <Form onSubmit={handleSubmit}>
+                    <InputContainer>
+                        <Input
+                            type='email'
+                            name='email'
+                            placeholder='Email'
+                        />
+                    </InputContainer>
+                    <InputContainer>
+                        <Input
+                            type='password'
+                            name='password'
+                            placeholder={formCreate ? 'Password - 8 char' : 'Password'}
+                        />
+                    </InputContainer>
+                    {formLogin &&
                         <FormErrorA
                             errorMessage={errorMessage}
                             formError={formError}
                         />
-                    </>
-                }
-                <SubmitContainer>
-                    <Submit type='submit' value={formCreate ? 'Create' : 'Log In'} />
-                </SubmitContainer>
-            </Form>
+                    }
+                    {formCreate &&
+                        <>
+                            <InputContainer>
+                                <Input
+                                    type='password'
+                                    name='confirm'
+                                    placeholder='Confirm password'
+                                    required
+                                />
+                            </InputContainer>
+                            <InputContainer>
+                                <Input
+                                    type='text'
+                                    name='character'
+                                    placeholder='Character Name'
+                                    required
+                                />
+                            </InputContainer>
+                            <ServerSelectA />
+                            <FormErrorA
+                                errorMessage={errorMessage}
+                                formError={formError}
+                            />
+                        </>
+                    }
+                    <SubmitContainer>
+                        <Submit type='submit' value={formCreate ? 'Create' : 'Log In'} />
+                    </SubmitContainer>
+                </Form>
+            }
         </Container>
     );
 };

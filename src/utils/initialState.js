@@ -38,6 +38,7 @@ const initialState = {
   scoutedZoneKeys: [],
   shared: false,
   showModal: false,
+  showNav: false,
   showLocation: false,
   user: null,
   world: '',

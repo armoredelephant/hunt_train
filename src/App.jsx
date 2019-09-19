@@ -10,6 +10,7 @@ import 'firebase/auth';
 
 import SplashPageO from '@O/00-pages/SplashPageO';
 import ScouterPageO from '@O/00-pages/ScouterPageO';
+import NavBarA from '@A/07-navbar/NavBarA';
 
 import theme from './theme';
 import './sass/base.scss';
@@ -28,6 +29,7 @@ firebase.initializeApp(firebaseConfig);
 
 const App = () => {
   const [state, dispatch] = useImmerReducer(scoutDataReducer, initialState);
+  const { user } = state;
 
   useEffect(() => {
     const unsubscribe = firebase.auth().onAuthStateChanged(user => {
@@ -55,7 +57,9 @@ const App = () => {
     <DispatchContext.Provider value={dispatch}>
       <StateContext.Provider value={state}>
         <ThemeProvider theme={theme}>
+          {/** will change this to only show if user is logged in */}
           <Router>
+            {user && <NavBarA />}
             <Switch>
               <Route exact path="/" component={SplashPageO} />
               <Route path="/*" component={ScouterPageO} />

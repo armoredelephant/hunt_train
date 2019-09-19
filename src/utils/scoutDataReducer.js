@@ -138,6 +138,10 @@ const scoutDataReducer = (draft, action) => {
       draft.user = action.user;
       return;
     }
+    case 'nav': {
+      draft.showNav = !draft.showNav;
+      return;
+    }
     default:
       break;
   }
