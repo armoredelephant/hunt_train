@@ -139,7 +139,7 @@ const LogInBodyContainerA = props => {
                             dispatch({ type: 'loading' });
                         })
                         .catch(() => {
-                            dispatchEvent({ type: 'formError', error: 'Invalid username or password.' });
+                            dispatch({ type: 'formError', error: 'Invalid username or password.' });
                         });
                 })
                 .catch(() => {
