@@ -68,16 +68,15 @@ const VerificationFormM = () => {
                         .then(response => {
                             const userData = response.data.user;
                             dispatch({ type: 'user', userData: userData, discord: userData.verified });
-                            dispatch({ type: 'loading' });
                         })
                         .catch(() => {
                             dispatch({ type: 'formError', error: 'There was a problem with this request. Please try again.' });
-                            dispatch({ type: 'loading' });
                         });
-                } else {
-                    dispatch({ type: 'formError', error: 'Unable to verify. Please check the token and try again.' });
-                    dispatch({ type: 'loading' });
-                };
+                }
+                if (!verified) dispatch({ type: 'formError', error: 'Unable to verify. Please check the token and try again.' });
+            })
+            .catch(() => {
+                dispatch({ type: 'loading' });
             })
     };
 
