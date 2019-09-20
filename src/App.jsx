@@ -43,7 +43,9 @@ const App = () => {
         Axios.get(`${API_HOST_URL}/api/auth/login`, options)
           .then(response => {
             const userData = response.data.user;
-            dispatch({ type: 'user', userData: userData, discord: userData.verified });
+            if (userData) {
+              dispatch({ type: 'user', userData: userData, discord: userData.verified });
+            }
           });
       } else {
         dispatch({ type: 'user', user: null, discord: false });

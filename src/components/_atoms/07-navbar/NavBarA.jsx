@@ -33,7 +33,6 @@ const NavContainer = styled.div`
     display: flex;
     flex-flow: row;
     background: ${props => props.theme.darkestbg};
-    width: 150px;
     justify-content: space-evenly;
     margin-right: 8px;
 `;
