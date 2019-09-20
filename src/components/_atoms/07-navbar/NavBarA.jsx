@@ -1,5 +1,8 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
+import firebase from 'firebase/app';
+
+import 'firebase/auth';
 
 import { DispatchContext, StateContext } from '../../../App';
 import NavButtonA from '@A/02-buttons/NavButtonA';
@@ -47,7 +50,7 @@ const TextContainer = styled.div`
     margin-right: 5px;
 `;
 
-const NavBarA = () => {
+const NavBarA = props => {
     const dispatch = useContext(DispatchContext);
     const state = useContext(StateContext);
     const { user } = state;
@@ -61,8 +64,9 @@ const NavBarA = () => {
 
     // handleLogout => will require firebase.auth() import
     const handleLogout = () => {
-
-    }
+        firebase.auth().signOut();
+        dispatch({ type: 'logout' });
+    };
 
     return (
         <Container>

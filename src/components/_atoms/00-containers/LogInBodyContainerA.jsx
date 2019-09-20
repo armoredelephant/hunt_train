@@ -204,11 +204,13 @@ const LogInBodyContainerA = props => {
                 });
         } else {
             // if formLogin 
+            dispatch({ type: 'loading' });
             auth.setPersistence(firebase.auth.Auth.Persistence.SESSION)
                 .then(() => {
                     auth.signInWithEmailAndPassword(email, pass)
                         .then(() => {
                             dispatch({ type: 'modal' });
+                            dispatch({ type: 'loading' });
                         })
                         .catch(() => {
                             dispatchEvent({ type: 'formError', error: 'Invalid username or password.' });

@@ -36,6 +36,11 @@ const scoutDataReducer = (draft, action) => {
       draft.showModal = true;
       return;
     }
+    case 'logout': {
+      draft.modalType = 'logout';
+      draft.showModal = true;
+      return;
+    }
     case 'modal': {
       draft.showModal = false;
       draft.shared = false;
