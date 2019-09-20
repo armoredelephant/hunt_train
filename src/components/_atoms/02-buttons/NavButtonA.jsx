@@ -6,6 +6,7 @@ const NavButton = styled.button`
     display: flex;
     flex-flow: row;
     font-family: ${props => props.theme.ff};
+    letter-spacing: ${props => props.theme.ls};
     color: ${props => props.theme.blue};
     font-size: 13px;
     cursor: ${props => props.theme.btnCursor};

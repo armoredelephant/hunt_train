@@ -25,8 +25,10 @@ const initialState = {
     instance: ' - '
   },
   cardKey: '',
+  changeChar: false,
   datacenter: '',
   dataCenterURL: null,
+  discord: false,
   errorMessage: null,
   formLogin: true,
   formCreate: false,
@@ -40,7 +42,7 @@ const initialState = {
   showModal: false,
   showNav: false,
   showLocation: false,
-  user: null,
+  userData: null,
   world: '',
   zoneKeys: null,
   zoneData: null

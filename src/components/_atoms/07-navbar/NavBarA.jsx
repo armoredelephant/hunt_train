@@ -6,12 +6,13 @@ import 'firebase/auth';
 
 import { DispatchContext, StateContext } from '../../../App';
 import NavButtonA from '@A/02-buttons/NavButtonA';
+import AvatarContainerA from '@A/00-containers/AvatarContainerA';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faDoorOpen, faUser } from "@fortawesome/free-solid-svg-icons";
+import { faDoorOpen, faCheck } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-library.add(faDoorOpen, faUser);
+library.add(faDoorOpen, faCheck);
 
 const Container = styled.div`
     position: relative;
@@ -24,42 +25,35 @@ const Container = styled.div`
     justify-content: flex-end;
 `;
 
+const IconContainer = styled.div`
+    color: ${props => props.theme.green};
+`;
+
 const NavContainer = styled.div`
     display: flex;
     flex-flow: row;
     background: ${props => props.theme.darkestbg};
     width: 150px;
     justify-content: space-evenly;
-`;
-
-const AvatarContainer = styled.div`
-    display: flex;
-    justify-content: center;
-    height: 100%;
-`;
-
-const Avatar = styled.img`
-    display: flex;
-    border-radius: 50%;
-    height: 40px;
-    width: 40px;
-    align-self: center;
+    margin-right: 8px;
 `;
 
 const TextContainer = styled.div`
+    color: ${props => props.verified ? props.theme.green : props.theme.blue};
     margin-right: 5px;
 `;
 
 const NavBarA = props => {
     const dispatch = useContext(DispatchContext);
     const state = useContext(StateContext);
-    const { user } = state;
+    const { userData } = state;
 
-    const avatarURL = user.avatar;
+    const avatarURL = userData.avatar;
+    const verified = userData.verified;
 
     // handleNav
     const handleNav = () => {
-
+        dispatch({ type: 'verification' });
     }
 
     // handleLogout => will require firebase.auth() import
@@ -70,13 +64,15 @@ const NavBarA = props => {
 
     return (
         <Container>
-            <AvatarContainer>
-                <Avatar src={avatarURL} />
-            </AvatarContainer>
+            <AvatarContainerA url={avatarURL} />
             <NavContainer>
                 <NavButtonA handleClick={handleNav}>
-                    <TextContainer>Profile</TextContainer>
-                    <FontAwesomeIcon icon={faUser} size='1x' />
+                    <TextContainer>{verified ? 'Verified' : 'Get Verified'}</TextContainer>
+                    {verified &&
+                        <IconContainer>
+                            <FontAwesomeIcon icon={faCheck} size='1x' />
+                        </IconContainer>
+                    }
                 </NavButtonA>
                 <NavButtonA handleClick={handleLogout}>
                     <TextContainer>Logout</TextContainer>

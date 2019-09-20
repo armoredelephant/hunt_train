@@ -5,12 +5,13 @@ import LogInHeaderA from '@A/01-headers/LogInHeaderA';
 import LogInBodyContainerA from '@A/00-containers/LogInBodyContainerA';
 
 const Container = styled.div`
-    display: flex;
+    display: inline-flex;
     flex-flow: column;
     align-items: center;
     align-self: center;
     width: 384px;
-    height: 500px;
+    height: 65vh;
+    overflow: auto;
     radius: ${props => props.theme.brad};
     margin: 8px;
     background: ${props => props.theme.cardbg};

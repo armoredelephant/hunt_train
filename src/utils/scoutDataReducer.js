@@ -41,6 +41,11 @@ const scoutDataReducer = (draft, action) => {
       draft.showModal = true;
       return;
     }
+    case 'verification': {
+      draft.modalType = 'verification';
+      draft.showModal = true;
+      return;
+    }
     case 'modal': {
       draft.showModal = false;
       draft.shared = false;
@@ -116,10 +121,6 @@ const scoutDataReducer = (draft, action) => {
       draft.passLengthError = false;
       return;
     }
-    case 'userUpdate': {
-      draft.user = action.user;
-      return;
-    }
     case 'formServer': {
       draft.formServer = action.server;
       return;
@@ -140,11 +141,16 @@ const scoutDataReducer = (draft, action) => {
       return;
     }
     case 'user': {
-      draft.user = action.user;
+      draft.userData = action.userData;
+      draft.discord = action.discord;
       return;
     }
     case 'nav': {
       draft.showNav = !draft.showNav;
+      return;
+    }
+    case 'changeChar': {
+      draft.changeChar = !draft.changeChar;
       return;
     }
     default:

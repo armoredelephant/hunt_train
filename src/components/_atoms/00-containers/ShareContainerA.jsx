@@ -8,9 +8,10 @@ const Container = styled.div`
     align-self: center;
     background-color: ${props => props.theme.cardbg};
     border-radius: ${props => props.theme.brad};
-    box-shadow: ${props => props.theme.bshad};
+    box-shadow: ${props => !props.verify && props.theme.bshad};
     margin: ${props => props.theme.margin};
     display: flex;
+    width: ${props => props.verify && '80%'};
     justify-content: center;
     align-content: center;
     padding: ${props => props.theme.pad};
@@ -28,25 +29,25 @@ const Input = styled.input`
 const Wrapper = styled.div`
     display: flex;
     flex-flow: row;
-    justify-content: space-between;
+    width: 100%;
+    justify-content: space-around;
     align-items: center;
 `;
 
 const ShareContainerA = props => {
-    const { url } = props;
-    const fullURL = `hunt-conductor.com/${url}`;
-    const urlRef = useRef(null);
+    const { text, val, verify } = props;
+    const valRef = useRef(null);
 
     const handleCopy = () => {
-        urlRef.current.select();
+        valRef.current.select();
         document.execCommand('copy');
     };
 
     return (
-        <Container>
+        <Container verify={verify}>
             <Wrapper>
-                <Input ref={urlRef} value={fullURL} readOnly />
-                <StyledButtonA handleClick={handleCopy} text={'Copy'} />
+                <Input ref={valRef} value={val} readOnly />
+                <StyledButtonA handleClick={handleCopy} text={text} />
             </Wrapper>
         </Container>
     );

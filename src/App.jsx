@@ -18,6 +18,7 @@ import './sass/base.scss';
 // state management
 import initialState from 'Utils/initialState';
 import scoutDataReducer from 'Utils/scoutDataReducer';
+import { nullLiteral } from '@babel/types';
 
 // context
 export const DispatchContext = createContext();
@@ -29,7 +30,7 @@ firebase.initializeApp(firebaseConfig);
 
 const App = () => {
   const [state, dispatch] = useImmerReducer(scoutDataReducer, initialState);
-  const { user } = state;
+  const { userData } = state;
 
   useEffect(() => {
     const unsubscribe = firebase.auth().onAuthStateChanged(user => {
@@ -42,12 +43,10 @@ const App = () => {
         Axios.get(`${API_HOST_URL}/api/auth/login`, options)
           .then(response => {
             const userData = response.data.user;
-            console.log(response.data.user);
-            console.log(response.data);
-            dispatch({ type: 'user', user: userData });
+            dispatch({ type: 'user', userData: userData, discord: userData.verified });
           });
       } else {
-        dispatch({ type: 'user', user: null });
+        dispatch({ type: 'user', user: null, discord: false });
       }
     });
     return () => unsubscribe();
@@ -59,7 +58,7 @@ const App = () => {
         <ThemeProvider theme={theme}>
           {/** will change this to only show if user is logged in */}
           <Router>
-            {user && <NavBarA />}
+            {userData && <NavBarA />}
             <Switch>
               <Route exact path="/" component={SplashPageO} />
               <Route path="/*" component={ScouterPageO} />

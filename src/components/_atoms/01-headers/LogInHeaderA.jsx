@@ -11,6 +11,7 @@ const Container = styled.div`
     align-self: flex-start;
     justify-content: space-evenly;
     width: 100%;
+    min-height: 50px;
     border-bottom: 1px solid ${props => props.theme.darkestbg};
 `;
 

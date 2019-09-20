@@ -9,6 +9,7 @@ const Button = styled.button`
   border: none;
   padding: 3px 16px;
   outline: none;
+  cursor: pointer;
   font-size: ${props => props.theme.btnFS};
   border-radius: ${props => props.theme.brad};
   background-color: ${props => props.theme.blue};
