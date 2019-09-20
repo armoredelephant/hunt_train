@@ -10,7 +10,6 @@ const Container = styled.div`
     align-items: center;
     align-self: center;
     width: 384px;
-    height: 65vh;
     overflow: auto;
     radius: ${props => props.theme.brad};
     margin: 8px;
