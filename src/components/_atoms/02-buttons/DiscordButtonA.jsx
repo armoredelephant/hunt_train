@@ -23,6 +23,7 @@ const Button = styled.button`
     outline: none;
     width: 25px
     height: 30px;
+    cursor: ${props => props.disabled ? 'not-allowed' : 'pointer'};
 
     &:active {
         color: #6E87D8;
@@ -32,7 +33,11 @@ const Button = styled.button`
 const DiscordButtonA = () => {
     const state = useContext(StateContext);
     const dispatch = useContext(DispatchContext);
-    const { currentStop, datacenter, dataCenterURL, routeData, world } = state;
+    const { userData, currentStop, datacenter, dataCenterURL, routeData, world } = state;
+    let verified;
+    if (userData) {
+        verified = userData.verified;
+    }
 
     useEffect(() => {
         const discordUrl = discordSwitch(datacenter);
@@ -78,7 +83,7 @@ const DiscordButtonA = () => {
     }
 
     return (
-        <Button onClick={handlePing}>
+        <Button disabled={!verified} onClick={handlePing}>
             <FontAwesomeIcon icon={faDiscord} size='3x' />
         </Button>
     );

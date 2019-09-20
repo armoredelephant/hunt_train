@@ -9,10 +9,10 @@ const Button = styled.button`
   border: none;
   padding: 3px 16px;
   outline: none;
-  cursor: pointer;
+  cursor: ${props => props.disabled ? 'not-allowed' : 'pointer'};
   font-size: ${props => props.theme.btnFS};
   border-radius: ${props => props.theme.brad};
-  background-color: ${props => props.theme.blue};
+  background-color: ${props => props.disabled ? '#893327' : props.theme.blue};
   text-decoration: none;
   margin: 5px;
 
