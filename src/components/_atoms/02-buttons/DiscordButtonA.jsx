@@ -82,8 +82,9 @@ const DiscordButtonA = () => {
         // Axios(coeurl);
     }
 
+    // disabled={!verified}
     return (
-        <Button disabled={!verified} onClick={handlePing}>
+        <Button disabled={true} onClick={handlePing}>
             <FontAwesomeIcon icon={faDiscord} size='3x' />
         </Button>
     );
