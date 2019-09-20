@@ -71,9 +71,13 @@ const VerificationFormM = () => {
                         })
                         .catch(() => {
                             dispatch({ type: 'formError', error: 'There was a problem with this request. Please try again.' });
+                            dispatch({ type: 'loading' });
+                            return;
                         });
                 } else {
                     dispatch({ type: 'formError', error: 'Unable to verify. Please check the token and try again.' });
+                    dispatch({ type: 'loading' });
+                    return;
                 };
                 dispatch({ type: 'loading' });
             });
