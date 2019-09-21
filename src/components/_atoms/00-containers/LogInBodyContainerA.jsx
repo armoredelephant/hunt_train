@@ -5,10 +5,11 @@ import firebase from 'firebase/app';
 
 import 'firebase/auth';
 
-import FormErrorA from '@A/04-errors/FormErrorA';
+import FormNotificationA from '@A/03-notifications/FormNotificationA';
 import ServerSelectA from '@A/05-form_fields/ServerSelectA';
 import InputFieldA from '@A/05-form_fields/InputFieldA';
 import SubmitButtonA from '@A/02-buttons/SubmitButtonA';
+import RadioButtonA from '@A/05-form_fields/RadioButtonA';
 import ClipSpinnerA from '@A/06-spinners/ClipSpinnerA';
 
 import { DispatchContext, StateContext } from '../../../App';
@@ -39,7 +40,7 @@ const API_HOST_URL = process.env.API_URL;
 const LogInBodyContainerA = props => {
     const state = useContext(StateContext);
     const dispatch = useContext(DispatchContext);
-    const { formCreate, formLogin, errorMessage, formError, isLoading } = state;
+    const { formCreate, formLogin, formNotification, formSuccess, formError, isLoading, radioChecked } = state;
     const { history } = props;
 
     const auth = firebase.auth();
@@ -58,7 +59,7 @@ const LogInBodyContainerA = props => {
         // password length
         const passLength = pass.length;
 
-        dispatch({ type: 'clearErrors' }); // clean up errors
+        dispatch({ type: 'clearNotifications' }); // clean up errors
 
         if (passLength < 8) { // checking if password is 8 characters
             dispatch({ type: 'formError', error: 'Password must be at least 8 characters.' });
@@ -149,27 +150,61 @@ const LogInBodyContainerA = props => {
         dispatch({ type: 'formReset' });
     };
 
+    const handleReset = e => {
+        e.preventDefault();
+        const target = e.target;
+        const email = target.email.value;
+
+        dispatch({ type: 'clearNotifications' });
+
+        dispatch({ type: 'loading' });
+
+        auth.sendPasswordResetEmail(email)
+            .then(() => {
+                dispatch({ type: 'formSuccess', message: 'Reset password email has been sent.' });
+            })
+            .catch(() => {
+                dispatch({ type: 'formError', error: 'There was a problem handling this request. Please try again' });
+            })
+    };
+
+    const radioText = 'Forgot password?';
+
+    const handleSubmitText = () => {
+        if (radioChecked) return 'Reset';
+        if (formCreate) return 'Create';
+        return 'Log In';
+    }
+
+    const submitText = handleSubmitText();
+
     return (
         <Container>
             {isLoading ?
                 <ClipSpinnerA />
                 :
-                <Form onSubmit={handleSubmit}>
+                <Form onSubmit={radioChecked ? handleReset : handleSubmit}>
                     <InputFieldA
                         inputN='email'
                         inputT='email'
                         inputPlaceHolder='* Email'
                     />
-                    <InputFieldA
-                        inputN='password'
-                        inputT='password'
-                        inputPlaceHolder={formCreate ? '* Password - 8 char' : '* Password'}
-                        require={true}
-                    />
+                    {!radioChecked &&
+                        <InputFieldA
+                            inputN='password'
+                            inputT='password'
+                            inputPlaceHolder={formCreate ? '* Password - 8 char' : '* Password'}
+                            require={true}
+                        />
+                    }
+                    {!formCreate &&
+                        <RadioButtonA text={radioText} />
+                    }
                     {formLogin &&
-                        <FormErrorA
-                            errorMessage={errorMessage}
+                        <FormNotificationA
+                            formNotification={formNotification}
                             formError={formError}
+                            formSuccess={formSuccess}
                         />
                     }
                     {formCreate &&
@@ -187,15 +222,16 @@ const LogInBodyContainerA = props => {
                                 require={true}
                             />
                             <ServerSelectA />
-                            <FormErrorA
-                                errorMessage={errorMessage}
+                            <FormNotificationA
+                                formNotification={formNotification}
                                 formError={formError}
+                                formSuccess={formSuccess}
                             />
                         </>
                     }
                     <SubmitButtonA
                         submitT='submit'
-                        submitV={formCreate ? 'Create' : 'Log In'}
+                        submitV={submitText}
                     />
                 </Form>
             }

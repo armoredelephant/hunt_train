@@ -14,13 +14,15 @@ const Header = styled.div`
     justify-content: flex-end;
     align-self: flex-start;
     width: 100%;
+    border-bottom: 1px solid ${props => props.theme.darkestbg};
+    background: #444444;
 `;
 
 const Button = styled.button`
     display: flex;
     align-self: flex-end;
     color: ${props => props.theme.fntClr};
-    background: ${props => props.theme.cardbg};
+    background: #444444;
     border: none;
 
     &:visited,

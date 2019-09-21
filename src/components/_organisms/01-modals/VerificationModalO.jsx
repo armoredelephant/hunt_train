@@ -24,13 +24,13 @@ const Container = styled.div`
 
 const VerificationModalO = () => {
     const state = useContext(StateContext);
-    const { changeChar } = state;
+    const { radioChecked } = state;
     return (
         <Container>
             <ModalCloseHeaderA />
             <VerificationGuideA />
             <VerificationFormM />
-            {changeChar &&
+            {radioChecked &&
                 <ChangeFormM />
             }
         </Container>

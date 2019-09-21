@@ -3,7 +3,12 @@ const initialState = {
   allDatacenters: [
     'Aether',
     'Primal',
-    'Crystal'
+    'Crystal',
+    'Chaos',
+    'Light',
+    'Elemental',
+    'Gaia',
+    'Mana'
   ],
   scoutData: {},
   routeData: {
@@ -25,18 +30,19 @@ const initialState = {
     instance: ' - '
   },
   cardKey: '',
-  changeChar: false,
+  radioChecked: false,
   datacenter: '',
   dataCenterURL: null,
   discord: false,
-  errorMessage: null,
+  formNotification: null,
+  formError: false,
+  formSuccess: false,
   formLogin: true,
   formCreate: false,
   formServer: 'default',
   isLoading: false,
   markCount: 0,
   modalType: null,
-  formError: false,
   scoutedZoneKeys: [],
   shared: false,
   showModal: false,

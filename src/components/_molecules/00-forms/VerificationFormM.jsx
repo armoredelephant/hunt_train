@@ -4,9 +4,9 @@ import styled from 'styled-components';
 import AvatarContainerA from '@A/00-containers/AvatarContainerA';
 import CharacterFieldsA from '@A/05-form_fields/CharacterFieldsA';
 import StyledButtonA from '@A/02-buttons/StyledButtonA';
-import FormErrorA from '@A/04-errors/FormErrorA';
+import FormNotificationA from '@A/03-notifications/FormNotificationA';
 import ShareContainerA from '@A/00-containers/ShareContainerA';
-import WrongCharBoxA from '@A/05-form_fields/WrongCharBoxA';
+import RadioButtonA from '@A/05-form_fields/RadioButtonA';
 import ClipSpinnerA from '@A/06-spinners/ClipSpinnerA';
 
 import { DispatchContext, StateContext } from '../../../App';
@@ -41,7 +41,7 @@ const CharacterContainer = styled.div`
 const VerificationFormM = () => {
     const state = useContext(StateContext);
     const dispatch = useContext(DispatchContext);
-    const { formError, errorMessage, isLoading, userData } = state;
+    const { formError, formNotification, formSuccess, isLoading, userData } = state;
     const avatarURL = userData.avatar,
         server = userData.server,
         character = userData.charName,
@@ -51,7 +51,7 @@ const VerificationFormM = () => {
         const token = userData.verificationToken,
             userId = userData.id
 
-        dispatch({ type: 'clearErrors' }); // clean up errors
+        dispatch({ type: 'clearNotifications' }); // clean up errors
 
         dispatch({ type: 'loading' });
 
@@ -68,6 +68,7 @@ const VerificationFormM = () => {
                         .then(response => {
                             const userData = response.data.user;
                             dispatch({ type: 'user', userData: userData, discord: userData.verified });
+                            dispatch({ type: 'loading' });
                         })
                         .catch(() => {
                             dispatch({ type: 'formError', error: 'There was a problem with this request. Please try again.' });
@@ -75,10 +76,9 @@ const VerificationFormM = () => {
                 }
                 if (!verified) dispatch({ type: 'formError', error: 'Unable to verify. Please check the token and try again.' });
             })
-            .catch(() => {
-                dispatch({ type: 'loading' });
-            })
     };
+
+    const radioText = 'Select a different character.' // text for radio button label
 
     return (
         <Container>
@@ -100,11 +100,14 @@ const VerificationFormM = () => {
                     </>
                 }
             </CharacterContainer>
-            <FormErrorA
-                errorMessage={errorMessage}
+            <FormNotificationA
+                formNotification={formNotification}
                 formError={formError}
+                formSuccess={formSuccess}
             />
-            <WrongCharBoxA />
+            <RadioButtonA
+                text={radioText}
+            />
         </Container>
 
     );

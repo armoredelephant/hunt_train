@@ -33,6 +33,8 @@ const AuthHeaderButtonA = props => {
         const target = e.target;
         const value = target.value;
         const s = value.toLowerCase();
+        dispatch({ type: 'radioReset' });
+        dispatch({ type: 'clearNotifications' });
         dispatch({ type: `${s}` });
     };
 

@@ -32,30 +32,32 @@ const Button = styled.button`
     border: none;
 `;
 
-const WrongCharBoxA = () => {
+const RadioButtonA = props => {
     const dispatch = useContext(DispatchContext);
     const state = useContext(StateContext);
 
-    const { changeChar } = state;
+    const { radioChecked } = state;
+    const { text } = props;
 
-    const handleChange = () => {
-        dispatch({ type: 'changeChar' });
+    const handleChange = e => {
+        e.preventDefault();
+        dispatch({ type: 'radio' });
     };
 
     return (
         <Container>
             <Label>
                 <Button onClick={handleChange} >
-                    {!changeChar ?
+                    {!radioChecked ?
                         <FontAwesomeIcon icon={faSquare} size='1x' />
                         :
                         <FontAwesomeIcon icon={faCheckSquare} size='1x' />
                     }
                 </Button>
-                Select a different character.
+                {text}
             </Label>
         </Container>
     );
 };
 
-export default WrongCharBoxA;
+export default RadioButtonA;

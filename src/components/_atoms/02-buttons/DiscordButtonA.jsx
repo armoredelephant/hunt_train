@@ -51,7 +51,7 @@ const DiscordButtonA = () => {
 
         const { zone, instance, coords } = routeData[currentStop];
 
-        const data = `${world} train <> ${zone} ${coords} i${instance}`
+        const data = `${world} train @ ${zone} ${coords} i${instance}`
         const centurio = {
             method: 'POST',
             url: `${dataCenterURL}`,
@@ -84,7 +84,7 @@ const DiscordButtonA = () => {
 
     // disabled={!verified}
     return (
-        <Button disabled={true} onClick={handlePing}>
+        <Button disabled={!verified} onClick={handlePing}>
             <FontAwesomeIcon icon={faDiscord} size='3x' />
         </Button>
     );

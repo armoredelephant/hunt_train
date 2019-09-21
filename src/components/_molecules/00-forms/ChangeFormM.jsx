@@ -40,7 +40,7 @@ const ChangeFormM = () => {
         const character = target.character.value;
         const server = target.server.value;
 
-        dispatch({ type: 'clearErrors' }); // clean up errors
+        dispatch({ type: 'clearNotifications' }); // clean up errors
 
         if (server === 'default') { // checking if a server was selected
             dispatch({ type: 'formError', error: 'Please select a server.' });

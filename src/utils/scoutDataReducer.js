@@ -52,8 +52,10 @@ const scoutDataReducer = (draft, action) => {
       draft.mapZone = '';
       draft.mapMark = '';
       draft.modalType = null;
+      draft.radioChecked = initialState.radioChecked;
       draft.formError = initialState.formError;
-      draft.errorMessage = initialState.errorMessage;
+      draft.formSuccess = initialState.formSuccess;
+      draft.formNotification = initialState.formNotification;
       draft.formServer = initialState.formServer;
       return;
     }
@@ -131,13 +133,20 @@ const scoutDataReducer = (draft, action) => {
     };
     case 'formError': {
       draft.formError = true;
-      draft.errorMessage = action.error;
-      draft.isLoading = !draft.isLoading;
+      draft.formNotification = action.error;
+      draft.isLoading = false;
       return;
     }
-    case 'clearErrors': {
+    case 'formSuccess': {
+      draft.formSuccess = true;
+      draft.formNotification = action.message;
+      draft.isLoading = false;
+      return;
+    }
+    case 'clearNotifications': {
       draft.formError = initialState.formError;
-      draft.errorMessage = initialState.formError;
+      draft.formSuccess = initialState.formSuccess;
+      draft.formNotification = initialState.formNotification;
       return;
     }
     case 'user': {
@@ -149,8 +158,12 @@ const scoutDataReducer = (draft, action) => {
       draft.showNav = !draft.showNav;
       return;
     }
-    case 'changeChar': {
-      draft.changeChar = !draft.changeChar;
+    case 'radio': {
+      draft.radioChecked = !draft.radioChecked;
+      return;
+    }
+    case 'radioReset': {
+      draft.radioChecked = false;
       return;
     }
     default:
