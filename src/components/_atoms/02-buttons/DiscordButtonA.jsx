@@ -36,11 +36,9 @@ const DiscordButtonA = () => {
     const { userData, currentStop, datacenter, dataCenterURL, routeData, world } = state;
     let verified;
 
-    useEffect(() => {
-        if (userData) {
-            verified = userData.verified;
-        }
-    }, [userData])
+    if (userData) {
+        verified = userData.verified;
+    };
 
     useEffect(() => {
         const discordUrl = discordSwitch(datacenter);
