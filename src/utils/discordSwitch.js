@@ -12,14 +12,14 @@ const discordSwitch = dataCenter => {
         case 'crystal': {
             return discordConfig.crystalURL;
         };
-        case 'light': {
-            return discordConfig.lightURL;
-        }
         case 'elemental': {
             return discordConfig.elementalURL;
         }
         case 'gaia': {
             return discordConfig.gaiaURL;
+        }
+        case 'light': {
+            return discordConfig.lightURL;
         }
         case 'mana': {
             return discordConfig.manaURL;
