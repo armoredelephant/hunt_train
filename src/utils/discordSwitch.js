@@ -3,14 +3,29 @@ import { discordConfig } from 'Utils/discordConfig';
 const discordSwitch = dataCenter => {
     const dc = dataCenter.toLowerCase();
     switch (dc) {
-        case 'primal': {
-            return discordConfig.primalURL;
+        case 'aether': {
+            return discordConfig.aetherURL;
         };
+        case 'chaos': {
+            return discordConfig.chaosURL;
+        }
         case 'crystal': {
             return discordConfig.crystalURL;
         };
-        case 'aether': {
-            return discordConfig.aetherURL;
+        case 'light': {
+            return discordConfig.lightURL;
+        }
+        case 'elemental': {
+            return discordConfig.elementalURL;
+        }
+        case 'gaia': {
+            return discordConfig.gaiaURL;
+        }
+        case 'mana': {
+            return discordConfig.manaURL;
+        }
+        case 'primal': {
+            return discordConfig.primalURL;
         };
         default: {
             return null;

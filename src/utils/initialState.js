@@ -2,13 +2,13 @@ const initialState = {
   allWorlds: null,
   allDatacenters: [
     'Aether',
-    'Primal',
-    'Crystal',
     'Chaos',
+    'Crystal',
     'Light',
     'Elemental',
     'Gaia',
-    'Mana'
+    'Mana',
+    'Primal',
   ],
   scoutData: {},
   routeData: {
