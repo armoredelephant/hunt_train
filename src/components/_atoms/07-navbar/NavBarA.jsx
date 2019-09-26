@@ -7,6 +7,7 @@ import 'firebase/auth';
 import { DispatchContext, StateContext } from '../../../App';
 import NavButtonA from '@A/02-buttons/NavButtonA';
 import AvatarContainerA from '@A/00-containers/AvatarContainerA';
+import SignInContainerA from '@A/00-containers/SignInContainerA';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faDoorOpen, faCheck } from "@fortawesome/free-solid-svg-icons";
@@ -23,6 +24,7 @@ const Container = styled.div`
     background: ${props => props.theme.darkestbg};
     box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .8);
     justify-content: flex-end;
+    align-items: center;
 `;
 
 const IconContainer = styled.div`
@@ -42,13 +44,16 @@ const TextContainer = styled.div`
     margin-right: 5px;
 `;
 
-const NavBarA = props => {
+const NavBarA = () => {
     const dispatch = useContext(DispatchContext);
     const state = useContext(StateContext);
     const { userData } = state;
-
-    const avatarURL = userData.avatar;
-    const verified = userData.verified;
+    let avatarURL,
+        verified;
+    if (userData) {
+        avatarURL = userData.avatar;
+        verified = userData.verified;
+    }
 
     // handleNav
     const handleNav = () => {
@@ -63,21 +68,27 @@ const NavBarA = props => {
 
     return (
         <Container>
-            <AvatarContainerA url={avatarURL} />
-            <NavContainer>
-                <NavButtonA handleClick={handleNav}>
-                    <TextContainer>{verified ? 'Verified' : 'Get Verified'}</TextContainer>
-                    {verified &&
-                        <IconContainer>
-                            <FontAwesomeIcon icon={faCheck} size='1x' />
-                        </IconContainer>
-                    }
-                </NavButtonA>
-                <NavButtonA handleClick={handleLogout}>
-                    <TextContainer>Logout</TextContainer>
-                    <FontAwesomeIcon icon={faDoorOpen} size='1x' />
-                </NavButtonA>
-            </NavContainer>
+            {!userData ?
+                <SignInContainerA />
+                :
+                <>
+                    {userData.avatar && <AvatarContainerA url={avatarURL} />}
+                    <NavContainer>
+                        <NavButtonA handleClick={handleNav}>
+                            <TextContainer>{verified ? 'Verified' : 'Get Verified'}</TextContainer>
+                            {verified &&
+                                <IconContainer>
+                                    <FontAwesomeIcon icon={faCheck} size='1x' />
+                                </IconContainer>
+                            }
+                        </NavButtonA>
+                        <NavButtonA handleClick={handleLogout}>
+                            <TextContainer>Logout</TextContainer>
+                            <FontAwesomeIcon icon={faDoorOpen} size='1x' />
+                        </NavButtonA>
+                    </NavContainer>
+                </>
+            }
         </Container>
     );
 };

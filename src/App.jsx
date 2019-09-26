@@ -18,7 +18,6 @@ import './sass/base.scss';
 // state management
 import initialState from 'Utils/initialState';
 import scoutDataReducer from 'Utils/scoutDataReducer';
-import { nullLiteral } from '@babel/types';
 
 // context
 export const DispatchContext = createContext();
@@ -34,6 +33,8 @@ const App = () => {
 
   useEffect(() => {
     const unsubscribe = firebase.auth().onAuthStateChanged(user => {
+      dispatch({ type: 'loading' });
+      console.log(user);
       if (user) {
         const options = {
           params: {
@@ -50,6 +51,7 @@ const App = () => {
       } else {
         dispatch({ type: 'user', user: null, discord: false });
       }
+      dispatch({ type: 'loading' });
     });
     return () => unsubscribe();
   }, [])
@@ -60,7 +62,7 @@ const App = () => {
         <ThemeProvider theme={theme}>
           {/** will change this to only show if user is logged in */}
           <Router>
-            {userData && <NavBarA />}
+            <NavBarA />
             <Switch>
               <Route exact path="/" component={SplashPageO} />
               <Route path="/*" component={ScouterPageO} />

@@ -6,10 +6,12 @@ import { DispatchContext, StateContext } from '../../../App';
 
 import SplashContainerA from '@A/00-containers/SplashContainerA';
 import ContentContainerA from '@A/00-containers/ContentContainerA';
+import SignInContainerA from '@A/00-containers/SignInContainerA';
 
 import SplashHeaderA from '@A/01-headers/SplashHeaderA';
 import TextContainerA from '@A/00-containers/TextContainerA';
 import ThemedButtonA from '@A/02-buttons/ThemedButtonA';
+import ClipSpinnerA from '@A/06-spinners/ClipSpinnerA';
 
 import ModalManagerM from '@M/04-utils/ModalManagerM';
 import ModalContainerA from '@A/00-containers/ModalContainerA';
@@ -33,7 +35,7 @@ const Container = styled.div`
 const SplashPageO = props => {
   const dispatch = useContext(DispatchContext);
   const state = useContext(StateContext);
-  const { showModal } = state;
+  const { isLoading, showModal, userData } = state;
 
   // Click handler, when clicked creates a new key in FB.
   const handleNew = () => {
@@ -45,27 +47,23 @@ const SplashPageO = props => {
       });
   };
 
-  const handleModal = () => {
-    dispatch({ type: 'auth' });
-  }
-
   return (
     <SplashContainerA className="darken">
       <ContentContainerA>
         <SplashHeaderA>Welcome to Hunt Conductor</SplashHeaderA>
         <TextContainerA text={paragraph} />
-        <Container>
-          <ThemedButtonA // prettier-ignore
-            handleClick={handleNew}
-            inverted={true}
-            text="Start Scouting"
-          />
-          <ThemedButtonA
-            handleClick={handleModal}
-            inverted={true}
-            text="Sign In"
-          />
-        </Container>
+        {isLoading ?
+          <ClipSpinnerA />
+          :
+          <>
+            <ThemedButtonA // prettier-ignore
+              handleClick={handleNew}
+              inverted={false}
+              text="Start Scouting"
+            />
+            {!userData && <SignInContainerA />}
+          </>
+        }
         {showModal && (
           <ModalContainerA>
             <ModalManagerM history={props.history} />

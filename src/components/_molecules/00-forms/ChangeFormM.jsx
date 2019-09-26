@@ -99,7 +99,7 @@ const ChangeFormM = () => {
                     <ServerSelectA />
                     <SubmitButtonA
                         submitT='submit'
-                        submitV='Change'
+                        submitV='Set Character'
                     />
                 </Container>
             }

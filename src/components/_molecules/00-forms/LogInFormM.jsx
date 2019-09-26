@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import LogInHeaderA from '@A/01-headers/LogInHeaderA';
 import LogInBodyContainerA from '@A/00-containers/LogInBodyContainerA';
+import SignInContainerA from '@A/00-containers/SignInContainerA';
 import ModalCloseHeaderA from '@A/01-headers/ModalCloseHeaderA';
 
 const Container = styled.div`
@@ -23,8 +24,9 @@ const LogInFormM = props => {
     return (
         <Container>
             <ModalCloseHeaderA />
-            <LogInHeaderA />
-            <LogInBodyContainerA history={history} />
+            {/* <LogInHeaderA /> */}
+            <SignInContainerA />
+            {/* <LogInBodyContainerA history={history} /> */}
         </Container>
     );
 };

@@ -30,7 +30,7 @@ const LogoutNotificationA = () => {
         <Container>
             <ModalCloseHeaderA />
             <Notification>
-                User has been logged out.
+                You have been logged out.
             </Notification>
         </Container>
     );
