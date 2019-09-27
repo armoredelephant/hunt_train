@@ -23,7 +23,7 @@ const initialState = {
   error: false,
   totalStops: 0,
   cardError: false,
-  cardNotification: 'There was an issue with this request. Please try again.',
+  cardNotification: null,
   currentStop: 0,
   currentMark: {
     mark: ' - ',

@@ -52,7 +52,7 @@ const ZoneMapM = () => {
     const axiosPost = async url => {
       await Axios.post(url, options)
         .catch(() => {
-          dispatch({ type: 'cardError' })
+          dispatch({ type: 'cardError', error: 'There was an issue with this request. Please try again.' })
         })
     };
 

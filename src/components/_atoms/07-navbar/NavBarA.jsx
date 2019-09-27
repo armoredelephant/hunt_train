@@ -49,7 +49,7 @@ const NavBarA = props => {
     const dispatch = useContext(DispatchContext);
     const state = useContext(StateContext);
     const { isLoading, uiConfig, userData } = state;
-
+    // add an auth Error ?
     let avatarURL,
         verified;
     if (userData) {
@@ -63,7 +63,7 @@ const NavBarA = props => {
     }
 
     // handleLogout => will require firebase.auth() import
-    const handleLogout = props => {
+    const handleLogout = () => {
         dispatch({ type: 'loading' });
         firebase.auth().signOut()
             .then(() => {

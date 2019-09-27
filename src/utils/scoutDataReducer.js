@@ -147,6 +147,7 @@ const scoutDataReducer = (draft, action) => {
     }
     case 'cardError': {
       draft.cardError = true;
+      draft.cardNotification = action.error;
       return;
     }
     case 'clearNotifications': {

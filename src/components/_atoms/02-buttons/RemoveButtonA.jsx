@@ -46,7 +46,7 @@ const RemoveButtonA = props => {
 
             await Axios.post(url, options)
                 .catch(() => {
-                    dispatch({ type: 'cardError' })
+                    dispatch({ type: 'cardError', error: 'There was an issue with this request. Please try again.' })
                 })
         }
         deleteMark(`${API_HOST_URL}/api/scout/deleteMark`);
