@@ -22,28 +22,6 @@ const ScouterPageO = props => {
   const cardKey = histLocation.split('/')[1]
   const cardRef = fbDatabase.ref(`cards/${cardKey}`)
 
-  // Fetches the card data in realtime
-
-  // useEffect(() => {
-  //   const dataListener = async url => {
-  //     const options = {
-  //       params: {
-  //         key: cardKey
-  //       }
-  //     }
-  //     const result = await Axios.get(url, options);
-  //     if (result) {
-  //       const cardData = result.data.cardData;
-  //       const keys = result.data.cardKeys;
-  //       dispatch({ type: 'sdFetch', newData: cardData, scoutedZoneKeys: keys });
-  //     }
-  //   }
-  //   dataListener(`${API_HOST_URL}/api/scout/on`);
-  //   return () => {
-  //     dataListener(`${API_HOST_URL}/api/scout/off`);
-  //   }
-  // })
-
   useEffect(() => {
     const onChange = snapshot => {
       let keys;

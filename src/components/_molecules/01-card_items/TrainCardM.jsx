@@ -21,6 +21,7 @@ const Container = styled.div`
   flex-flow: column;
   justify-content: center;
   align-content: center;
+  alig-self: center;
   padding: ${props => props.theme.pad};
 `;
 
