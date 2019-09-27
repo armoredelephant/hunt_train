@@ -8,6 +8,7 @@ import { DispatchContext, StateContext } from '../../../App';
 import NavButtonA from '@A/02-buttons/NavButtonA';
 import AvatarContainerA from '@A/00-containers/AvatarContainerA';
 import SignInContainerA from '@A/00-containers/SignInContainerA';
+import ClipSpinnerA from '@A/06-spinners/ClipSpinnerA';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faDoorOpen, faCheck } from "@fortawesome/free-solid-svg-icons";
@@ -44,10 +45,11 @@ const TextContainer = styled.div`
     margin-right: 5px;
 `;
 
-const NavBarA = () => {
+const NavBarA = props => {
     const dispatch = useContext(DispatchContext);
     const state = useContext(StateContext);
-    const { userData } = state;
+    const { isLoading, uiConfig, userData } = state;
+
     let avatarURL,
         verified;
     if (userData) {
@@ -61,15 +63,21 @@ const NavBarA = () => {
     }
 
     // handleLogout => will require firebase.auth() import
-    const handleLogout = () => {
-        firebase.auth().signOut();
-        dispatch({ type: 'logout' });
+    const handleLogout = props => {
+        dispatch({ type: 'loading' });
+        firebase.auth().signOut()
+            .then(() => {
+                dispatch({ type: 'logout' });
+            });
     };
 
     return (
         <Container>
             {!userData ?
-                <SignInContainerA />
+                <SignInContainerA
+                    isLoading={isLoading}
+                    config={uiConfig}
+                />
                 :
                 <>
                     {userData.avatar && <AvatarContainerA url={avatarURL} />}

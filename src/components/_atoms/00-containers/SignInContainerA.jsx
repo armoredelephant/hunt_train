@@ -3,18 +3,21 @@ import firebase from 'firebase/app';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import 'firebase/auth';
 
-const SignInContainerA = () => {
-    const uiConfig = {
-        signInFlow: 'popup',
-        signInOptions: [
-            firebase.auth.GoogleAuthProvider.PROVIDER_ID
-        ],
-        callbacks: {
-            signInSuccessWithAuthResult: () => false
-        }
-    };
+import ClipSpinnerA from '@A/06-spinners/ClipSpinnerA';
+
+const SignInContainerA = props => {
+    const { config, isLoading } = props;
     return (
-        <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} />
+        <>
+            {config ?
+                <StyledFirebaseAuth
+                    uiConfig={config}
+                    firebaseAuth={firebase.auth()}
+                />
+                :
+                <ClipSpinnerA navBar={true} />
+            }
+        </>
     );
 };
 

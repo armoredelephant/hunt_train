@@ -88,7 +88,6 @@ const LogInBodyContainerA = props => {
             Axios.get(`https://xivapi.com/character/search?name=${character}&server=${server}`, { mode: 'cors' })
                 .then(res => {
                     const results = res.data.Results[0]; // results of fetch
-                    console.log(results);
 
                     const charData = { // charData we need from fetch
                         id: results.ID,

@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import CardHeaderM from '@M/01-card_items/CardHeaderM';
 import CardRowM from '@M/01-card_items/CardRowM';
+import CardNotificationA from '@A/03-notifications/CardNotificationA';
 
 const CardContainer = styled.div`
   background-color: ${props => props.theme.cardbg};
@@ -34,6 +35,7 @@ const ZoneCardM = props => {
             .substring(7);
           return <CardRowM key={rdmKey} mark={mark} zone={zone} />;
         })}
+        <CardNotificationA zone={zone} />
       </Card>
     </CardContainer>
   );

@@ -10,6 +10,7 @@ import 'firebase/auth';
 
 import SplashPageO from '@O/00-pages/SplashPageO';
 import ScouterPageO from '@O/00-pages/ScouterPageO';
+import ClipSpinnerA from '@A/06-spinners/ClipSpinnerA';
 import NavBarA from '@A/07-navbar/NavBarA';
 
 import theme from './theme';
@@ -29,12 +30,23 @@ firebase.initializeApp(firebaseConfig);
 
 const App = () => {
   const [state, dispatch] = useImmerReducer(scoutDataReducer, initialState);
-  const { userData } = state;
+
+  const uiConfig = {
+    signInFlow: 'popup',
+    signInOptions: [
+      firebase.auth.GoogleAuthProvider.PROVIDER_ID
+    ],
+  };
+
+  useEffect(() => {
+    dispatch({ type: 'loading' });
+    dispatch({ type: 'config', config: uiConfig });
+    dispatch({ type: 'loading' })
+  }, []);
 
   useEffect(() => {
     const unsubscribe = firebase.auth().onAuthStateChanged(user => {
       dispatch({ type: 'loading' });
-      console.log(user);
       if (user) {
         const options = {
           params: {
@@ -46,12 +58,13 @@ const App = () => {
             const userData = response.data.user;
             if (userData) {
               dispatch({ type: 'user', userData: userData, discord: userData.verified });
+              dispatch({ type: 'loading' });
             }
           });
       } else {
         dispatch({ type: 'user', user: null, discord: false });
+        dispatch({ type: 'loading' });
       }
-      dispatch({ type: 'loading' });
     });
     return () => unsubscribe();
   }, [])

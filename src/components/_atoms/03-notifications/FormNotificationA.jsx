@@ -23,7 +23,6 @@ const FormNotificationA = props => {
     }
     const isHidden = handleHidden();
 
-    console.log(isHidden);
     return (
         <Container>
             <Notification

@@ -18,10 +18,10 @@ const NavButton = styled.button`
 `;
 
 const NavButtonA = props => {
-    const { text, handleClick } = props;
+    const { text, handleClick, history } = props;
     // refacotr and add a font-awesome icon inside
     return (
-        <NavButton name={text} onClick={handleClick}>
+        <NavButton history={history} name={text} onClick={handleClick}>
             {props.children}
         </NavButton>
     )

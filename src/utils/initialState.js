@@ -22,6 +22,8 @@ const initialState = {
   markCoords: [],
   error: false,
   totalStops: 0,
+  cardError: false,
+  cardNotification: 'There was an issue with this request. Please try again.',
   currentStop: 0,
   currentMark: {
     mark: ' - ',
@@ -48,6 +50,7 @@ const initialState = {
   showModal: false,
   showNav: false,
   showLocation: false,
+  uiConfig: null,
   userData: null,
   world: '',
   zoneKeys: null,

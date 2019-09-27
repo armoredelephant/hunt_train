@@ -8,7 +8,7 @@ const theme = {
   btnW: 'auto',
   btnH: 'auto',
   btnP: '13px 26px',
-  btnFS: '15px',
+  btnFS: '13px',
   btnTT: 'uppercase',
   btnLS: '.1em',
   btnBorderRadius: '15px',

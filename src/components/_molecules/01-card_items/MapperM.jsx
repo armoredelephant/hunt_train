@@ -5,6 +5,7 @@ import { DispatchContext, StateContext } from '../../../App';
 
 import StyledButtonA from '@A/02-buttons/StyledButtonA';
 import RemoveButtonA from '@A/02-buttons/RemoveButtonA';
+import ClipSpinnerA from '@A/06-spinners/ClipSpinnerA';
 
 const Container = styled.div`
   display: flex;
@@ -33,13 +34,14 @@ const MapperM = props => {
   const state = useContext(StateContext);
 
   const { instance, mark, zone } = props;
-  const { cardKey, zoneData, currentMark, scoutData } = state;
+  const { zoneData, currentMark, scoutData, mapZone } = state;
 
   let markCoords = ' - ';
   let allowed = false;
 
   const handleClick = () => {
     const coordsArray = zoneData[zone].marks[mark].locations;
+    dispatch({ type: 'clearNotifications' });
     dispatch({ type: 'map', zone, mark, instance, markCoords: coordsArray });
   };
 

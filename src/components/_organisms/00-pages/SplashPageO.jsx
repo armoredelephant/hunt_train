@@ -55,14 +55,11 @@ const SplashPageO = props => {
         {isLoading ?
           <ClipSpinnerA />
           :
-          <>
-            <ThemedButtonA // prettier-ignore
-              handleClick={handleNew}
-              inverted={false}
-              text="Start Scouting"
-            />
-            {!userData && <SignInContainerA />}
-          </>
+          <ThemedButtonA // prettier-ignore
+            handleClick={handleNew}
+            inverted={false}
+            text="Start Scouting"
+          />
         }
         {showModal && (
           <ModalContainerA>

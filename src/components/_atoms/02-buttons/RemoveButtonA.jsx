@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import Axios from 'axios';
 import styled from 'styled-components';
 
-import { StateContext } from '../../../App';
+import { DispatchContext, StateContext } from '../../../App';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
@@ -26,13 +26,16 @@ const Button = styled.button`
 `;
 
 const RemoveButtonA = props => {
+    const dispatch = useContext(DispatchContext);
     const state = useContext(StateContext);
 
     const { allowed, instance, mark, zone } = props;
-    const { cardKey, scoutData } = state;
+    const { cardKey } = state;
 
     const handleRemove = e => {
         e.preventDefault();
+        dispatch({ type: 'mapZone', zone: zone });
+
         const deleteMark = async url => {
             const options = {
                 cardKey: cardKey,
@@ -42,6 +45,9 @@ const RemoveButtonA = props => {
             };
 
             await Axios.post(url, options)
+                .catch(() => {
+                    dispatch({ type: 'cardError' })
+                })
         }
         deleteMark(`${API_HOST_URL}/api/scout/deleteMark`);
     };

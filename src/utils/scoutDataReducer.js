@@ -39,6 +39,8 @@ const scoutDataReducer = (draft, action) => {
     case 'logout': {
       draft.modalType = 'logout';
       draft.showModal = true;
+      draft.isLoading = false;
+      draft.userData = initialState.userData;
       return;
     }
     case 'verification': {
@@ -49,7 +51,7 @@ const scoutDataReducer = (draft, action) => {
     case 'modal': {
       draft.showModal = false;
       draft.shared = false;
-      draft.mapZone = '';
+      // draft.mapZone = '';
       draft.mapMark = '';
       draft.modalType = null;
       draft.radioChecked = initialState.radioChecked;
@@ -143,10 +145,16 @@ const scoutDataReducer = (draft, action) => {
       draft.isLoading = false;
       return;
     }
+    case 'cardError': {
+      draft.cardError = true;
+      return;
+    }
     case 'clearNotifications': {
       draft.formError = initialState.formError;
       draft.formSuccess = initialState.formSuccess;
       draft.formNotification = initialState.formNotification;
+      draft.cardError = initialState.cardError;
+      draft.cardNotification = initialState.cardNotification;
       return;
     }
     case 'user': {
@@ -164,6 +172,14 @@ const scoutDataReducer = (draft, action) => {
     }
     case 'radioReset': {
       draft.radioChecked = false;
+      return;
+    }
+    case 'config': {
+      draft.uiConfig = action.config;
+      return;
+    }
+    case 'mapZone': {
+      draft.mapZone = action.zone;
       return;
     }
     default:
