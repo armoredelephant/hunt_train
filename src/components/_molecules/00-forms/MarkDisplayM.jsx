@@ -21,7 +21,6 @@ const InfoContainer = styled.div`
   border-bottom: 1px solid #242424;
   align-items: center;
   margin: ${props => props.theme.margin};
-  min-width: 229px;
 `;
 
 const MarkDisplayM = props => {
