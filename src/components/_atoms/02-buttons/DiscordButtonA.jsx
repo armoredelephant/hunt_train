@@ -80,7 +80,10 @@ const DiscordButtonA = () => {
         };
 
         Axios(centurio);
-        Axios(coeurl);
+
+        if (datacenter === primal) {
+            Axios(coeurl);
+        };
     }
 
     // disabled={!verified}

@@ -52,15 +52,11 @@ const SplashPageO = props => {
       <ContentContainerA>
         <SplashHeaderA>Welcome to Hunt Conductor</SplashHeaderA>
         <TextContainerA text={paragraph} />
-        {isLoading ?
-          <ClipSpinnerA />
-          :
-          <ThemedButtonA // prettier-ignore
-            handleClick={handleNew}
-            inverted={false}
-            text="Start Scouting"
-          />
-        }
+        <ThemedButtonA // prettier-ignore
+          handleClick={handleNew}
+          inverted={false}
+          text="Start Scouting"
+        />
         {showModal && (
           <ModalContainerA>
             <ModalManagerM history={props.history} />
