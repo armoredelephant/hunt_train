@@ -81,7 +81,7 @@ const DiscordButtonA = () => {
 
         Axios(centurio);
 
-        if (datacenter === primal) {
+        if (datacenter === 'Primal') {
             Axios(coeurl);
         };
     }
