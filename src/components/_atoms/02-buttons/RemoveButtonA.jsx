@@ -15,6 +15,8 @@ const Button = styled.button`
   color: ${props => props.disabled ? '#893327' : props.theme.red};
   background: ${props => props.theme.cardbg};
   border: none;
+  cursor: pointer;
+  font-size: 16px;
 
   &:visited,
   &:focus,

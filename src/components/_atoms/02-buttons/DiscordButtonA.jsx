@@ -80,7 +80,7 @@ const DiscordButtonA = () => {
         };
 
         Axios(centurio);
-        // Axios(coeurl);
+        Axios(coeurl);
     }
 
     // disabled={!verified}

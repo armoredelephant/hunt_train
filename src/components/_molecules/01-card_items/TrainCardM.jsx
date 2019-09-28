@@ -36,6 +36,7 @@ const StartButton = styled.button`
   border-radius: ${props => props.theme.brad};
   background-color: ${props => props.theme.blue};
   text-decoration: none;
+  cursor: pointer;
 
   &:visited,
   &:focus,
