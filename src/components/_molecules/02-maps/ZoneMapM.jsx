@@ -18,6 +18,10 @@ const Image = styled.img`
   min-height: 640px;
 `;
 
+const Area = styled.area`
+  cursor: pointer;
+`;
+
 const ZoneMapM = () => {
   const state = useContext(StateContext);
   const dispatch = useContext(DispatchContext);
@@ -72,7 +76,7 @@ const ZoneMapM = () => {
             .toString(36)
             .substring(7);
           return (
-            <area
+            <Area
               alt="mark coordinate"
               coords={location.coords}
               key={rdmKey}

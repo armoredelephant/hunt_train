@@ -7,6 +7,7 @@ const Container = styled.div`
     color: ${props => props.theme.fntClr};
     font-size: 13px;
     justify-content: space-between;
+    letter-spacing: ${props => props.theme.ls};
 `;
 
 const Info = styled.div`

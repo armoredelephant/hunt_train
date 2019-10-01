@@ -4,6 +4,7 @@ import styled from 'styled-components';
 const AvatarContainer = styled.div`
     display: flex;
     justify-content: center;
+    padding-right: 8px;
 `;
 
 const Avatar = styled.img`

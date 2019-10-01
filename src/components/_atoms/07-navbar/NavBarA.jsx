@@ -11,10 +11,10 @@ import SignInContainerA from '@A/00-containers/SignInContainerA';
 import ClipSpinnerA from '@A/06-spinners/ClipSpinnerA';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faDoorOpen, faCheck } from "@fortawesome/free-solid-svg-icons";
+import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-library.add(faDoorOpen, faCheck);
+library.add(faCheck);
 
 const Container = styled.div`
     position: relative;
@@ -38,6 +38,8 @@ const NavContainer = styled.div`
     background: ${props => props.theme.darkestbg};
     justify-content: space-evenly;
     margin-right: 8px;
+    height: 100%;
+    padding-top: 1px;
 `;
 
 const TextContainer = styled.div`
@@ -72,32 +74,38 @@ const NavBarA = props => {
     };
 
     return (
-        <Container>
-            {!userData ?
-                <SignInContainerA
-                    isLoading={isLoading}
-                    config={uiConfig}
-                />
+        <>
+            {isLoading ?
+                <Container>
+                    <ClipSpinnerA />
+                </Container>
                 :
-                <>
-                    {userData.avatar && <AvatarContainerA url={avatarURL} />}
-                    <NavContainer>
-                        <NavButtonA handleClick={handleNav}>
-                            <TextContainer>{verified ? 'Verified' : 'Get Verified'}</TextContainer>
-                            {verified &&
-                                <IconContainer>
-                                    <FontAwesomeIcon icon={faCheck} size='1x' />
-                                </IconContainer>
-                            }
-                        </NavButtonA>
-                        <NavButtonA handleClick={handleLogout}>
-                            <TextContainer>Logout</TextContainer>
-                            <FontAwesomeIcon icon={faDoorOpen} size='1x' />
-                        </NavButtonA>
-                    </NavContainer>
-                </>
+                <Container>
+                    {!userData ?
+                        <SignInContainerA
+                            config={uiConfig}
+                        />
+                        :
+                        <>
+                            {userData.avatar && <AvatarContainerA url={avatarURL} />}
+                            <NavContainer>
+                                <NavButtonA handleClick={handleNav}>
+                                    <TextContainer>{verified ? 'Verified' : 'Get Verified'}</TextContainer>
+                                    {verified &&
+                                        <IconContainer>
+                                            <FontAwesomeIcon icon={faCheck} size='1x' />
+                                        </IconContainer>
+                                    }
+                                </NavButtonA>
+                                <NavButtonA handleClick={handleLogout}>
+                                    <TextContainer>Logout</TextContainer>
+                                </NavButtonA>
+                            </NavContainer>
+                        </>
+                    }
+                </Container>
             }
-        </Container>
+        </>
     );
 };
 export default NavBarA;

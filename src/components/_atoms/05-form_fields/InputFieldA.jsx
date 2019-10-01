@@ -36,7 +36,7 @@ const InputContainer = styled.div`
     align-content: center;
     border-bottom: 1px solid ${props => props.theme.darkestbg};
     padding-bottom: 8px;
-    margin-bottom: 30px;
+    margin-bottom: 18px;
 `;
 
 const InputFieldA = props => {

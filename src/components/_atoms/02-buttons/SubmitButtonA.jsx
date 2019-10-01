@@ -16,7 +16,6 @@ const Submit = styled.input`
     background: ${props => props.theme.blue};
     color: ${props => props.theme.cardbg};
     font-family: ${props => props.theme.ff};
-    line-spacing: ${props => props.theme.ls};
     border-bottom: 1px solid ${props => props.theme.blue};
     border-radius: ${props => props.theme.brad};
     font-size: ${props => props.theme.btnFS};

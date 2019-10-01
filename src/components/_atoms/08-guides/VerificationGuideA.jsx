@@ -21,6 +21,7 @@ const List = styled.ol`
     flex-flow: column;
     align-self: center;
     padding: 0;
+    margin: 0;
 `;
 
 const ListItem = styled.li`

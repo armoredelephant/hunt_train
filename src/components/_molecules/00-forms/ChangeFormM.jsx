@@ -15,7 +15,7 @@ const Form = styled.form`
     display: flex;
     flex-flow: column;
     width: 100%;
-    padding-top: 30px;
+    padding-top: 13px;
     border-top: 1px solid ${props => props.theme.darkestbg};
 `;
 

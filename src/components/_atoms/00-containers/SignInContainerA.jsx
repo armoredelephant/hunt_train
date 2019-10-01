@@ -6,16 +6,16 @@ import 'firebase/auth';
 import ClipSpinnerA from '@A/06-spinners/ClipSpinnerA';
 
 const SignInContainerA = props => {
-    const { config, isLoading } = props;
+    const { isLoading, config } = props;
     return (
         <>
-            {config ?
+            {config || isLoading ?
                 <StyledFirebaseAuth
                     uiConfig={config}
                     firebaseAuth={firebase.auth()}
                 />
                 :
-                <ClipSpinnerA navBar={true} />
+                <ClipSpinnerA />
             }
         </>
     );

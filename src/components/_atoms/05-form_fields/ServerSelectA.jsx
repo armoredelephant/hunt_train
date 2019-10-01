@@ -7,7 +7,7 @@ const Container = styled.div`
     display: flex;
     flex-flow: row;
     align-content: center;
-    margin-bottom: 30px;
+    margin-bottom: 18px;
 `;
 
 const Select = styled.select`

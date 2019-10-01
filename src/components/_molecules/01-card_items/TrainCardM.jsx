@@ -28,7 +28,6 @@ const Container = styled.div`
 const StartButton = styled.button`
   color: ${props => props.theme.cardbg};
   font-family: ${props => props.theme.ff};
-  letter-spacing: ${props => props.theme.ls};
   border: none;
   padding: 3px 16px;
   outline: none;

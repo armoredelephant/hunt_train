@@ -13,8 +13,19 @@ const NavButton = styled.button`
     outline: ${props => props.theme.btnOutline};
     background: ${props => props.theme.darkestbg};
     border: none;
+    border-bottom: 1px solid ${props => props.theme.darkestbg};
+    transition: border-bottom 0.1s linear;
     justify-content: space-evenly;
     align-items: center;
+
+    &:hover {
+        border-bottom: 1px solid ${props => props.theme.blue};
+    }
+
+    &:active,
+    &:focus {
+        background: ${props => props.theme.cardbg};
+    }
 `;
 
 const NavButtonA = props => {
