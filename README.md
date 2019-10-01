@@ -7,8 +7,10 @@ This app was developed to make FFXIV scouting and train conducting easier.
 * React
 * Styled-Components
 * React Hooks
-* Animations
-* Testing (enzyme & jest)
-* Linting
 * Atomic Design
+* NGINX
+* API calls
+* Firebase
+* Google Authentication
+
 
