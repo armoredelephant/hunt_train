@@ -40,6 +40,7 @@ const scoutDataReducer = (draft, action) => {
       draft.modalType = 'logout';
       draft.showModal = true;
       draft.isLoading = false;
+      draft.authChecked = initialState.authChecked;
       draft.userData = initialState.userData;
       return;
     }
@@ -161,6 +162,7 @@ const scoutDataReducer = (draft, action) => {
     case 'user': {
       draft.userData = action.userData;
       draft.discord = action.discord;
+      draft.authChecked = true;
       return;
     }
     case 'nav': {

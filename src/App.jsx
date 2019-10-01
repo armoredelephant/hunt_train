@@ -41,12 +41,7 @@ const App = () => {
   useEffect(() => {
     dispatch({ type: 'loading' });
     dispatch({ type: 'config', config: uiConfig });
-    dispatch({ type: 'loading' })
-  }, []);
-
-  useEffect(() => {
     const unsubscribe = firebase.auth().onAuthStateChanged(user => {
-      dispatch({ type: 'loading' });
       if (user) {
         const options = {
           params: {
@@ -58,14 +53,13 @@ const App = () => {
             const userData = response.data.user;
             if (userData) {
               dispatch({ type: 'user', userData: userData, discord: userData.verified });
-              dispatch({ type: 'loading' });
             }
           });
       } else {
         dispatch({ type: 'user', user: null, discord: false });
-        dispatch({ type: 'loading' });
       }
     });
+    dispatch({ type: 'loading' });
     return () => unsubscribe();
   }, [])
 

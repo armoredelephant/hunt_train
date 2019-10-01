@@ -50,7 +50,7 @@ const TextContainer = styled.div`
 const NavBarA = props => {
     const dispatch = useContext(DispatchContext);
     const state = useContext(StateContext);
-    const { isLoading, uiConfig, userData } = state;
+    const { authChecked, isLoading, uiConfig, userData } = state;
     // add an auth Error ?
     let avatarURL,
         verified;
@@ -75,17 +75,13 @@ const NavBarA = props => {
 
     return (
         <>
-            {isLoading ?
+            {!authChecked ?
                 <Container>
                     <ClipSpinnerA />
                 </Container>
                 :
                 <Container>
-                    {!userData ?
-                        <SignInContainerA
-                            config={uiConfig}
-                        />
-                        :
+                    {userData ?
                         <>
                             {userData.avatar && <AvatarContainerA url={avatarURL} />}
                             <NavContainer>
@@ -102,6 +98,10 @@ const NavBarA = props => {
                                 </NavButtonA>
                             </NavContainer>
                         </>
+                        :
+                        <SignInContainerA
+                            config={uiConfig}
+                        />
                     }
                 </Container>
             }

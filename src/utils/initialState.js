@@ -10,6 +10,7 @@ const initialState = {
     'Mana',
     'Primal',
   ],
+  authChecked: false,
   scoutData: {},
   routeData: {
     Lakeland: [],
