@@ -13,6 +13,7 @@ const Container = styled.div`
     align-self: center;
     width: 100%
     height: 100%;
+    font-weight: ${props => props.theme.lightfont};
 `;
 
 

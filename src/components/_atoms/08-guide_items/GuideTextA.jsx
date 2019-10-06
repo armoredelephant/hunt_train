@@ -10,6 +10,8 @@ const Text = styled.p`
     text-align: justify;
     font-family: ${props => props.theme.ff};
     letter-spacing: ${props => props.theme.ls};
+    color: ${props => props.notification && props.theme.red};
+    font-weight: ${props => props.theme.lightfont};
     
 `;
 
@@ -18,7 +20,7 @@ const GuideTextA = props => {
 
     return (
         <GuideItemContainerA>
-            <Text>{text}</Text>
+            <Text notification={notification}>{text}</Text>
         </GuideItemContainerA>
     )
 };
