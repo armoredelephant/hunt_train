@@ -43,6 +43,8 @@ const initialState = {
   formLogin: true,
   formCreate: false,
   formServer: 'default',
+  guideData: null,
+  guideIndex: 0,
   isLoading: false,
   markCount: 0,
   modalType: null,
@@ -53,6 +55,7 @@ const initialState = {
   showLocation: false,
   uiConfig: null,
   userData: null,
+  text: '',
   world: '',
   zoneKeys: null,
   zoneData: null

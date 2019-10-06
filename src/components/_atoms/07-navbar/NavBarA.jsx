@@ -9,6 +9,7 @@ import NavButtonA from '@A/02-buttons/NavButtonA';
 import AvatarContainerA from '@A/00-containers/AvatarContainerA';
 import SignInContainerA from '@A/00-containers/SignInContainerA';
 import ClipSpinnerA from '@A/06-spinners/ClipSpinnerA';
+import GuideButtonA from '@A/02-buttons/GuideButtonA';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
@@ -24,7 +25,7 @@ const Container = styled.div`
     height: 60px;
     background: ${props => props.theme.darkestbg};
     box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .8);
-    justify-content: flex-end;
+    justify-content: space-between;
     align-items: center;
 `;
 
@@ -47,21 +48,16 @@ const TextContainer = styled.div`
     margin-right: 5px;
 `;
 
-const NavBarA = props => {
+const NavBarA = () => {
     const dispatch = useContext(DispatchContext);
     const state = useContext(StateContext);
-    const { authChecked, isLoading, uiConfig, userData } = state;
+    const { authChecked, uiConfig, userData } = state;
     // add an auth Error ?
     let avatarURL,
         verified;
     if (userData) {
         avatarURL = userData.avatar;
         verified = userData.verified;
-    }
-
-    // handleNav
-    const handleNav = () => {
-        dispatch({ type: 'verification' });
     }
 
     // handleLogout => will require firebase.auth() import
@@ -74,18 +70,19 @@ const NavBarA = props => {
     };
 
     return (
-        <>
+        <Container>
+            <GuideButtonA />
             {!authChecked ?
-                <Container>
-                    <ClipSpinnerA />
-                </Container>
+                <ClipSpinnerA />
                 :
-                <Container>
+                <>
                     {userData ?
                         <>
-                            {userData.avatar && <AvatarContainerA url={avatarURL} />}
                             <NavContainer>
-                                <NavButtonA handleClick={handleNav}>
+                                {userData.avatar && <AvatarContainerA url={avatarURL} />}
+                                <NavButtonA
+                                    handleClick={() => dispatch({ type: 'modalSwitch', modalType: 'verification' })}
+                                >
                                     <TextContainer>{verified ? 'Verified' : 'Get Verified'}</TextContainer>
                                     {verified &&
                                         <IconContainer>
@@ -103,9 +100,9 @@ const NavBarA = props => {
                             config={uiConfig}
                         />
                     }
-                </Container>
+                </>
             }
-        </>
+        </Container>
     );
 };
 export default NavBarA;

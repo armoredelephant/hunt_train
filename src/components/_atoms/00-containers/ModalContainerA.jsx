@@ -1,29 +1,32 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
-import { DispatchContext } from '../../../App';
+import ModalCloseHeaderA from '@A/01-headers/ModalCloseHeaderA';
 
-const Backdrop = styled.div`
-  display: flex;
-  justify-content: center;
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.3);
-  z-index: 200;
-  top: 0;
-  left: 0;
+const Container = styled.div`
+    display: inline-flex;
+    flex-flow: column;
+    align-items: center;
+    align-self: center;
+    width: ${props => !props.carousel && '384px'};
+    height: ${props => props.notification && '500px'};
+    overflow: auto;
+    flex-shrink: 1;
+    radius: ${props => props.theme.brad};
+    margin: 8px;
+    background: ${props => props.theme.cardbg};
+    box-shadow: ${props => props.theme.bshad};
 `;
 
-const ModalContainer = props => {
-  const { children } = props;
-  const dispatch = useContext(DispatchContext);
+const ModalContainerA = props => {
+  const { carousel, children, notification } = props;
 
-  const hideOnClick = e => {
-    if (e.target === e.currentTarget) dispatch({ type: 'modal' });
-  };
-
-  return <Backdrop onClick={hideOnClick}>{children}</Backdrop>;
+  return (
+    <Container carousel={carousel} notification={notification}>
+      <ModalCloseHeaderA />
+      {children}
+    </Container>
+  );
 };
 
-export default ModalContainer;
+export default ModalContainerA;

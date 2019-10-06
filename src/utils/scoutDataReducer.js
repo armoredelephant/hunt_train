@@ -21,18 +21,8 @@ const scoutDataReducer = (draft, action) => {
       draft.mapInstance = action.instance;
       return;
     }
-    case 'mapToggler': {
-      draft.modalType = 'location';
-      draft.showModal = true;
-      return;
-    }
-    case 'share': {
-      draft.modalType = 'shared';
-      draft.showModal = true;
-      return;
-    }
-    case 'auth': {
-      draft.modalType = 'auth';
+    case 'modalSwitch': {
+      draft.modalType = action.modalType;
       draft.showModal = true;
       return;
     }
@@ -44,15 +34,9 @@ const scoutDataReducer = (draft, action) => {
       draft.userData = initialState.userData;
       return;
     }
-    case 'verification': {
-      draft.modalType = 'verification';
-      draft.showModal = true;
-      return;
-    }
     case 'modal': {
       draft.showModal = false;
       draft.shared = false;
-      // draft.mapZone = '';
       draft.mapMark = '';
       draft.modalType = null;
       draft.radioChecked = initialState.radioChecked;
@@ -183,6 +167,18 @@ const scoutDataReducer = (draft, action) => {
     }
     case 'mapZone': {
       draft.mapZone = action.zone;
+      return;
+    }
+    case 'text': {
+      draft.text = action.text;
+      return;
+    }
+    case 'guideIndex': {
+      draft.guideIndex = action.index;
+      return;
+    }
+    case 'guideData': {
+      draft.guideData = action.guideData;
       return;
     }
     default:

@@ -1,20 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import ModalCloseHeaderA from '@A/01-headers/ModalCloseHeaderA';
-
-const Container = styled.div`
-    display: flex;
-    flex-flow: column;
-    align-items: center;
-    align-self: center;
-    width: 384px;
-    height: 500px;
-    radius: ${props => props.theme.brad};
-    margin: 8px;
-    background: ${props => props.theme.cardbg};
-    box-shadow: ${props => props.theme.bshad};
-`;
+import ModalContainerA from '@A/00-containers/ModalContainerA';
 
 const Notification = styled.div`
     display: flex;
@@ -27,12 +14,11 @@ const Notification = styled.div`
 
 const LogoutNotificationA = () => {
     return (
-        <Container>
-            <ModalCloseHeaderA />
+        <ModalContainerA notification={true}>
             <Notification>
                 You have been logged out.
             </Notification>
-        </Container>
+        </ModalContainerA>
     );
 };
 

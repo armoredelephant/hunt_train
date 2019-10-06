@@ -32,10 +32,8 @@ Click the trash can button below the mark's coords
 
 # Enable Discord Relays
 
-1. From the homepage, click **Sign In**.
-2. Click **Create** and fill out the form to create an account. 
-    - **https is not enabled and I recommend using a generic password for your account.**
-3. Once signed in, click **Get Verified** at the top of the page.
+1. From the homepage, use the Google button at the top to sign in with a Google Account..
+2. Once signed in, click **Get Verified** at the top of the page.
 4. Follow the listed steps displayed in the Get Verified window.
 5. Once verified, the **Get Verified** button will change to **Verified**
 
@@ -43,7 +41,7 @@ Click the trash can button below the mark's coords
 
 In order to use Discord relays, the following criteria must be met:
 
-    - Created an account and verified your FFXIV character.
+    - Logged in with Google and verified your FFXIV character.
     - Datacenter is selected from the dropdown.
     - World is selected from the dropdown.
 

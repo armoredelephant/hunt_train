@@ -1,34 +1,17 @@
 import React from 'react';
-import styled from 'styled-components';
 
-import ModalCloseHeaderA from '@A/01-headers/ModalCloseHeaderA';
-import VerificationGuideA from '@A/08-guides/VerificationGuideA';
+import ModalContainerA from '@A/00-containers/ModalContainerA';
+import VerificationGuideA from '@A/08-guide_items/VerificationGuideA';
 import VerificationFormM from '@M/00-forms/VerificationFormM';
 import ChangeFormM from '@M/00-forms/ChangeFormM';
 
-
-const Container = styled.div`
-    display: inline-flex;
-    flex-flow: column;
-    align-items: center;
-    align-self: center;
-    width: 384px;
-    overflow: auto;
-    flex-shrink: 1;
-    radius: ${props => props.theme.brad};
-    margin: 8px;
-    background: ${props => props.theme.cardbg};
-    box-shadow: ${props => props.theme.bshad};
-`;
-
 const VerificationModalO = () => {
     return (
-        <Container>
-            <ModalCloseHeaderA />
+        <ModalContainerA>
             <VerificationGuideA />
             <VerificationFormM />
             <ChangeFormM />
-        </Container>
+        </ModalContainerA>
     );
 };
 

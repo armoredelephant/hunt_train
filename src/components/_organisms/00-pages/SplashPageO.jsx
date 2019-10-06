@@ -14,7 +14,7 @@ import ThemedButtonA from '@A/02-buttons/ThemedButtonA';
 import ClipSpinnerA from '@A/06-spinners/ClipSpinnerA';
 
 import ModalManagerM from '@M/04-utils/ModalManagerM';
-import ModalContainerA from '@A/00-containers/ModalContainerA';
+import BackdropContainerA from '@A/00-containers/BackdropContainerA';
 
 const paragraph = '';
 
@@ -35,7 +35,7 @@ const Container = styled.div`
 const SplashPageO = props => {
   const dispatch = useContext(DispatchContext);
   const state = useContext(StateContext);
-  const { isLoading, showModal, userData } = state;
+  const { showModal } = state;
 
   // Click handler, when clicked creates a new key in FB.
   const handleNew = () => {
@@ -58,9 +58,9 @@ const SplashPageO = props => {
           text="Start Scouting"
         />
         {showModal && (
-          <ModalContainerA>
+          <BackdropContainerA>
             <ModalManagerM history={props.history} />
-          </ModalContainerA>
+          </BackdropContainerA>
         )}
       </ContentContainerA>
     </SplashContainerA>

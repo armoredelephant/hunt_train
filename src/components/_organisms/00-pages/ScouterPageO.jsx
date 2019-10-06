@@ -7,8 +7,8 @@ import 'firebase/database';
 import { DispatchContext, StateContext } from '../../../App';
 
 import MainContainerA from '@A/00-containers/MainContainerA';
-import ZoneCardM from '@M/00-forms/ZoneCardM';
-import ModalContainerA from '@A/00-containers/ModalContainerA';
+import ZoneCardM from '@M/01-card_items/ZoneCardM';
+import BackdropContainerA from '@A/00-containers/BackdropContainerA';
 import TrainCardM from '@M/01-card_items/TrainCardM';
 import ModalManagerM from '@M/04-utils/ModalManagerM';
 
@@ -77,9 +77,9 @@ const ScouterPageO = props => {
         })}
       </MainContainerA>
       {showModal && (
-        <ModalContainerA>
+        <BackdropContainerA>
           <ModalManagerM />
-        </ModalContainerA>
+        </BackdropContainerA>
       )}
     </>
   );

@@ -98,25 +98,18 @@ const TrainCardM = () => {
     });
   };
 
-  const handleShare = e => {
-    e.preventDefault();
-    dispatch({ type: 'share' });
-  }
-
-  const handleMap = () => {
-    dispatch({ type: 'mapToggler' }) // mark map
-  }
-
   return (
     <Container>
       <RouteContainerA />
       <RowContainerA align={'center'}>
         <ButtonContainerA>
-          <StyledButtonA isDisabled={true} text={'Guide'} />
-          <StyledButtonA handleClick={handleShare} text={'Share'} />
+          <StyledButtonA
+            handleClick={() => dispatch({ type: 'modalSwitch', modalType: 'shared' })}
+            text={'Share'} />
           <StyledButtonA
             isDisabled={currentMark.coords === ' - '}
-            handleClick={handleMap} text={'Map'}
+            handleClick={() => dispatch({ type: 'modalSwitch', modalType: 'location' })}
+            text={'Map'}
           />
         </ButtonContainerA>
       </RowContainerA>
