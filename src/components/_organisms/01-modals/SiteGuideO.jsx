@@ -1,25 +1,13 @@
 import React, { useEffect, useContext } from 'react';
 import styled from 'styled-components';
 import Axios from 'axios';
+import Carousel from 'nuka-carousel';
 
 import ClipSpinnerA from '@A/06-spinners/ClipSpinnerA';
-import CarouselButtonsA from '@A/02-buttons/CarouselButtonsA';
-import CarouselM from '@M/05-carousel/CarouselM';
 import GuideSlideM from '@M/01-card_items/GuideSlideM';
 import ModalContainerA from '@A/00-containers/ModalContainerA';
 
 import { StateContext, DispatchContext } from '../../../App';
-
-const Container = styled.div`
-    display: inline-flex;
-    flex-flow: column;
-    align-items: center;
-    align-self: center;
-    radius: ${props => props.theme.brad};
-    margin: 8px;
-    background: ${props => props.theme.cardbg};
-    box-shadow: ${props => props.theme.bshad};
-`;
 
 const SiteGuideO = () => {
     const dispatch = useContext(DispatchContext);
@@ -54,14 +42,14 @@ const SiteGuideO = () => {
             {isLoading ?
                 <ClipSpinnerA />
                 :
-                <CarouselM widget={CarouselButtonsA}>
+                <Carousel>
                     {guideData.map(section => {
                         const rdmKey = Math.random()
                             .toString(36)
                             .substring(7);
                         return <GuideSlideM guide={section} key={rdmKey} />
                     })}
-                </CarouselM>
+                </Carousel>
             }
         </ModalContainerA>
     );

@@ -8,9 +8,19 @@ import GuideTitleA from '@A/08-guide_items/GuideTitleA';
 const Container = styled.div`
     display: flex;
     flex-flow: column;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
+    align-self: center;
     width: 100%
+    height: 100%;
+`;
+
+
+const Wrapper = styled.div`
+    width: 60%;
+    justify-content: center;
+    align-self: center;
+    margin-bottom: 50px;
 `;
 
 const GuideSlideM = props => {
@@ -18,11 +28,13 @@ const GuideSlideM = props => {
     const { notification, ol, text, title, ul } = guide;
     return (
         <Container>
-            <GuideTitleA text={title} />
-            {text && <GuideTextA text={text} />}
-            {ol && <GuideListA ordered={true} list={ol} />}
-            {ul && <GuideListA list={ul} />}
-            {notification && <GuideTextA notification={true} text={notification} />}
+            <Wrapper>
+                <GuideTitleA text={title} />
+                {text && <GuideTextA text={text} />}
+                {ol && <GuideListA ordered={true} list={ol} />}
+                {ul && <GuideListA list={ul} />}
+                {notification && <GuideTextA notification={true} text={notification} />}
+            </Wrapper>
         </Container>
     );
 };
