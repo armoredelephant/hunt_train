@@ -2,7 +2,6 @@ import React, { useEffect, useContext } from 'react';
 import Axios from 'axios';
 import Carousel from 'nuka-carousel';
 
-import ClipSpinnerA from '@A/06-spinners/ClipSpinnerA';
 import GuideSlideM from '@M/01-card_items/GuideSlideM';
 import ModalContainerA from '@A/00-containers/ModalContainerA';
 
@@ -11,7 +10,7 @@ import { StateContext, DispatchContext } from '../../../App';
 const SiteGuideO = () => {
     const dispatch = useContext(DispatchContext);
     const state = useContext(StateContext);
-    const { guideData, isLoading, slideIndex } = state;
+    const { guideData, slideIndex } = state;
 
     useEffect(() => {
         Axios.get('/resources/stubs/site_guide.json')
