@@ -33,6 +33,7 @@ const theme = {
   margin: '5px',
   pad: '5px',
   authBorder: '1px solid #919191',
+  lightfont: '300',
 };
 
 export default theme;

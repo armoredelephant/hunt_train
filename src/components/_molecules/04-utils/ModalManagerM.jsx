@@ -12,7 +12,6 @@ import ZoneMapM from '@M/02-maps/ZoneMapM';
 const ModalManagerM = props => {
     const state = useContext(StateContext);
     const { cardKey, currentMark, mapZone, mapMark, modalType } = state;
-    const { history } = props;
 
     switch (modalType) {
         case 'shared': {

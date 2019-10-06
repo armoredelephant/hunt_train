@@ -53,6 +53,7 @@ const initialState = {
   showModal: false,
   showNav: false,
   showLocation: false,
+  slideIndex: 0,
   uiConfig: null,
   userData: null,
   text: '',

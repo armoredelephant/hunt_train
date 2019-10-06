@@ -44,6 +44,8 @@ const scoutDataReducer = (draft, action) => {
       draft.formSuccess = initialState.formSuccess;
       draft.formNotification = initialState.formNotification;
       draft.formServer = initialState.formServer;
+      draft.guideData = initialState.guideData;
+      draft.slideIndex = initialState.slideIndex;
       return;
     }
     case 'route': {
@@ -179,6 +181,10 @@ const scoutDataReducer = (draft, action) => {
     }
     case 'guideData': {
       draft.guideData = action.guideData;
+      return;
+    }
+    case 'slide': {
+      draft.slideIndex = action.slideIndex;
       return;
     }
     default:
