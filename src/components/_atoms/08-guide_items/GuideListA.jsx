@@ -21,7 +21,6 @@ const Item = styled.li`
     margin-bottom: 8px;
     font-size: 13px;
     text-align: justify;
-    display: flex;
 `;
 
 const GuideListA = props => {
