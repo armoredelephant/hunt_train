@@ -1,6 +1,6 @@
 # hunttrain.com
 
-This app was developed to make FFXIV scouting and train conducting easier.
+This is an open-source app developed to make FFXIV scouting and train conducting easier for the hunting community.
 
 ## Skills
 
