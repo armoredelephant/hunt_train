@@ -8,10 +8,10 @@ import firebase from 'firebase/app';
 // import "firebase/database";
 import 'firebase/auth';
 
+import FooterA from '@A/09-footer/FooterA';
+import NavBarA from '@A/07-navbar/NavBarA';
 import SplashPageO from '@O/00-pages/SplashPageO';
 import ScouterPageO from '@O/00-pages/ScouterPageO';
-import ClipSpinnerA from '@A/06-spinners/ClipSpinnerA';
-import NavBarA from '@A/07-navbar/NavBarA';
 
 import theme from './theme';
 import './sass/base.scss';
@@ -74,6 +74,7 @@ const App = () => {
               <Route exact path="/" component={SplashPageO} />
               <Route path="/*" component={ScouterPageO} />
             </Switch>
+            <FooterA />
           </Router>
         </ThemeProvider>
       </StateContext.Provider>

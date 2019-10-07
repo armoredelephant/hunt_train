@@ -40,7 +40,6 @@ const SiteGuideO = () => {
                     return <GuideSlideM guide={section} key={rdmKey} />
                 })}
             </Carousel>
-            }
         </ModalContainerA>
     );
 };

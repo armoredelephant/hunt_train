@@ -1,21 +1,12 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
-import firebase from 'firebase/app';
 
-import 'firebase/auth';
+import { StateContext } from '../../../App';
 
-import { DispatchContext, StateContext } from '../../../App';
-import NavButtonA from '@A/02-buttons/NavButtonA';
-import AvatarContainerA from '@A/00-containers/AvatarContainerA';
+import NavButtonContainerA from '@A/00-containers/NavButtonContainerA';
 import SignInContainerA from '@A/00-containers/SignInContainerA';
 import ClipSpinnerA from '@A/06-spinners/ClipSpinnerA';
 import GuideButtonA from '@A/02-buttons/GuideButtonA';
-
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { faCheck } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
-library.add(faCheck);
 
 const Container = styled.div`
     position: relative;
@@ -29,27 +20,9 @@ const Container = styled.div`
     align-items: center;
 `;
 
-const IconContainer = styled.div`
-    color: ${props => props.theme.green};
-`;
 
-const NavContainer = styled.div`
-    display: flex;
-    flex-flow: row;
-    background: ${props => props.theme.darkestbg};
-    justify-content: space-evenly;
-    margin-right: 8px;
-    height: 100%;
-    padding-top: 1px;
-`;
-
-const TextContainer = styled.div`
-    color: ${props => props.verified ? props.theme.green : props.theme.blue};
-    margin-right: 5px;
-`;
 
 const NavBarA = () => {
-    const dispatch = useContext(DispatchContext);
     const state = useContext(StateContext);
     const { authChecked, uiConfig, userData } = state;
     // add an auth Error ?
@@ -60,15 +33,6 @@ const NavBarA = () => {
         verified = userData.verified;
     }
 
-    // handleLogout => will require firebase.auth() import
-    const handleLogout = () => {
-        dispatch({ type: 'loading' });
-        firebase.auth().signOut()
-            .then(() => {
-                dispatch({ type: 'logout' });
-            });
-    };
-
     return (
         <Container>
             <GuideButtonA />
@@ -77,24 +41,11 @@ const NavBarA = () => {
                 :
                 <>
                     {userData ?
-                        <>
-                            <NavContainer>
-                                {userData.avatar && <AvatarContainerA url={avatarURL} />}
-                                <NavButtonA
-                                    handleClick={() => dispatch({ type: 'modalSwitch', modalType: 'verification' })}
-                                >
-                                    <TextContainer>{verified ? 'Verified' : 'Get Verified'}</TextContainer>
-                                    {verified &&
-                                        <IconContainer>
-                                            <FontAwesomeIcon icon={faCheck} size='1x' />
-                                        </IconContainer>
-                                    }
-                                </NavButtonA>
-                                <NavButtonA handleClick={handleLogout}>
-                                    <TextContainer>Logout</TextContainer>
-                                </NavButtonA>
-                            </NavContainer>
-                        </>
+                        <NavButtonContainerA
+                            userData={userData}
+                            avatarURL={avatarURL}
+                            verified={verified}
+                        />
                         :
                         <SignInContainerA
                             config={uiConfig}
