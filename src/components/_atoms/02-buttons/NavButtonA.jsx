@@ -17,6 +17,8 @@ const NavButton = styled.button`
     transition: border-bottom 0.1s linear;
     justify-content: space-evenly;
     align-items: center;
+    height: 100%;
+    align-self: center;
 
     &:hover {
         border-bottom: 1px solid ${props => props.theme.blue};

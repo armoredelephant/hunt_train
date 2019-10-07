@@ -34,6 +34,7 @@ const theme = {
   pad: '5px',
   authBorder: '1px solid #919191',
   lightfont: '300',
+  footerclr: '#6b6b6b',
 };
 
 export default theme;
