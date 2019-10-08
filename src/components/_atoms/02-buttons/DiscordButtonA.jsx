@@ -30,7 +30,7 @@ const Button = styled.button`
     }
 
     @media (max-width: 414px) {
-        height: 20px;
+        height: 31px;
     };
 `;
 
