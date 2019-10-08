@@ -47,18 +47,24 @@ const Text = styled.div`
     align-self: center;
 `;
 
+const Link = styled.a`
+    color: ${props => props.theme.footerclr};
+    letter-spacing: ${props => props.theme.ls};
+    font-family: ${props => props.theme.ff};
+    font-size: 11px;
+    text-decoration: none;
+`;
+
 const FooterA = () => {
     const dispatch = useContext(DispatchContext);
-
-    const handleDispatch = () => {
-        dispatch({ type: 'modalSwitch', modalType: 'footer' });
-    }
 
     return (
         <Container>
             <Wrapper>
-                <Button onClick={handleDispatch}>
-                    Privacy Policy
+                <Button>
+                    <Link href='https://app.termly.io/document/privacy-policy/fa1bd745-8fea-4979-8531-f1a6498b5d16'>
+                        Privacy Policy
+                    </Link>
                 </Button>
                 <Text>Created by Hattori Hanzo of Leviathan</Text>
             </Wrapper>

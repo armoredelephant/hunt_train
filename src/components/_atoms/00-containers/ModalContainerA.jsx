@@ -16,6 +16,30 @@ const Container = styled.div`
     margin: 8px;
     background: ${props => props.theme.cardbg};
     box-shadow: ${props => props.theme.bshad};
+
+    @media only screen 
+    and (min-device-width : 375px) 
+    and (max-device-width : 667px) 
+    and (orientation : portrait) { 
+      max-height: 600px;
+      overflow: auto;
+    }
+
+    @media only screen 
+    and (min-device-width : 414px) 
+    and (max-device-width : 736px) 
+    and (orientation : portrait) {
+      max-height: 680px;
+      overflow: auto;
+    }
+
+    @media only screen 
+    and (min-device-width : 320px) 
+    and (max-device-width : 568px) 
+    and (orientation : portrait) {
+      max-height: 500px;
+      overflow: auto;
+    }
 `;
 
 const ModalContainerA = props => {

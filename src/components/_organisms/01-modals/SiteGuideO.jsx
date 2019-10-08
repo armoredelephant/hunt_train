@@ -30,6 +30,7 @@ const SiteGuideO = () => {
     return (
         <ModalContainerA carousel={true}>
             <Carousel
+                heightMode='current'
                 slideIndex={slideIndex}
                 afterSlide={slideIndex => dispatch({ type: 'slide', slideIndex: slideIndex })}
             >

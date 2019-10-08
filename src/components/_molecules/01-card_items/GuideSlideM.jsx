@@ -22,6 +22,7 @@ const Wrapper = styled.div`
     justify-content: center;
     align-self: center;
     margin-bottom: 50px;
+    overflow: auto;
 `;
 
 const GuideSlideM = props => {
