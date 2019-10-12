@@ -25,12 +25,12 @@ const NavContainer = styled.div`
     background: ${props => props.theme.darkestbg};
     justify-content: space-evenly;
     height: 100%;
-    padding-top: 1px;
+    padding-top: .063em;
 `;
 
 const TextContainer = styled.div`
     color: ${props => props.verified ? props.theme.green : props.theme.blue};
-    margin-right: 5px;
+    margin-right: .313em;
 `;
 
 const NavList = styled.ul`

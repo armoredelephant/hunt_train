@@ -8,36 +8,36 @@ const Container = styled.div`
     flex-flow: column;
     align-items: center;
     align-self: center;
-    width: ${props => !props.carousel && '384px'};
-    height: ${props => props.notification && '500px'};
+    width: ${props => !props.carousel && '24em'};
+    height: ${props => props.notification && '31.250em'};
     overflow: auto;
     flex-shrink: 1;
     radius: ${props => props.theme.brad};
-    margin: 8px;
+    margin: .5em;
     background: ${props => props.theme.cardbg};
     box-shadow: ${props => props.theme.bshad};
 
     @media only screen 
-    and (min-device-width : 375px) 
-    and (max-device-width : 667px) 
+    and (min-device-width : 23.439em) 
+    and (max-device-width : 41.688em) 
     and (orientation : portrait) { 
-      max-height: 600px;
+      max-height: 37.5em;
       overflow: auto;
     }
 
     @media only screen 
-    and (min-device-width : 414px) 
-    and (max-device-width : 736px) 
+    and (min-device-width : 25.875em) 
+    and (max-device-width : 46em) 
     and (orientation : portrait) {
-      max-height: 680px;
+      max-height: 42.5em;
       overflow: auto;
     }
 
     @media only screen 
-    and (min-device-width : 320px) 
-    and (max-device-width : 568px) 
+    and (min-device-width : 20em) 
+    and (max-device-width : 35.5em) 
     and (orientation : portrait) {
-      max-height: 500px;
+      max-height: 31.25em;
       overflow: auto;
     }
 `;

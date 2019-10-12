@@ -14,7 +14,7 @@ const Header = styled.div`
     justify-content: flex-end;
     align-self: flex-start;
     width: 100%;
-    border-bottom: 1px solid ${props => props.theme.darkestbg};
+    border-bottom: .063em solid ${props => props.theme.darkestbg};
     background: #444444;
 `;
 

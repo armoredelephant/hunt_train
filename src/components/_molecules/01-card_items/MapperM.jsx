@@ -12,17 +12,17 @@ const Container = styled.div`
   flex-flow: column;
   justify-content: ${props => props.theme.between};
   align-items: center;
-  width: 80px;
+  width: 5em;
 `;
 
 const Coords = styled.p`
-  font-size: 16px;
-  padding: 10px 0;
+  font-size: 1em;
+  padding: .625em 0;
   color: ${props => (props.active ? props.theme.green : props.theme.red)};
   font-family: ${props => props.theme.ff};
   text-align: ${props => props.theme.ta};
 
-  @media (max-width: 415px) {
+  @media (max-width: 25.938em) {
     font-size: ${props => props.theme.mfs};
   }
 `;

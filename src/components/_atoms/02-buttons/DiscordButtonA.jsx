@@ -21,16 +21,17 @@ const Button = styled.button`
     border: none;
     padding: 0;
     outline: none;
-    width: 25px
-    height: 30px;
+    width: 1.763em;
+    height: 1.975em;
+    margin: 0 .313em;
     cursor: ${props => props.disabled ? 'not-allowed' : 'pointer'};
 
     &:active {
         color: #6E87D8;
     }
 
-    @media (max-width: 414px) {
-        height: 31px;
+    @media (max-width: 25.875em) {
+        height: 1.938em;
     };
 `;
 

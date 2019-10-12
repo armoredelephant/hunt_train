@@ -10,10 +10,10 @@ const ClipSpinnerA = styled.div`
     display: flex;
     align-self: center;
     background: transparent !important;
-    width: 50px;
-    height: 50px;
+    width: 3.125em;
+    height: 3.125em;
     border-radius: 100%;
-    border: 2px solid;
+    border: .125em solid;
     border-color: ${props => props.theme.blue};
     border-bottom-color: transparent;
     display: inline-block;

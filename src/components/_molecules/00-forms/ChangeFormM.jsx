@@ -15,8 +15,8 @@ const Form = styled.form`
     display: flex;
     flex-flow: column;
     width: 100%;
-    padding-top: 13px;
-    border-top: 1px solid ${props => props.theme.darkestbg};
+    padding-top: .813em;
+    border-top: .063em solid ${props => props.theme.darkestbg};
 `;
 
 const Container = styled.div`

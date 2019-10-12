@@ -12,7 +12,7 @@ const Container = styled.div`
     display: flex;
     flex-flow: column;
     width: 100%;
-    margin-bottom: 10px;
+    margin-bottom: .625em;
 `;
 
 const VerifyContainer = styled.div`
@@ -20,7 +20,7 @@ const VerifyContainer = styled.div`
     width: 100%;
     justify-content: center;
     align-content: center;
-    margin-bottom: 10px;
+    margin-bottom: .625em;
 `;
 
 const VerificationFormM = () => {

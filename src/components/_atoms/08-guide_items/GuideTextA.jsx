@@ -6,7 +6,7 @@ import GuideItemContainerA from '@A/00-containers/GuideItemContainerA';
 // conditional for italics if notification
 const Text = styled.p`
     display: flex;
-    font-size: 13px;
+    font-size: .813em;
     text-align: justify;
     font-family: ${props => props.theme.ff};
     letter-spacing: ${props => props.theme.ls};

@@ -25,8 +25,8 @@ const List = styled.ol`
 `;
 
 const ListItem = styled.li`
-    margin-bottom: 8px;
-    font-size: 13px;
+    margin-bottom: .5em;
+    font-size: .813em;
 `;
 
 const VerificationGuideA = () => {

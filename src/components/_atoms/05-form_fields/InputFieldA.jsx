@@ -9,7 +9,7 @@ const Input = styled.input`
     color: ${props => props.theme.fntClr};
     font-family: ${props => props.theme.ff};
     line-spacing: ${props => props.theme.ls};
-    font-size: 16px;
+    font-size: 1em;
 
     &:visited,
     &:focus,
@@ -25,7 +25,7 @@ const Input = styled.input`
     &:-webkit-autofill:active  {
         font-family: ${props => props.theme.ff};
         line-spacing: ${props => props.theme.ls};
-        -webkit-box-shadow: 0 0 0 30px ${props => props.theme.cardbg} inset !important;
+        -webkit-box-shadow: 0 0 0 1.875em ${props => props.theme.cardbg} inset !important;
         -webkit-text-fill-color: ${props => props.theme.fntClr} !important;
     }
 `;
@@ -34,9 +34,9 @@ const InputContainer = styled.div`
     display: flex;
     flex-flow: row;
     align-content: center;
-    border-bottom: 1px solid ${props => props.theme.darkestbg};
-    padding-bottom: 8px;
-    margin-bottom: 18px;
+    border-bottom: .063em solid ${props => props.theme.darkestbg};
+    padding-bottom: .5em;
+    margin-bottom: 1.125em;
 `;
 
 const InputFieldA = props => {
