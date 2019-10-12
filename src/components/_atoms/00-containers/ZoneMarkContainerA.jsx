@@ -5,10 +5,10 @@ const Container = styled.div`
   display: flex;
   flex-flow: row;
   align-content: flex-end;
-  width: 200px;
+  width: 12.5em;
 
-  @media (max-width: 415px) {
-    width: 100px;
+  @media (max-width: 25.938em) {
+    width: 6.25em;
   }
 `;
 

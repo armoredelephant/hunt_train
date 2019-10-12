@@ -20,7 +20,7 @@ const Container = styled.div`
     align-content: center;
     align-self: center;
     width: 100%;
-    min-height: 384px;
+    min-height: 24em;
 `;
 
 const Form = styled.form`
@@ -28,7 +28,7 @@ const Form = styled.form`
     flex-flow: column;
     align-self: center;
     width: 100%;
-    margin: 50px;
+    margin: 3.125em;
     justify-content: stretch;
 `;
 

@@ -19,7 +19,7 @@ const Label = styled.label`
     color: ${props => props.theme.fntClr};
     font-family: inherit;
     letter-spacing: inherit;
-    font-size: 13px;
+    font-size: .813em;
     align-self: flex-start;
 `;
 

@@ -11,10 +11,10 @@ import ErrorNotificationA from '@A/03-notifications/ErrorNotificationA';
 const Container = styled.div`
     display: flex;
     flex-flow: column;
-    border: 1px solid white;
+    border: .063em solid white;
     border-radius: ${props => props.theme.brad};
-    margin-top: 5px;
-    height: 200px;
+    margin-top: .313em;
+    height: 12.5em;
     justify-content: center;
     align-items: center;
     background: ${props => props.theme.btnBG};
@@ -39,7 +39,7 @@ const InnerContainer = styled.div`
     flex-flow: column;
     justify-content: space-between;
     align-items: center;
-    margin: 5px;
+    margin: .313em;
 
 `;
 

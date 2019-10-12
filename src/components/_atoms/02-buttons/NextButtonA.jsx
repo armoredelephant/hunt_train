@@ -9,8 +9,8 @@ const Container = styled.div`
 
 const Button = styled.button`
   align-self: flex-end;
-  font-size: 30px;
-  padding-bottom: 20px;
+  font-size: 1.875em;
+  padding-bottom: 1.25em;
   cursor: pointer;
   outline: none;
   color: ${props => props.theme.fntClr};

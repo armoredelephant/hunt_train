@@ -9,13 +9,15 @@ import ClipSpinnerA from '@A/06-spinners/ClipSpinnerA';
 import GuideButtonA from '@A/02-buttons/GuideButtonA';
 
 const Container = styled.div`
-    position: relative;
+    position: absolute;
+    top: 0;
+    left: 0;
     display: flex;
     flex-flow: row;
     width: 100%;
-    height: 60px;
+    height: 3.75em;
     background: ${props => props.theme.darkestbg};
-    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .8);
+    box-shadow: 0 .063em .063em 0 rgba(0, 0, 0, .8);
     justify-content: space-between;
     align-items: center;
 `;

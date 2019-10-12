@@ -8,12 +8,12 @@ const NavButton = styled.button`
     font-family: ${props => props.theme.ff};
     letter-spacing: ${props => props.theme.ls};
     color: ${props => props.theme.blue};
-    font-size: 13px;
+    font-size: .813em;
     cursor: ${props => props.theme.btnCursor};
     outline: ${props => props.theme.btnOutline};
     background: ${props => props.theme.darkestbg};
     border: none;
-    border-bottom: 1px solid ${props => props.theme.darkestbg};
+    border-bottom: .063em solid ${props => props.theme.darkestbg};
     transition: border-bottom 0.1s linear;
     justify-content: space-evenly;
     align-items: center;
@@ -21,7 +21,7 @@ const NavButton = styled.button`
     align-self: center;
 
     &:hover {
-        border-bottom: 1px solid ${props => props.theme.blue};
+        border-bottom: .063em solid ${props => props.theme.blue};
     }
 
     &:active,

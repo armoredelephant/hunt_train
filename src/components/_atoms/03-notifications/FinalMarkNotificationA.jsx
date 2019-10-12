@@ -11,7 +11,7 @@ const Notification = styled.p`
   align-self: center;
   text-align: center;
   color: ${props => props.theme.red};
-  font-size: 20px;
+  font-size: 1.25em;
   font-family: ${props => props.theme.ff};
   letter-spacing: ${props => props.theme.ls};
 `;

@@ -17,7 +17,7 @@ const CharacterContainer = styled.div`
     align-self: center;
     width: 80%;
     justify-content: space-evenly;
-    margin-bottom: 10px;
+    margin-bottom: .625em;
 `;
 
 const CharacterContainerA = () => {

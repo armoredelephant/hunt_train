@@ -10,7 +10,7 @@ const Notification = styled.p`
 
 const Container = styled.div`
     display: flex;
-    margin: 15px 0;
+    margin: .938em 0;
     justify-content: center;
 `;
 

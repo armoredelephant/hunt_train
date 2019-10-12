@@ -5,7 +5,7 @@ const Error = styled.p`
     color: red;
     text-align: center;
     font-family: ${props => props.theme.ff};
-    line-spacing: 1.8px;
+    line-spacing: .113em;
     visibility: ${props => props.error ? 'visible' : 'hidden'};
 `;
 

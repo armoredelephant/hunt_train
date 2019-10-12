@@ -16,7 +16,7 @@ const Label = styled.p`
   font-family: ${props => props.theme.ff};
   color: ${props => props.theme.fntClr};
 
-  @media (max-width: 415px) {
+  @media (max-width: 25.938em) {
     font-size: ${props => props.theme.mfs};
   }
 `;
@@ -25,12 +25,12 @@ const Info = styled.p`
   font-family: ${props => props.theme.ff};
   letter-spacing: ${props => props.theme.ls};
   font-size: ${props => props.theme.fntSz};
-  border-bottom: 1px solid ${props => props.theme.darkestbg};
+  border-bottom: .063em solid ${props => props.theme.darkestbg};
   text-align: ${props => props.theme.ta};
-  padding-bottom: 3px;
+  padding-bottom: .188em;
   color: ${props => props.theme.green};
 
-  @media (max-width: 414px) {
+  @media (max-width: 25.875em) {
     font-size: ${props => props.theme.mfs};
   }
 `;

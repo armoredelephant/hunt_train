@@ -21,7 +21,7 @@ const Wrapper = styled.div`
     width: 60%;
     justify-content: center;
     align-self: center;
-    margin-bottom: 50px;
+    margin-bottom: 3.125em;
     overflow: auto;
 `;
 

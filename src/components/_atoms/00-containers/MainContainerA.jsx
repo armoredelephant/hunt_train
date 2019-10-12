@@ -3,12 +3,12 @@ import styled from 'styled-components';
 
 const Container = styled.main`
   width: 100%;
-  height: auto;
+  height: 100%;
   display: flex;
   flex-flow: column;
   justify-content: space-evenly;
   align-items: center;
-  padding: ${props => props.theme.pad};
+  padding: 3.750em .313em;
 `;
 
 const MainContainerA = props => {

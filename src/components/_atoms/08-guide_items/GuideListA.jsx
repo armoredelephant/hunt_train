@@ -18,8 +18,8 @@ const UL = styled.ul`
 `;
 // refactor to use here annd VerificationGuideA
 const Item = styled.li`
-    margin-bottom: 8px;
-    font-size: 13px;
+    margin-bottom: .5em;
+    font-size: .813em;
     text-align: justify;
 `;
 

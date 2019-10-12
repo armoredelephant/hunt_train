@@ -12,7 +12,7 @@ const Button = styled.button`
   text-transform: ${props => props.theme.btnTT};
   letter-spacing: ${props => props.theme.btnLS};
   color: ${props => props.theme.btnColor};
-  border: 2px solid ${props => props.theme.btnColor};
+  border: .125em solid ${props => props.theme.btnColor};
   border-radius: ${props => props.theme.btnBorderRadius};
   text-align: ${props => props.theme.btnTA};
   text-decoration: ${props => props.theme.btnTD};
@@ -23,11 +23,11 @@ const Button = styled.button`
   font-family: ${props => props.theme.ff};
   align-self: center;
   order: ${props => props.order};
-  margin: 5px;
+  margin: .313em;
 
-  @media (max-width: 415px) {
+  @media (max-width: 25.938em) {
     font-size: ${props => props.theme.mfs};
-    padding: 9px 22px;
+    padding: .563em 1.375em;
   }
 `;
 
