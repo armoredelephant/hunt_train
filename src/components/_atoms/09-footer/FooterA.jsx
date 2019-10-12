@@ -11,7 +11,6 @@ const Container = styled.div`
     width: 100%;
     height: 3.75em;
     font-family: ${props => props.theme.ff};
-    font-size: .75em;
     background: ${props => props.theme.darkestbg};
     box-shadow: 0 .063em .063em 0 rgba(0, 0, 0, .8);
     justify-content: center;
@@ -22,6 +21,7 @@ const Wrapper = styled.div`
     display: flex;
     flex-flow: row;
     justify-content: space-evenly;
+    font-size: .75em;
 `;
 
 const Text = styled.div`
