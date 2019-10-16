@@ -30,10 +30,6 @@ const Button = styled.button`
     &:active {
         color: #6E87D8;
     }
-
-    @media (max-width: 25.875rem) {
-        height: 1.638rem;
-    };
 `;
 
 const DiscordButtonA = () => {
