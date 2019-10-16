@@ -10,8 +10,6 @@ const Container = styled.main`
   padding: 3.750rem .313rem;
   flex-shrink: 0;
 
-  margin: 0 4%;
-  
   @media (min-width: 64rem) {
     margin: 0 8%;
   }
