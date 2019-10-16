@@ -13,6 +13,9 @@ $mq-xlarge: "(min-width: #{$bp-xlarge})";
 $mq-xxlarge: "(min-width: #{$bp-xxlarge})";
 $mq-retina: "(-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi)";
 
+// Font-Size
+$base-font-size: 1em;
+
 *,
 *:before,
 *:after {
@@ -36,11 +39,9 @@ body {
     position: relative;
     padding: 0;
     font-size: $base-font-size;
-    line-height: $base-line-height;
 
     @media #{$mq-medium} {
         font-size: $base-font-size*1.2;
-        line-height: $base-line-height*1.2;
     }
 
     @media #{$mq-large} {
