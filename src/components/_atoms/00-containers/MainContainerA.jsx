@@ -9,27 +9,11 @@ const Container = styled.main`
   align-items: center;
   padding: 3.750rem .313rem;
   flex-shrink: 0;
-
-  @media (min-width: 64rem) {
-    margin: 0 8%;
-  }
-
-  @media (min-width: 85.375rem) {
-    margin: 0 12%;
-  }
-
-  @media (min-width: 120rem) {
-    margin: 0 18%;
-  }
-
-  @media (min-width: 160rem) {
-    margin: 0 26%;
-  }
 `;
 
 const MainContainerA = props => {
   const { children } = props;
-  return <Container className='container'>{children}</Container>;
+  return <Container>{children}</Container>;
 };
 
 export default MainContainerA;
