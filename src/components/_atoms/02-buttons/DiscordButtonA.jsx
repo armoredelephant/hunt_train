@@ -24,7 +24,7 @@ const Button = styled.button`
     width: 1.763rem;
     height: 1.975rem;
     margin: 0 .313rem;
-    border-radius: 60%;
+    border-radius: .75rem;
     cursor: ${props => props.disabled ? 'not-allowed' : 'pointer'};
 
     &:active {
