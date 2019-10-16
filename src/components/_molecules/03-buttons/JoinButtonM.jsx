@@ -8,17 +8,6 @@ import { DispatchContext, StateContext } from '../../../App';
 
 import ThemedButtonA from '@A/02-buttons/ThemedButtonA';
 import ErrorNotificationA from '@A/03-notifications/ErrorNotificationA';
-const Container = styled.div`
-    display: flex;
-    flex-flow: column;
-    border: .063em solid white;
-    border-radius: ${props => props.theme.brad};
-    margin-top: .313em;
-    height: 12.5em;
-    justify-content: center;
-    align-items: center;
-    background: ${props => props.theme.btnBG};
-`;
 
 const Input = styled.input`
     border-radius: ${props => props.theme.brad};
@@ -39,7 +28,7 @@ const InnerContainer = styled.div`
     flex-flow: column;
     justify-content: space-between;
     align-items: center;
-    margin: .313em;
+    margin: .313rem;
 
 `;
 
@@ -67,7 +56,6 @@ const JoinButtonM = props => {
     }
 
     return (
-        // <Container>
         <>
             <ThemedButtonA // prettier-ignore
                 handleClick={handleJoin}
@@ -80,7 +68,6 @@ const JoinButtonM = props => {
                 <ErrorNotificationA error={error} />
             </InnerContainer>
         </>
-        // {/* </Container> */ }
     );
 };
 

@@ -11,7 +11,7 @@ const Container = styled.main`
   background-size: cover;
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
     url(/resources/images/hunt.jpg);
-  padding-bottom: 3.750em;
+  padding-bottom: 3.750rem;
   height: -webkit-fill-available;
 `;
 

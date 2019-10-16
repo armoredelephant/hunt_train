@@ -4,14 +4,14 @@ import styled from 'styled-components';
 const AvatarContainer = styled.div`
     display: flex;
     justify-content: center;
-    padding-right: .5em;
+    padding-right: .5rem;
 `;
 
 const Avatar = styled.img`
     display: flex;
     border-radius: 50%;
-    height: 2.5em;
-    width: 2.5em;
+    height: 2.5rem;
+    width: 2.5rem;
     align-self: center;
 `;
 

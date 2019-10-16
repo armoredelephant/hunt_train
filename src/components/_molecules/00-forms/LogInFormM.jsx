@@ -9,15 +9,15 @@ const Container = styled.div`
     flex-flow: column;
     align-items: center;
     align-self: center;
-    width: 24em;
+    width: 24rem;
     overflow: auto;
     radius: ${props => props.theme.brad};
-    margin: .5em;
+    margin: .5rem;
     background: ${props => props.theme.cardbg};
     box-shadow: ${props => props.theme.bshad};
 `;
 
-const LogInFormM = props => {
+const LogInFormM = () => {
     return (
         <Container>
             <ModalCloseHeaderA />

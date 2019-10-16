@@ -5,24 +5,23 @@ import { DispatchContext, StateContext } from '../../../App';
 
 import StyledButtonA from '@A/02-buttons/StyledButtonA';
 import RemoveButtonA from '@A/02-buttons/RemoveButtonA';
-import ClipSpinnerA from '@A/06-spinners/ClipSpinnerA';
 
 const Container = styled.div`
   display: flex;
   flex-flow: column;
   justify-content: ${props => props.theme.between};
   align-items: center;
-  width: 5em;
+  width: 5rem;
 `;
 
 const Coords = styled.p`
-  font-size: 1em;
-  padding: .625em 0;
+  font-size: 1rem;
+  padding: .625rem 0;
   color: ${props => (props.active ? props.theme.green : props.theme.red)};
   font-family: ${props => props.theme.ff};
   text-align: ${props => props.theme.ta};
 
-  @media (max-width: 25.938em) {
+  @media (max-width: 25.938rem) {
     font-size: ${props => props.theme.mfs};
   }
 `;

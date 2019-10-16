@@ -5,8 +5,8 @@ const Container = styled.div`
   display: flex;
   flex-flow: column;
   justify-content: space-evenly;
-  height: 18.750em;
-  margin: .938em;
+  height: 18.750rem;
+  margin: .938rem;
 `;
 
 const ContentContainerA = props => {

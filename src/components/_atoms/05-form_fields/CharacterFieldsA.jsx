@@ -5,7 +5,7 @@ const Container = styled.div`
     display: flex;
     flex-flow: column;
     color: ${props => props.theme.fntClr};
-    font-size: .813em;
+    font-size: .813rem;
     justify-content: space-between;
     letter-spacing: ${props => props.theme.ls};
 `;

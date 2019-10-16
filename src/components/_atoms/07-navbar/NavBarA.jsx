@@ -8,6 +8,12 @@ import SignInContainerA from '@A/00-containers/SignInContainerA';
 import ClipSpinnerA from '@A/06-spinners/ClipSpinnerA';
 import GuideButtonA from '@A/02-buttons/GuideButtonA';
 
+/**
+ * Basically the navbar/header container.
+ * Contains the guide button, and determines whether to -
+ * display the Google sign-in button or avatar/verify/logout
+ */
+
 const Container = styled.div`
     position: absolute;
     top: 0;
@@ -15,9 +21,9 @@ const Container = styled.div`
     display: flex;
     flex-flow: row;
     width: 100%;
-    height: 3.75em;
+    height: 3.75rem;
     background: ${props => props.theme.darkestbg};
-    box-shadow: 0 .063em .063em 0 rgba(0, 0, 0, .8);
+    box-shadow: 0 .063rem .063rem 0 rgba(0, 0, 0, .8);
     justify-content: space-between;
     align-items: center;
 `;
@@ -43,13 +49,13 @@ const NavBarA = () => {
                 :
                 <>
                     {userData ?
-                        <NavButtonContainerA
+                        <NavButtonContainerA // Avatar/Verify/Logout
                             userData={userData}
                             avatarURL={avatarURL}
                             verified={verified}
                         />
                         :
-                        <SignInContainerA
+                        <SignInContainerA // Google auth button
                             config={uiConfig}
                         />
                     }

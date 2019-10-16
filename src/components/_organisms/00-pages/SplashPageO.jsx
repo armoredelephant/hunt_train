@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
 import Axios from 'axios';
-import styled from 'styled-components';
 
 import { DispatchContext, StateContext } from '../../../App';
 

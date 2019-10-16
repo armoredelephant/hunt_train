@@ -6,14 +6,14 @@ const Button = styled.button`
   color: ${props => props.theme.cardbg};
   font-family: ${props => props.theme.ff};
   border: none;
-  padding: .188em 1em;
+  padding: .188rem 1rem;
   outline: none;
   cursor: ${props => props.disabled ? 'not-allowed' : 'pointer'};
   font-size: ${props => props.theme.btnFS};
   border-radius: ${props => props.theme.brad};
   background-color: ${props => props.disabled ? '#893327' : props.theme.blue};
   text-decoration: none;
-  margin: .313em;
+  margin: .313rem;
 
   &:visited,
   &:focus,
@@ -23,9 +23,9 @@ const Button = styled.button`
     outline: none;
   }
 
-  @media (max-width: 25.938em) {
+  @media (max-width: 25.938rem) {
     font-size: ${props => props.theme.mfs};
-    padding: .063em .75em;
+    padding: .063rem .75rem;
   }
 `;
 

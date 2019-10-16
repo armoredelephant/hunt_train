@@ -29,7 +29,7 @@ const StartButton = styled.button`
   color: ${props => props.theme.cardbg};
   font-family: ${props => props.theme.ff};
   border: none;
-  padding: .188em 1em;
+  padding: .188rem 1rem;
   outline: none;
   font-size: ${props => props.theme.btnFS};
   border-radius: ${props => props.theme.brad};
@@ -44,9 +44,9 @@ const StartButton = styled.button`
     text-decoration: none;
     outline: none;
   }
-  @media (max-width: 25.938em) {
+  @media (max-width: 25.938rem) {
     font-size: ${props => props.theme.mfs};
-    padding: .063em .75em;
+    padding: .063em .75rem;
   }
 `;
 

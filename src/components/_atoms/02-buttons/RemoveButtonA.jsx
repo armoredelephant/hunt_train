@@ -16,7 +16,6 @@ const Button = styled.button`
   background: ${props => props.theme.cardbg};
   border: none;
   cursor: pointer;
-  font-size: 1em;
 
   &:visited,
   &:focus,

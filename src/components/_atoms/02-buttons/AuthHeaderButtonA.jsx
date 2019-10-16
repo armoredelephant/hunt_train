@@ -10,9 +10,9 @@ const Button = styled.button`
     font-size: ${props => props.theme.btnFS};
     letter-spacing: ${props => props.theme.ls};
     width: 50%;
-    padding: .938em 0;
+    padding: .938rem 0;
     border: none;
-    border-bottom: ${props => props.isActive && `.063em solid ${props.theme.blue}`};
+    border-bottom: ${props => props.isActive && `.063rem solid ${props.theme.blue}`};
     outline: none;
 
     &:visited,

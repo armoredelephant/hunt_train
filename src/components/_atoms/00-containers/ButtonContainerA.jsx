@@ -5,7 +5,7 @@ const ButtonContainerA = styled.div`
   flex-flow: ${props => props.column ? 'column' : 'row'};
   justify-content: space-around;
   align-content: center;
-  margin: .313em;
+  margin: .313rem;
 `;
 
 export default ButtonContainerA;

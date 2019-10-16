@@ -3,6 +3,16 @@ import styled from 'styled-components';
 
 import { verificationSteps } from 'Utils/verification';
 
+/**
+ * Guide containing verification steps.
+ * Displays:
+ * <div>
+ *  > Header <
+ *  > List <
+ * <div>
+ * Used in: 
+ */
+
 const Container = styled.div`
     color: ${props => props.theme.fntClr};
     font-family: ${props => props.theme.ff};
@@ -25,8 +35,8 @@ const List = styled.ol`
 `;
 
 const ListItem = styled.li`
-    margin-bottom: .5em;
-    font-size: .813em;
+    margin-bottom: .5rem;
+    font-size: .813rem;
 `;
 
 const VerificationGuideA = () => {

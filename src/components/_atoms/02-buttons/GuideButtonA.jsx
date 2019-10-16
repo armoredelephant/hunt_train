@@ -12,7 +12,7 @@ library.add(faQuestionCircle);
 const Container = styled.div`
     display: flex;
     justify-content: center;
-    margin-left: .5em;
+    margin-left: .5rem;
 `;
 
 const Button = styled.button`

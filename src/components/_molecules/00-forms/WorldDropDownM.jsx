@@ -14,7 +14,7 @@ const Container = styled.div`
 const Wrapper = styled.div`
     display: flex;
     justify-content: space-between;
-    margin: .313em;
+    margin: .313rem;
     flex-flow: column;
     
 `;

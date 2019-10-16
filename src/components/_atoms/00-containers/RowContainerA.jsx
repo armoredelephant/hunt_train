@@ -5,8 +5,8 @@ const Container = styled.div`
     display: flex;
     flex-flow; row;
     justify-content: ${props => props.align ? props.align : props.theme.between};
-    padding-bottom: ${props => props.nopad ? '0' : '.313em'};
-    border-bottom: .063em solid ${props => props.theme.darkestbg};
+    padding-bottom: ${props => props.nopad ? '0' : '.313rem'};
+    border-bottom: .063rem solid ${props => props.theme.darkestbg};
 `;
 
 const RowContainerA = props => {

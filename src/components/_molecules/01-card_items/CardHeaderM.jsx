@@ -12,7 +12,7 @@ const Zone = styled.h3`
   font-family: ${props => props.theme.ff};
   letter-spacing: ${props => props.theme.ls};
 
-  @media (max-width: 25.938em) {
+  @media (max-width: 25.938rem) {
     font-size: ${props => props.theme.mfs};
   }
 `;
@@ -25,7 +25,7 @@ const Instance = styled.h3`
   font-family: ${props => props.theme.ff};
   text-align: ${props => props.theme.ta};
 
-  @media (max-width: 25.938em) {
+  @media (max-width: 25.938rem) {
     font-size: ${props => props.theme.mfs};
   }
 `;
@@ -34,7 +34,7 @@ const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 5em;
+  width: 5rem;
 `;
 
 const CardHeaderM = props => {

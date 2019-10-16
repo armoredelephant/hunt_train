@@ -6,14 +6,14 @@ import { StateContext } from '../../../App';
 const Notification = styled.p`
     display: flex;
     align-self: center;
-    font-size: .813em;
+    font-size: .813rem;
     color: ${props => props.theme.red};
     visibility: ${props => props.isHidden && 'hidden'};
 `;
 
 const Container = styled.div`
     display: flex;
-    margin: .938em 0;
+    margin: .938rem 0;
     justify-content: center;
 `;
 

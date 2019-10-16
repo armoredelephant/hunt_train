@@ -13,9 +13,9 @@ const Container = styled.div`
 `;
 
 const Image = styled.img`
-  min-width: 40em;
+  min-width: 40rem;
   align-self: center;
-  min-height: 40em;
+  min-height: 40rem;
 `;
 
 const Area = styled.area`

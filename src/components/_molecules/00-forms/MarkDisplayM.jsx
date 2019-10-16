@@ -15,10 +15,10 @@ const InfoContainer = styled.div`
   background-color: ${props => props.theme.darkestbg};
   border-radius: ${props => props.theme.brad};
   justify-content: ${props => props.theme.between};
-  border-top: .125em solid #222;
-  border-left: .063em solid #222;
-  border-right: .063em solid #222;
-  border-bottom: .063em solid #242424;
+  border-top: .125rem solid #222;
+  border-left: .063rem solid #222;
+  border-right: .063rem solid #222;
+  border-bottom: .063rem solid #242424;
   align-items: center;
   margin: ${props => props.theme.margin};
 `;

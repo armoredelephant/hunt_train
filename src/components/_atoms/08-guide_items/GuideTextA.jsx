@@ -3,10 +3,15 @@ import styled from 'styled-components';
 
 import GuideItemContainerA from '@A/00-containers/GuideItemContainerA';
 
+/**
+ * Containers for basic text for a guide slide.
+ * Can be used for intro (top) or notification (bot)
+ */
+
 // conditional for italics if notification
 const Text = styled.p`
     display: flex;
-    font-size: .813em;
+    font-size: .813rem;
     text-align: justify;
     font-family: ${props => props.theme.ff};
     letter-spacing: ${props => props.theme.ls};

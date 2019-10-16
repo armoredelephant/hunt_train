@@ -14,7 +14,7 @@ const Mark = styled.h4`
   margin: 0;
   align-self: flex-end;
 
-  @media (max-width: 25.938em) {
+  @media (max-width: 25.938rem) {
     font-size: ${props => props.theme.mfs};
   }
 `;

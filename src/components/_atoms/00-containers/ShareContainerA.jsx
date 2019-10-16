@@ -23,7 +23,7 @@ const Input = styled.input`
     border-radius: ${props => props.theme.brad};
     font-family: ${props => props.theme.ff};
     letter-spacing: ${props => props.theme.ls};
-    margin-right: .313em;
+    margin-right: .313rem;
 `;
 
 const Wrapper = styled.div`

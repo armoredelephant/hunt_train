@@ -3,6 +3,11 @@ import styled from 'styled-components';
 
 import GuideItemContainerA from '@A/00-containers/GuideItemContainerA';
 
+/**
+ * Container that displays either the ol or ul from a guide section.
+ * If the guide slide has an ordered list, it will create a OL, else UL
+ */
+
 const OL = styled.ol`
     display: inline-flex;
     flex-flow: column;
@@ -18,8 +23,8 @@ const UL = styled.ul`
 `;
 // refactor to use here annd VerificationGuideA
 const Item = styled.li`
-    margin-bottom: .5em;
-    font-size: .813em;
+    margin-bottom: .5rem;
+    font-size: .813rem;
     text-align: justify;
 `;
 
