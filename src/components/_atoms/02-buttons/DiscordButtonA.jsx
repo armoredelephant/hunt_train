@@ -18,13 +18,13 @@ const Button = styled.button`
     justify-content: center;
     color: #7289DA;
     background-color: #FFFFFF;
+    background-position: center;
     border: none;
     padding: 0;
     outline: none;
     width: 1.763rem;
     height: 1.975rem;
     margin: 0 .313rem;
-    border-radius: .75rem;
     cursor: ${props => props.disabled ? 'not-allowed' : 'pointer'};
 
     &:active {
@@ -32,7 +32,7 @@ const Button = styled.button`
     }
 
     @media (max-width: 25.875rem) {
-        height: 1.538rem;
+        height: 1.638rem;
     };
 `;
 
