@@ -15,9 +15,9 @@ const Container = styled.main`
   height: -webkit-fill-available;
 `;
 
-const MainContainerA = props => {
+const SplashContainerA = props => {
   const { children } = props;
   return <Container>{children}</Container>;
 };
 
-export default MainContainerA;
+export default SplashContainerA;

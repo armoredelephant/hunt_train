@@ -1,7 +1,18 @@
 import React from 'react';
+import PropTypes from 'prop-types'
 import styled from 'styled-components';
 
 import ModalCloseHeaderA from '@A/01-headers/ModalCloseHeaderA';
+
+/**
+ * Container for the different modals.
+ * Displays a Header with a close button. 
+ * and then whatever children are passed in.
+ * Used in: 
+ * <LogoutNotificationA />>
+ * <SiteGuideO />
+ * <VerificationModalO />
+ */
 
 const Container = styled.div`
     display: inline-flex;
@@ -54,3 +65,12 @@ const ModalContainerA = props => {
 };
 
 export default ModalContainerA;
+
+ModalContainerA.propTypes = {
+  carousel: PropTypes.bool,
+  children: PropTypes.oneOfType([
+    PropTypes.element,
+    PropTypes.arrayOf(PropTypes.element)
+  ]),
+  notification: PropTypes.bool
+};

@@ -6,11 +6,12 @@ const Notification = styled.p`
     align-self: center;
     color: ${props => props.formSuccess ? props.theme.green : props.theme.red};
     visibility: ${props => props.isHidden && 'hidden'};
+    font-size: .813rem;
 `;
 
 const Container = styled.div`
     display: flex;
-    margin: .938rem 0;
+    margin: .938rem .313rem;
     justify-content: center;
 `;
 

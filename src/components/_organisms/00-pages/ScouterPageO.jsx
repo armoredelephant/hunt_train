@@ -62,19 +62,21 @@ const ScouterPageO = props => {
   return (
     <>
       <MainContainerA>
-        <TrainCardM />
-        {zoneKeys.map(item => {
-          const rdmKey = Math.random()
-            .toString(36)
-            .substring(7);
-          return (
-            <ZoneCardM // prettier-ignore
-              key={rdmKey}
-              marks={zoneData[item].marks}
-              zone={zoneData[item].zone}
-            />
-          );
-        })}
+        <>
+          <TrainCardM />
+          {zoneKeys.map(item => {
+            const rdmKey = Math.random()
+              .toString(36)
+              .substring(7);
+            return (
+              <ZoneCardM // prettier-ignore
+                key={rdmKey}
+                marks={zoneData[item].marks}
+                zone={zoneData[item].zone}
+              />
+            );
+          })}
+        </>
       </MainContainerA>
       {showModal && (
         <BackdropContainerA>

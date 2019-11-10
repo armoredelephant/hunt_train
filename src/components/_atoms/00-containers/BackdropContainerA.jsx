@@ -1,9 +1,14 @@
 import React, { useContext } from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-import ModalCloseHeaderA from '@A/01-headers/ModalCloseHeaderA';
-
 import { DispatchContext } from '../../../App';
+
+/**
+ * Contains the backdrop that goes behind any modal.
+ * {children} will be <ModalContainerA> 
+ * and which modal is displayed will be managed by <ModalManagerM>.
+ */
 
 const Backdrop = styled.div`
   display: flex;
@@ -21,11 +26,25 @@ const BackdropContainerA = props => {
     const { children } = props;
     const dispatch = useContext(DispatchContext);
 
+    /**
+     * event - if the backdrop is clicked, dispatch is called to close modal.  
+     */
+
+    const handleBackdrop = event => {
+        event.target === event.currentTarget && dispatch({ type: 'modal' });
+    };
+
     return (
-        <Backdrop onClick={e => e.target === e.currentTarget && dispatch({ type: 'modal' })}>
-            {children}
-        </Backdrop>
+        <Backdrop onClick={handleBackdrop}>{children}</Backdrop>
     );
 };
 
 export default BackdropContainerA;
+
+
+BackdropContainerA.propTypes = {
+    children: PropTypes.oneOfType([
+        PropTypes.element,
+        PropTypes.arrayOf(PropTypes.element)
+    ])
+};

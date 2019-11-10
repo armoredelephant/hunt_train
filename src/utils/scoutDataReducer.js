@@ -123,7 +123,6 @@ const scoutDataReducer = (draft, action) => {
     case 'formError': {
       draft.formError = true;
       draft.formNotification = action.error;
-      draft.isLoading = false;
       return;
     }
     case 'formSuccess': {

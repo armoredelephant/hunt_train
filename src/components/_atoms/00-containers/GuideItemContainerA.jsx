@@ -1,5 +1,13 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
+
+/**
+ * Container used for all <Guide*A /> components
+ * Children will be the components within the indivudual -
+ * GuideItem components.
+ * Used in: all <Guide{*}A /> components
+ */
 
 const Container = styled.div`
     display: flex;
@@ -15,3 +23,11 @@ const GuideItemContainerA = props => {
 };
 
 export default GuideItemContainerA;
+
+GuideItemContainerA.propTypes = {
+    children: PropTypes.oneOfType([
+        PropTypes.element,
+        PropTypes.arrayOf(PropTypes.element)
+    ]),
+    isTitle: PropTypes.bool
+};

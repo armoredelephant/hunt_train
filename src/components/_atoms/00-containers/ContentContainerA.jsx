@@ -1,5 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
+
+/**
+ * Contains the content within the Splash page.
+ * Used in: <SplashPageO />
+ */
 
 const Container = styled.div`
   display: flex;
@@ -15,3 +21,10 @@ const ContentContainerA = props => {
 };
 
 export default ContentContainerA;
+
+ContentContainerA.PropTypes = {
+  children: PropTypes.oneOfType([
+    PropTypes.element,
+    PropTypes.arrayOf(PropTypes.element)
+  ])
+};

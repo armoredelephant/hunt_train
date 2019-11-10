@@ -1,5 +1,13 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
+
+/**
+ * Component that will display:
+ * Zone/Instance/Coords with their data
+ * within the TrainCard at the top of ScoutPageO
+ * Used in: <MarkDisplayM />
+ */
 
 const Container = styled.div`
   display: flex;
@@ -10,6 +18,9 @@ const Container = styled.div`
   flex-grow: 2;
 `;
 
+/**
+ * Displays a label for zone,instance, or coords.
+ */
 const Label = styled.p`
   text-align: ${props => props.theme.ta};
   letter-spacing: ${props => props.theme.ls};
@@ -21,6 +32,9 @@ const Label = styled.p`
   }
 `;
 
+/**
+ * Displays either zone, instance, or coord data.
+ */
 const Info = styled.p`
   font-family: ${props => props.theme.ff};
   letter-spacing: ${props => props.theme.ls};
@@ -47,3 +61,11 @@ const MarkInfoContainerA = props => {
 };
 
 export default MarkInfoContainerA;
+
+MarkInfoContainerA.propTypes = {
+  data: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number
+  ]).isRequired,
+  label: PropTypes.string.isRequired
+};

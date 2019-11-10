@@ -1,5 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
+
+/**
+ * Contains the content for each instance in ZoneCard.
+ * Used in: <CardHeaderM /> and <CardRowM />
+ */
 
 const Container = styled.div`
   display: flex;
@@ -13,3 +19,10 @@ const InstanceContainerA = props => {
 };
 
 export default InstanceContainerA;
+
+InstanceContainerA.propTypes = {
+  children: PropTypes.oneOfType([
+    PropTypes.element,
+    PropTypes.arrayOf(PropTypes.element)
+  ])
+};

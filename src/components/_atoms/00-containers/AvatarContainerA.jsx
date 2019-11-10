@@ -1,5 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
+
+/**
+ * Container for character avatar in Navbar header.
+ * Used in: <NavButtonContainerA />
+ */
 
 const AvatarContainer = styled.div`
     display: flex;
@@ -25,3 +31,7 @@ const AvatarContainerA = props => {
 };
 
 export default AvatarContainerA;
+
+AvatarContainerA.propTypes = {
+    url: PropTypes.string
+};
