@@ -12,7 +12,6 @@ const Container = styled.main`
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
     url(/resources/images/hunt.jpg);
   padding-bottom: 3.75rem;
-  height: -webkit-fill-available;
 `;
 
 const SplashContainerA = props => {
