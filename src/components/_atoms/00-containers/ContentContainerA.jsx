@@ -1,6 +1,5 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
 /**
  * Contains the content within the Splash page.
@@ -11,8 +10,8 @@ const Container = styled.div`
   display: flex;
   flex-flow: column;
   justify-content: space-evenly;
-  height: 18.750rem;
-  margin: .938rem;
+  height: 18.75rem;
+  margin: 0.938rem;
 `;
 
 const ContentContainerA = props => {
@@ -21,10 +20,3 @@ const ContentContainerA = props => {
 };
 
 export default ContentContainerA;
-
-ContentContainerA.PropTypes = {
-  children: PropTypes.oneOfType([
-    PropTypes.element,
-    PropTypes.arrayOf(PropTypes.element)
-  ])
-};

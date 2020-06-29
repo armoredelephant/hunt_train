@@ -1,6 +1,6 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import React from "react";
+import PropTypes from "prop-types";
+import styled from "styled-components";
 
 /**
  * Container used to wrap content in <main> tag.
@@ -8,12 +8,13 @@ import styled from 'styled-components';
  */
 
 const Container = styled.main`
+  min-height: 100vh;
   width: 100%;
   display: inline-flex;
   flex-flow: column;
   justify-content: space-evenly;
   align-items: center;
-  padding: 3.750rem .313rem;
+  padding: 3.75rem 0.313rem;
   flex-shrink: 0;
 `;
 
@@ -30,4 +31,3 @@ MainContainerA.propTypes = {
     PropTypes.arrayOf(PropTypes.element)
   ])
 };
-
