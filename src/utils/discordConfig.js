@@ -8,4 +8,5 @@ export const discordConfig = {
     manaURL: process.env.MANA_DISCORD_URL,
     primalURL: process.env.PRIMAL_DISCORD_URL,
     coeurlURL: process.env.COEURL_DISCORD_URL,
+    centurioURL: process.env.CENTURIO_DISCORD_URL,
 };

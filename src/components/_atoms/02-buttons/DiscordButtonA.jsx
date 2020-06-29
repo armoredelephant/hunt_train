@@ -56,7 +56,9 @@ const DiscordButtonA = () => {
 
         const { zone, instance, coords } = routeData[currentStop];
 
-        const data = `${world} train @ ${zone} ${coords} i${instance}`
+        const data = `${world} train @ ${zone} ${coords}`
+
+        const centurioData = `${world} train @ ${zone} ${coords} @Train`
         const centurio = {
             method: 'POST',
             url: `${dataCenterURL}`,
@@ -83,11 +85,28 @@ const DiscordButtonA = () => {
             }
         };
 
+        const centurioClan = {
+            method: 'POST',
+            url: `${discordConfig.coeurlURL}`,
+            data: {
+                username: 'hunt-conductor',
+                content: `${centurioData}`,
+                avatar_url: ''
+            },
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        }
+
         Axios(centurio);
 
         if (datacenter === 'Primal') {
             Axios(coeurl);
         };
+
+        if (datacenter === 'Light') {
+            Axios(centurioClan);
+        }
     }
 
     // disabled={!verified}
